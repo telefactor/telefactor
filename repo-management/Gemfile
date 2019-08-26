@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+# Specify your gem's dependencies in repo_management.gemspec
+gemspec
+
+gem 'octokit', '~> 4.14'
+gem 'git', '~> 1.5'
+gem 'rubocop', '~> 0.74.0'
+
+gem "safe_yaml", "~> 1.0"
+
+gem "dry-struct", "~> 1.0"
