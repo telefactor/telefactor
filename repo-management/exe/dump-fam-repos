@@ -1,0 +1,124 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler'
+require 'bundler/setup'
+
+require 'tty-table'
+require 'dry-initializer'
+
+require 'telefactor/repo_management'
+
+manager = Telefactor::RepoManagement::Manager.new
+
+class TableCell
+  class << self
+    def from_repo(repo)
+      new(repo: repo)
+    end
+
+    def header
+      raise 'ABC method not implemented'
+    end
+  end
+
+  def intialize(*)
+    raise 'ABC cannot be constructed'
+  end
+
+  def value
+    raise 'ABC method not implemented'
+  end
+end
+
+class Name < TableCell
+  def self.header
+    'Name'
+  end
+
+  attr_reader :value
+
+  def initialize(repo:)
+    @value = repo.name
+  end
+end
+
+class URL < TableCell
+  def self.header
+    'URL'
+  end
+
+  attr_reader :value
+
+  def initialize(repo:)
+    @value = repo.html_url
+  end
+end
+
+NAME_SCHEMA_REGEXP = /(?<game>telefactor-fam)-(?<role>examiner|sourcerer)-(?<phase>\w*)/.freeze
+
+class Phase < TableCell
+  def self.header
+    'Phase'
+  end
+
+  attr_reader :value
+
+  def initialize(repo:)
+    phase_word = (NAME_SCHEMA_REGEXP.match(repo.name)&.named_captures || {}).fetch('phase', '')
+    @value = {
+      '' => -1,
+      'zero' => 0,
+      'one' => 1,
+      'two' => 2,
+      'three' => 3,
+      'four' => 4,
+    }[phase_word.downcase]
+  end
+end
+
+class Role < TableCell
+  def self.header
+    'Role'
+  end
+
+  attr_reader :value
+
+  def initialize(repo:)
+    @value = (NAME_SCHEMA_REGEXP.match(repo.name)&.named_captures || {}).fetch('role', 'GM')
+  end
+end
+
+class DisplayOrder < TableCell
+  def self.header
+    'Ordering'
+  end
+
+  attr_reader :value
+
+  def initialize(repo:)
+    @value = repo.html_url
+  end
+end
+
+cell_classes = [
+  Phase,
+  Role,
+  Name,
+  URL,
+]
+
+rows = manager.fam_repos.map do |repo|
+  cell_classes.map do |cell_class|
+    cell_class.from_repo(repo).value
+  end
+end
+
+rows.sort!
+
+table = TTY::Table.new(
+  header: cell_classes.map(&:header),
+  rows: rows
+)
+
+puts table.render(:ascii)
