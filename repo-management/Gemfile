@@ -5,10 +5,14 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in repo_management.gemspec
 gemspec
 
-gem 'octokit', '~> 4.14'
+gem 'awesome_print', '~> 1.8'
+gem 'dry-struct', '~> 1.0'
 gem 'git', '~> 1.5'
+gem 'octokit', '~> 4.14'
+gem 'pry', '~> 0.12.2'
 gem 'rubocop', '~> 0.74.0'
+gem 'safe_yaml', '~> 1.0'
 
-gem "safe_yaml", "~> 1.0"
+gem "faraday-http-cache", "~> 2.0"
 
-gem "dry-struct", "~> 1.0"
+gem "tty-prompt", "~> 0.19.0"

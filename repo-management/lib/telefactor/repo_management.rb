@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
-require 'octokit'
-
 require 'telefactor/repo_management/version'
 
 module Telefactor
   module RepoManagement
+    require 'faraday-http-cache'
+    require 'octokit'
+
     class << self
       def octokit_client
+        stack = Faraday::RackBuilder.new do |builder|
+          builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
+          builder.use Octokit::Response::RaiseError
+          builder.adapter Faraday.default_adapter
+        end
+        Octokit.middleware = stack
+
         Octokit::Client.new(access_token: Secrets.secrets.github.access_token)
       end
     end
@@ -32,12 +40,10 @@ module Telefactor
           puts secrets_hashes
           Models::Secrets.new(secrets_hashes)
         end
-
       end
 
       module Models
         Types = Dry.Types
-
 
         class BaseModel < Dry::Struct
           # throw an error when unknown keys provided
