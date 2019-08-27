@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler'
+require 'bundler/setup'
+
+require 'telefactor/repo_management'
+require 'awesome_print'
+require 'tty-prompt'
+
+client = Telefactor::RepoManagement.octokit_client
+client.auto_paginate = true
+user = client.user
+repos = client.repositories
+telefactor_repos = repos.select do |repo|
+  repo.name.match?(/fam/) && !repo.fork?
+end
+
+ap(
+  'user name' => user.name,
+  'telefactor repo names' => telefactor_repos.map(&:name)
+)
+
+prompt = TTY::Prompt.new
+
+telefactor_repos.each do |repo|
+  next if prompt.no?("Make #{repo.name} public?")
+
+  response =
+    begin
+      client.edit_repository(
+        {
+          owner: user.login,
+          repo: repo.name,
+        },
+        private: false
+      )
+    rescue StandardError => e
+      ap(backtrace: e.backtrace)
+      require 'pry'; binding.pry
+
+      'failed response'
+    end
+  ap(response: response)
+end
