@@ -21,9 +21,20 @@ Gem::Specification.new do |spec|
   end
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
+  spec.require_paths = ['lib/telefactor']
+
+  spec.add_runtime_dependency 'awesome_print', '~> 1.8'
+  spec.add_runtime_dependency 'dry-struct', '~> 1.0'
+  spec.add_runtime_dependency 'faraday-http-cache', '~> 2.0'
+  spec.add_runtime_dependency 'git', '~> 1.5'
+  spec.add_runtime_dependency 'octokit', '~> 4.14'
+  spec.add_runtime_dependency 'safe_yaml', '~> 1.0'
+  spec.add_runtime_dependency 'tty-prompt', '~> 0.19.0'
+  spec.add_runtime_dependency 'tty-table', '~> 0.11.0'
 
   spec.add_development_dependency 'bundler', '~> 2.0'
+  spec.add_development_dependency 'pry', '~> 0.12.2'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'rubocop', '~> 0.74.0'
 end
