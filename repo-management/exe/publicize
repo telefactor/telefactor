@@ -8,20 +8,13 @@ require 'telefactor/repo_management'
 require 'awesome_print'
 require 'tty-prompt'
 
-client = Telefactor::RepoManagement.octokit_client
-client.auto_paginate = true
-user = client.user
-repos = client.repositories
-telefactor_repos = repos.select do |repo|
-  repo.name.match?(/fam/) && !repo.fork?
-end
+prompt = TTY::Prompt.new
+manager = Telefactor::RepoManagement::Manager.new
 
 ap(
-  'user name' => user.name,
-  'telefactor repo names' => telefactor_repos.map(&:name)
+  'user name' => manager.user.name,
+  'telefactor repo names' => manager.telefactor_repos.map(&:name)
 )
-
-prompt = TTY::Prompt.new
 
 telefactor_repos.each do |repo|
   next if prompt.no?("Make #{repo.name} public?")
@@ -30,7 +23,7 @@ telefactor_repos.each do |repo|
     begin
       client.edit_repository(
         {
-          owner: user.login,
+          owner: manager.user.login,
           repo: repo.name,
         },
         private: false
