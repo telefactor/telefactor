@@ -1,6 +1,5 @@
-+-----+---------+------------------------------+-------------------------------------------------------------+
 |Phase|Role     |Name                          |URL                                                          |
-+-----+---------+------------------------------+-------------------------------------------------------------+
+|-----|---------|------------------------------|-------------------------------------------------------------|
 |-1   |GM       |telefactor-fam                |https://github.com/ssangervasi/telefactor-fam                |
 |0    |examiner |telefactor-fam-examiner-zero  |https://github.com/ssangervasi/telefactor-fam-examiner-zero  |
 |0    |sourcerer|telefactor-fam-sourcerer-zero |https://github.com/ssangervasi/telefactor-fam-sourcerer-zero |
@@ -10,4 +9,3 @@
 |2    |sourcerer|telefactor-fam-sourcerer-two  |https://github.com/ssangervasi/telefactor-fam-sourcerer-two  |
 |3    |examiner |telefactor-fam-examiner-three |https://github.com/ssangervasi/telefactor-fam-examiner-three |
 |3    |sourcerer|telefactor-fam-sourcerer-three|https://github.com/ssangervasi/telefactor-fam-sourcerer-three|
-+-----+---------+------------------------------+-------------------------------------------------------------+

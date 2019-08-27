@@ -9,7 +9,18 @@ require 'dry-initializer'
 
 require 'telefactor/repo_management'
 
-manager = Telefactor::RepoManagement::Manager.new
+
+def load_fresh_data
+  manager = Telefactor::RepoManagement::Manager.new
+  manager.fam_repos
+end
+
+def load_file_cache_data
+  Marshal.load(File.read('./marshaled_data.txt'))
+end
+
+repos = load_fresh_data
+# repos = load_file_cache_data
 
 class TableCell
   class << self
@@ -108,7 +119,7 @@ cell_classes = [
   URL,
 ]
 
-rows = manager.fam_repos.map do |repo|
+rows = repos.map do |repo|
   cell_classes.map do |cell_class|
     cell_class.from_repo(repo).value
   end
@@ -121,4 +132,19 @@ table = TTY::Table.new(
   rows: rows
 )
 
-puts table.render(:ascii)
+class MarkdownBorder < TTY::Table::Border
+  def_border do
+    mid '-'
+    mid_left '|'
+    mid_mid '|'
+    mid_right '|'
+
+    left '|'
+    center '|'
+    right '|'
+  end
+end
+
+rendered_table = table.render_with(MarkdownBorder)
+
+puts rendered_table

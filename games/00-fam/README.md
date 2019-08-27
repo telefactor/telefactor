@@ -35,10 +35,8 @@ accomodate vacation schedules, but no one knew the whole order.
 Please browse the repos from each stage and pick your favorite things that changed between phases.
 
 ### Turn order
-```
-+-----+---------+------------------------------+-------------------------------------------------------------+
 |Phase|Role     |Name                          |URL                                                          |
-+-----+---------+------------------------------+-------------------------------------------------------------+
+|-----|---------|------------------------------|-------------------------------------------------------------|
 |-1   |GM       |telefactor-fam                |https://github.com/ssangervasi/telefactor-fam                |
 |0    |examiner |telefactor-fam-examiner-zero  |https://github.com/ssangervasi/telefactor-fam-examiner-zero  |
 |0    |sourcerer|telefactor-fam-sourcerer-zero |https://github.com/ssangervasi/telefactor-fam-sourcerer-zero |
@@ -48,5 +46,3 @@ Please browse the repos from each stage and pick your favorite things that chang
 |2    |sourcerer|telefactor-fam-sourcerer-two  |https://github.com/ssangervasi/telefactor-fam-sourcerer-two  |
 |3    |examiner |telefactor-fam-examiner-three |https://github.com/ssangervasi/telefactor-fam-examiner-three |
 |3    |sourcerer|telefactor-fam-sourcerer-three|https://github.com/ssangervasi/telefactor-fam-sourcerer-three|
-+-----+---------+------------------------------+-------------------------------------------------------------+
-```
