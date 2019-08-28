@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+rm './fam-cyclic.json' &>/dev/null
+
+befa() {
+	bundle exec fam add "$@" --input-path './fam-cyclic.json' --output-path './fam-cyclic.json'
+}
+
+befg() {
+	bundle exec fam get "$@" --input-path './fam-cyclic.json'
+}
+
+echo '
+## Testing basic cyclic relationship
+```
+'
+
+befa p amoeba
+befa pt amoeba amoeba
+
+
+echo '
+```
+## final file
+```json
+'
+cat './fam-cyclic.json'
+echo '
+```
+## Trying to get grandparent
+```
+'
+
+befg gpt amoeba
+
+echo '
+```
+## Trying to get gpt 10
+```
+'
+befg gpt --greatness 10 amoeba
+
+echo '
+```
+## Trying to get gpt 10,000
+```
+'
+
+befg gpt --greatness 10000 amoeba
+
+echo '
+```
+'

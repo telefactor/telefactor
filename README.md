@@ -35,8 +35,13 @@ and point warm-heartedly blame each other for mistakes made up and down the chai
 This repo is acts an archive of starting apps and rounds of the games being played.
 
 If you're a host looking to reuse one of the games, make sure your players know not to go poking
-around for spoilers. I prefer to keep my source app in a private fork until the game is finished,
-and then do a PR from that with a commit for each step round in the game.
+around for spoilers. I prefer to keep each player's code in a private repo which isn't made public
+until after the game is finished.
+
+## Completed games
+
+0. [Fam](/games/00-fam/README.md) - The first completed game. A good starting point for templating
+how a came should run.
 
 ## Inspiration links
 

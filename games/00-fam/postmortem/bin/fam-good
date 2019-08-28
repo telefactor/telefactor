@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+rm './fam-good.json' &>/dev/null
+
+befa() {
+	bundle exec fam add "$@" --input-path './fam-good.json' --output-path './fam-good.json'
+}
+
+befg() {
+	bundle exec fam get "$@" --input-path './fam-good.json'
+}
+
+echo '
+## Setting up a good big family
+```
+'
+
+befa p 'John'
+befa p 'Paul'
+befa p 'George'
+befa p 'Ringo'
+
+befa p 'Bart'
+befa p 'Lisa'
+befa p 'Maggy'
+befa p 'Homer'
+befa p 'Marge'
+befa p 'Grampa Simpson'
+
+befa p 'Smoobles I'
+befa p 'Smoobles II'
+befa p 'Smoobles III'
+befa p 'Smoobles IIII'
+befa p 'Smoobles IIIII'
+
+befa pt 'John' 'Paul' 'George'
+befa pt 'Paul' 'Ringo' 'Smoobles IIIII'
+befa pt 'Ringo' 'Maggy' 'Smoobles IIIII'
+befa pt 'George' 'Smoobles IIIII'
+
+befa pt 'Bart' 'Marge' 'Homer'
+befa pt 'Lisa' 'Marge' 'Homer'
+befa pt 'Maggy' 'Marge' 'Homer'
+befa pt 'Homer' 'Grampa Simpson'
+befa pt 'Grampa Simpson' 'Smoobles IIIII'
+
+
+befa pt 'Smoobles IIIII' 'Smoobles IIII'
+befa pt 'Smoobles IIII' 'Smoobles III'
+befa pt 'Smoobles III' 'Smoobles II'
+befa pt 'Smoobles II' 'Smoobles I'
+befa pt 'Smoobles I'
+
+echo '
+```
+## Running queries
+```
+'
+
+befg p 'John'
+befg pt 'John'
+befg gpt 'John'
+befg gpt --greatness 1 'John'
+befg gpt --greatness 2 'John'
+befg gpt --greatness 3 'John'
+
+
+befg p 'Maggy'
+befg pt 'Maggy'
+befg gpt 'Maggy'
+befg gpt --greatness 1 'Maggy'
+befg gpt --greatness 2 'Maggy'
+befg gpt --greatness 3 'Maggy'
+
+
+echo '
+```
+## final file
+```json
+'
+cat './fam-good.json'
+echo '
+```
+'

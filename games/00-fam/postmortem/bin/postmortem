@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+POSTMORTEM_BIN=$(dirname $BASH_SOURCE)
+export PATH="$POSTMORTEM_BIN:$PATH"
+
+POSTMORTEM_ROOT="${POSTMORTEM_BIN}/.."
+POSTMORTEM_RESULTS="${POSTMORTEM_ROOT}/results"
+
+export REPO_BASE_PATH=${REPO_BASE_PATH:-.}
+
+export REPO_NAMES=(
+	telefactor-fam
+	telefactor-fam-examiner-zero
+	telefactor-fam-sourcerer-zero
+	telefactor-fam-examiner-one
+	telefactor-fam-sourcerer-one
+	telefactor0-fam-examiner-two
+	telefactor-fam-sourcerer-two
+	telefactor-fam-examiner-three
+	telefactor-fam-sourcerer-three
+)
+
+echo "REPO_BASE_PATH: $REPO_BASE_PATH"
+echo "REPO_NAMES: ${REPO_NAMES[@]}"
+
+export PATH="$HOME/.rvm/bin:$PATH";
+source "$HOME/.rvm/scripts/rvm";
+
+rm -r "${POSTMORTEM_RESULTS}"/*
+
+for repo_name in "${REPO_NAMES[@]}"; do
+	repo_path="${REPO_BASE_PATH}/${repo_name}"
+	if [[ ! -d  ${repo_path} ]]; then
+		echo "${repo_path} DNE!"
+		continue
+	fi
+
+	mkdir -p "${POSTMORTEM_RESULTS}/${repo_name}"
+	pushd "${repo_path}"
+
+	if ! bundle --quiet; then
+		echo "${repo_name} - bundling failed" 1>&2
+		continue
+	fi
+
+	(
+		fam-good
+	) |& tee "${POSTMORTEM_RESULTS}/${repo_name}/fam-good.md"
+
+	(
+		fam-cyclic
+	) |& tee "${POSTMORTEM_RESULTS}/${repo_name}/fam-cyclic.md"
+
+	popd
+done
