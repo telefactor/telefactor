@@ -3,6 +3,8 @@
 require 'dry-struct'
 require 'safe_yaml'
 
+require 'telefactor/repo_management/types'
+
 SafeYAML::OPTIONS[:default_mode] = :safe
 
 module Telefactor::RepoManagement
@@ -17,25 +19,16 @@ module Telefactor::RepoManagement
       end
 
       def wrap_with_models(secrets_hashes)
-        Models::Secrets.new(secrets_hashes)
+        Structs::Secrets.new(secrets_hashes)
       end
     end
 
-    module Models
-      Types = Dry.Types
-
-      class BaseModel < Dry::Struct
-        # throw an error when unknown keys provided
-        schema schema.strict
-        # convert string keys to symbols
-        transform_keys(&:to_sym)
+    module Structs
+      class GitHub < Telefactor::RepoManagement::Types::StrictStruct
+        attribute :access_token, Telefactor::RepoManagement::Types::String
       end
 
-      class GitHub < BaseModel
-        attribute :access_token, Types::String
-      end
-
-      class Secrets < BaseModel
+      class Secrets < Telefactor::RepoManagement::Types::StrictStruct
         attribute :github, GitHub
       end
     end

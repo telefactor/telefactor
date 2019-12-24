@@ -4,7 +4,11 @@ require 'faraday-http-cache'
 require 'octokit'
 
 module Telefactor::RepoManagement
-  class Manager
+  class OktokitGateway
+    extend Dry::Initializer
+
+    option :client, default: proc { OktokitGateway.create_octokit_client }
+
     class << self
       def create_octokit_client
         stack = Faraday::RackBuilder.new do |builder|
@@ -14,7 +18,10 @@ module Telefactor::RepoManagement
         end
         Octokit.middleware = stack
 
-        Octokit::Client.new(access_token: Secrets.secrets.github.access_token)
+        Octokit::Client.new(
+          access_token: Secrets.secrets.github.access_token,
+          auto_paginate: true
+        )
       end
     end
 
@@ -24,19 +31,6 @@ module Telefactor::RepoManagement
 
     def repos
       client.repositories
-    end
-
-    def fam_repos
-      repos.select do |repo|
-        repo.name.match?(/fam/) && !repo.fork?
-      end
-    end
-
-    def client
-      @client ||=
-        self.class.create_octokit_client.tap do |client_for_config|
-          client_for_config.auto_paginate = true
-        end
     end
   end
 end

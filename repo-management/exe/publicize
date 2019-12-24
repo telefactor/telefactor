@@ -9,21 +9,21 @@ require 'tty-prompt'
 require 'telefactor/repo_management'
 
 prompt = TTY::Prompt.new
-manager = Telefactor::RepoManagement::Manager.new
+fam = Telefactor::RepoManagement::Fam.new
 
 ap(
-  'user name' => manager.user.name,
-  'telefactor repo names' => manager.fam_repos.map(&:name)
+  'user name' => fam.user.name,
+  'telefactor repo names' => fam.repos.map(&:name)
 )
 
-fam_repos.each do |repo|
+fam.repos.each do |repo|
   next if prompt.no?("Make #{repo.name} public?")
 
   response =
     begin
-      client.edit_repository(
+      fam.client.edit_repository(
         {
-          owner: manager.user.login,
+          owner: fam.user.login,
           repo: repo.name,
         },
         private: false

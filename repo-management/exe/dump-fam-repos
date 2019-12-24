@@ -11,8 +11,7 @@ require 'telefactor/repo_management'
 
 
 def load_fresh_data
-  manager = Telefactor::RepoManagement::Manager.new
-  manager.fam_repos
+  Telefactor::RepoManagement::Fam.new.repos
 end
 
 def load_file_cache_data
