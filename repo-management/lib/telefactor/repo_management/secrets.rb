@@ -11,24 +11,24 @@ module Telefactor::RepoManagement
   module Secrets
     class << self
       def secrets
-        @secrets ||= wrap_with_models(load_yaml_file)
+        @secrets ||= wrap_with_structs(load_yaml_file)
       end
 
       def load_yaml_file
         SafeYAML.load_file('./config/secrets.yaml')
       end
 
-      def wrap_with_models(secrets_hashes)
+      def wrap_with_structs(secrets_hashes)
         Structs::Secrets.new(secrets_hashes)
       end
     end
 
     module Structs
-      class GitHub < Telefactor::RepoManagement::Types::StrictStruct
+      class GitHub < Telefactor::RepoManagement::Types::Custom::StrictStruct
         attribute :access_token, Telefactor::RepoManagement::Types::String
       end
 
-      class Secrets < Telefactor::RepoManagement::Types::StrictStruct
+      class Secrets < Telefactor::RepoManagement::Types::Custom::StrictStruct
         attribute :github, GitHub
       end
     end

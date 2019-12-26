@@ -99,18 +99,6 @@ class Role < TableCell
   end
 end
 
-class DisplayOrder < TableCell
-  def self.header
-    'Ordering'
-  end
-
-  attr_reader :value
-
-  def initialize(repo:)
-    @value = repo.html_url
-  end
-end
-
 cell_classes = [
   Phase,
   Role,
