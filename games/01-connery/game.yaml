@@ -1,0 +1,21 @@
+name: connery
+number: 1
+gm: ssangervasi
+
+players:
+  - kcheung
+  - vanmeternicole
+
+repositories:
+  - number: 0
+    phase: 0
+    role: sourcerer
+    player: ssangervasi
+    url:
+  - number: 1
+    phase: 0
+    role: examiner
+    player:
+    url:
+      
+

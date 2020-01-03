@@ -1,8 +1,10 @@
+# Telefactor Game 00: Fam
+
 ## Before the game
 
 To review, here's what we're doing:
 
-Readme: https://github.com/ssangervasi/telefactor
+Readme: <https://github.com/telefactor/telefactor>
 
 ### Language: Ruby (2.6)
 
@@ -36,16 +38,7 @@ accomodate vacation schedules, but no one knew the whole order.
 **For players:** Please browse the repos from each stage and pick your favorite things
 that changed between phases.
 
-### Turn order
+### Repositories
 
-|Phase|Role     |Name                          |URL                                                          |
-|-----|---------|------------------------------|-------------------------------------------------------------|
-|-1   |GM       |telefactor-fam                |https://github.com/ssangervasi/telefactor-fam                |
-|0    |examiner |telefactor-fam-examiner-zero  |https://github.com/ssangervasi/telefactor-fam-examiner-zero  |
-|0    |sourcerer|telefactor-fam-sourcerer-zero |https://github.com/ssangervasi/telefactor-fam-sourcerer-zero |
-|1    |examiner |telefactor-fam-examiner-one   |https://github.com/ssangervasi/telefactor-fam-examiner-one   |
-|1    |sourcerer|telefactor-fam-sourcerer-one  |https://github.com/ssangervasi/telefactor-fam-sourcerer-one  |
-|2    |examiner |telefactor-fam-examiner-two   |https://github.com/ssangervasi/telefactor-fam-examiner-two   |
-|2    |sourcerer|telefactor-fam-sourcerer-two  |https://github.com/ssangervasi/telefactor-fam-sourcerer-two  |
-|3    |examiner |telefactor-fam-examiner-three |https://github.com/ssangervasi/telefactor-fam-examiner-three |
-|3    |sourcerer|telefactor-fam-sourcerer-three|https://github.com/ssangervasi/telefactor-fam-sourcerer-three|
+[game.yaml](game.yaml)
+  

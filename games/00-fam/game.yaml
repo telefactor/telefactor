@@ -1,0 +1,50 @@
+name: fam
+number: 0
+gm: ssangervasi
+participants:
+  - clanam
+  - ninduni
+  - lchristopherson
+  - gmkohler
+  - peckb1
+  - jonbwhite
+  - hammerdr
+  - kcheung
+
+repositories:
+  - number: 0
+    phase: -1
+    role: GM
+    url: https://github.com/ssangervasi/telefactor-fam
+  - number: 1
+    phase: 0
+    role: examiner
+    url: https://github.com/ssangervasi/telefactor-fam-examiner-zero
+  - number: 2
+    phase: 0
+    role: sourcerer
+    url: https://github.com/ssangervasi/telefactor-fam-sourcerer-zero
+  - number: 3
+    phase: 1
+    role: examiner
+    url: https://github.com/ssangervasi/telefactor-fam-examiner-one
+  - number: 4
+    phase: 1
+    role: sourcerer
+    url: https://github.com/ssangervasi/telefactor-fam-sourcerer-one
+  - number: 5
+    phase: 2
+    role: examiner
+    url: https://github.com/ssangervasi/telefactor-fam-examiner-two
+  - number: 6
+    phase: 2
+    role: sourcerer
+    url: https://github.com/ssangervasi/telefactor-fam-sourcerer-two
+  - number: 7
+    phase: 3
+    role: examiner
+    url: https://github.com/ssangervasi/telefactor-fam-examiner-three
+  - number: 8
+    phase: 3
+    role: sourcerer
+    url: https://github.com/ssangervasi/telefactor-fam-sourcerer-three
