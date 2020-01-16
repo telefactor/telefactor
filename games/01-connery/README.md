@@ -44,11 +44,11 @@ earlist players and the finale. Hopefully this will be more engaging.
 
 ## The code
 
+Here's a preview of the readme for each app: [APP_README_PREVIEW.md](APP_README_PREVIEW.md)
+
 ### Language: TypeScript (3.7)
 
 Before the game starts I would suggest you install [NVM](http://nvm.sh) and Node 12.4.0.
-
-There will be more app-specific installation instructions with when you get your repo.
 
 ### Repositories
 
