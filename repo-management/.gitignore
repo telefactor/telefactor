@@ -2,5 +2,6 @@
 # No secrets for you, mister hacker.
 *secrets*.y?ml
 
-
 *marshal*.txt
+tmp
+.rspec_status

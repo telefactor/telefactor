@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler'
+require 'bundler/setup'
+
+require 'lightly'
+
+require 'telefactor/repo_management'
+
+lightly = Lightly.new(
+  dir: 'tmp/cache',
+  life: '1d',
+)
+
+repos = lightly.get 'shawn' do
+  Telefactor::RepoManagement::Shawn.new.repos
+end
+
+Telefactor::RepoManagement::RepoDumper.new.dump(repos)
