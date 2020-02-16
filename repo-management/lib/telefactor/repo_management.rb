@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module Telefactor
-  module RepoManagement
-  end
+  module RepoManagement; end
 end
 
 require 'telefactor/repo_management/version'

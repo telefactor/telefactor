@@ -32,17 +32,17 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'safe_yaml', '~> 1.0'
   spec.add_runtime_dependency 'tty-prompt', '~> 0.19.0'
   spec.add_runtime_dependency 'tty-table', '~> 0.11.0'
-  
+
   # dry-rb suite:
+  spec.add_runtime_dependency 'dry-initializer', '~> 3.0'
   spec.add_runtime_dependency 'dry-struct', '~> 1.0'
   spec.add_runtime_dependency 'dry-types', '~> 1.2'
-  spec.add_runtime_dependency 'dry-initializer', '~> 3.0'
 
   ##
   # Dev deps
   spec.add_development_dependency 'bundler', '~> 2.0'
-  spec.add_development_dependency 'pry', '~> 0.12.2'
+  spec.add_development_dependency 'pry', '~> 0.12'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_development_dependency 'rubocop', '~> 0.74.0'
+  spec.add_development_dependency 'rspec', '~> 3.9'
+  spec.add_development_dependency 'rubocop', '~> 0.74'
 end

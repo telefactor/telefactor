@@ -15,6 +15,10 @@ Metrics/BlockLength:
     - '**/*_spec.rb'
     - '**/spec_helpers/**.rb'
 
+Layout/Tab:
+  Enabled: true
+  IndentationWidth: 2
+
 Metrics/LineLength:
   Max: 99
 

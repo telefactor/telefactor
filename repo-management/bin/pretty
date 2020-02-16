@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+main() {
+	which prettier || install_prettier
+	# rbprettier --write lib/**/*.rb spec/**/*.rb exe/**/*.rb
+	rbprettier --write '**/*.rb'
+}
+
+install_prettier() {
+	select response in 'yes' 'no'; do
+		if [[ ! "${response}" =~ 'y' ]]; then
+			echo 'Okay bye'
+			exit 1
+		fi
+	done
+
+	echo 'Installing prettier'
+	gem install prettier
+}
+
+main

@@ -5,4 +5,4 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in repo_management.gemspec
 gemspec
 
-gem "lightly", "~> 0.3.2"
+gem 'lightly', '~> 0.3.2'

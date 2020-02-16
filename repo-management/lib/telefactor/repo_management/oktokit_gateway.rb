@@ -11,16 +11,17 @@ module Telefactor::RepoManagement
 
     class << self
       def create_octokit_client
-        stack = Faraday::RackBuilder.new do |builder|
-          builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
-          builder.use Octokit::Response::RaiseError
-          builder.adapter Faraday.default_adapter
-        end
+        stack =
+          Faraday::RackBuilder.new do |builder|
+            builder.use Faraday::HttpCache,
+                        serializer: Marshal, shared_cache: false
+            builder.use Octokit::Response::RaiseError
+            builder.adapter Faraday.default_adapter
+          end
         Octokit.middleware = stack
 
         Octokit::Client.new(
-          access_token: Secrets.secrets.github.access_token,
-          auto_paginate: true
+          access_token: Secrets.secrets.github.access_token, auto_paginate: true
         )
       end
     end

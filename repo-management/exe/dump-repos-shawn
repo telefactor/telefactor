@@ -10,7 +10,7 @@ require 'telefactor/repo_management'
 
 lightly = Lightly.new(
   dir: 'tmp/cache',
-  life: '1d',
+  life: '1d'
 )
 
 repos = lightly.get 'shawn' do

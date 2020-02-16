@@ -8,24 +8,21 @@ require 'telefactor/repo_management/types'
 module Telefactor::RepoManagement
   class Shawn
     extend Dry::Initializer
-    
-    REPO_NAME_SCHEMA_REGEXP = /(?<game>shawn)-(?<phase>\d+)/
+
+    REPO_NAME_SCHEMA_REGEXP = /(?<game>shawn)-(?<phase>\d+)/.freeze
 
     option :oktokit_gateway, default: proc { OktokitGateway.new }
 
     class << self
-      
       def resources_to_repos(resources)
         resources.map do |resource|
           name_captures =
-            REPO_NAME_SCHEMA_REGEXP
-            .match(resource[:name])
-            &.named_captures || {}
+            REPO_NAME_SCHEMA_REGEXP.match(resource[:name])&.named_captures || {}
 
           Repo.new(
             name: resource[:name],
             url: resource[:html_url],
-            phase: name_captures.fetch('phase'),
+            phase: name_captures.fetch('phase')
           )
         end
       end
@@ -47,11 +44,7 @@ module Telefactor::RepoManagement
       SOURCERER = 'sourcerer'
 
       def self.members
-        {
-          'EXAMINER' => EXAMINER,
-          'GM' => GM,
-          'SOURCERER' => SOURCERER
-        }.freeze
+        { 'EXAMINER' => EXAMINER, 'GM' => GM, 'SOURCERER' => SOURCERER }.freeze
       end
     end
 
@@ -66,12 +59,11 @@ module Telefactor::RepoManagement
       attribute :phase, Types::Coercible::Integer
 
       def role
-        case
-        when phase.zero?
+        if phase.zero?
           Roles::GM
-        when phase.even?
+        elsif phase.odd?
           Roles::EXAMINER
-        when phase.odd?
+        elsif phase.even?
           Roles::SOURCERER
         end
       end

@@ -4,112 +4,103 @@ require 'tty-table'
 require 'dry-initializer'
 
 module Telefactor::RepoManagement
-	class RepoDumper
-		def dump(repos)
-			rows = repos.map do |repo|
-				CELL_CLASSES.map do |cell_class|
-					cell_class.from_repo(repo).value
-				end
-			end
+  class RepoDumper
+    def dump(repos)
+      rows =
+        repos.map do |repo|
+          CELL_CLASSES.map { |cell_class| cell_class.from_repo(repo).value }
+        end
 
-			rows.sort!
+      rows.sort!
 
-			table = TTY::Table.new(
-				header: CELL_CLASSES.map(&:header),
-				rows: rows
-			)
+      table = TTY::Table.new(header: CELL_CLASSES.map(&:header), rows: rows)
 
-			rendered_table = table.render_with(MarkdownBorder)
+      rendered_table = table.render_with(MarkdownBorder)
 
-			puts(rendered_table)
-		end
+      puts(rendered_table)
+    end
 
-		class MarkdownBorder < TTY::Table::Border
-			def_border do
-				mid '-'
-				mid_left '|'
-				mid_mid '|'
-				mid_right '|'
+    class MarkdownBorder < TTY::Table::Border
+      def_border do
+        mid '-'
+        mid_left '|'
+        mid_mid '|'
+        mid_right '|'
 
-				left '|'
-				center '|'
-				right '|'
-			end
-		end
-		
-		class TableCell
-			class << self
-				def from_repo(repo)
-					new(repo: repo)
-				end
+        left '|'
+        center '|'
+        right '|'
+      end
+    end
 
-				def header
-					raise 'ABC method not implemented'
-				end
-			end
+    class TableCell
+      class << self
+        def from_repo(repo)
+          new(repo: repo)
+        end
 
-			def intialize(*)
-				raise 'ABC cannot be constructed'
-			end
+        def header
+          raise 'ABC method not implemented'
+        end
+      end
 
-			def value
-				raise 'ABC method not implemented'
-			end
-		end
+      def intialize(*)
+        raise 'ABC cannot be constructed'
+      end
 
-		class Name < TableCell
-			def self.header
-				'Name'
-			end
+      def value
+        raise 'ABC method not implemented'
+      end
+    end
 
-			attr_reader :value
+    class Name < TableCell
+      def self.header
+        'Name'
+      end
 
-			def initialize(repo:)
-				@value = repo.name
-			end
-		end
+      attr_reader :value
 
-		class URL < TableCell
-			def self.header
-				'URL'
-			end
+      def initialize(repo:)
+        @value = repo.name
+      end
+    end
 
-			attr_reader :value
+    class URL < TableCell
+      def self.header
+        'URL'
+      end
 
-			def initialize(repo:)
-				@value = repo.url
-			end
-		end
+      attr_reader :value
 
-		class Phase < TableCell
-			def self.header
-				'Phase'
-			end
+      def initialize(repo:)
+        @value = repo.url
+      end
+    end
 
-			attr_reader :value
+    class Phase < TableCell
+      def self.header
+        'Phase'
+      end
 
-			def initialize(repo:)
-				@value = repo.phase
-			end
-		end
+      attr_reader :value
 
-		class Role < TableCell
-			def self.header
-				'Role'
-			end
+      def initialize(repo:)
+        @value = repo.phase
+      end
+    end
 
-			attr_reader :value
+    class Role < TableCell
+      def self.header
+        'Role'
+      end
 
-			def initialize(repo:)
-				@value = repo.role
-			end
-		end
+      attr_reader :value
 
-		CELL_CLASSES = [
-			Phase,
-			Role,
-			Name,
-			URL,
-		]
-	end
+      def initialize(repo:)
+        @value = repo.role
+      end
+    end
+
+    CELL_CLASSES = [Phase, Role, Name, URL].freeze
+  end
 end

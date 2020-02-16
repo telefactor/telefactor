@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 
 require 'dry-struct'
 
 module Telefactor::RepoManagement
   module Types
-    include Dry.Types()
+    include Dry.Types
 
     module Custom
       class StrictStruct < Dry::Struct
@@ -15,4 +16,3 @@ module Telefactor::RepoManagement
     end
   end
 end
-

@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler'
+require 'bundler/setup'
+
+require 'telefactor/repo_management'
+
+game = Telefactor::RepoManagement::Shawn.new
+
+puts(game.latest_phase)
