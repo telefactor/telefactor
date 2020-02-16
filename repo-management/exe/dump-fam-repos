@@ -9,17 +9,22 @@ require 'dry-initializer'
 
 require 'telefactor/repo_management'
 
+CACHE_PATH = './marshaled_data.txt'
 
 def load_fresh_data
-  Telefactor::RepoManagement::Fam.new.repos
+  Telefactor::RepoManagement::Fam.new.repos.tap do |data|
+    open(CACHE_PATH, 'w') { |f| f.write(Marshal.dump(data)) }
+  end
 end
 
 def load_file_cache_data
-  Marshal.load(File.read('./marshaled_data.txt'))
+  return nil unless test('e', CACHE_PATH)
+
+  Marshal.load(open(CACHE_PATH) { |f| f.read })
 end
 
-repos = load_fresh_data
-# repos = load_file_cache_data
+# repos = load_fresh_data
+repos = load_file_cache_data || load_fresh_data 
 
 class TableCell
   class << self
@@ -61,11 +66,9 @@ class URL < TableCell
   attr_reader :value
 
   def initialize(repo:)
-    @value = repo.html_url
+    @value = repo.url
   end
 end
-
-NAME_SCHEMA_REGEXP = /(?<game>telefactor-fam)-(?<role>examiner|sourcerer)-(?<phase>\w*)/.freeze
 
 class Phase < TableCell
   def self.header
@@ -75,15 +78,7 @@ class Phase < TableCell
   attr_reader :value
 
   def initialize(repo:)
-    phase_word = (NAME_SCHEMA_REGEXP.match(repo.name)&.named_captures || {}).fetch('phase', '')
-    @value = {
-      '' => -1,
-      'zero' => 0,
-      'one' => 1,
-      'two' => 2,
-      'three' => 3,
-      'four' => 4,
-    }[phase_word.downcase]
+    @value = repo.phase
   end
 end
 
@@ -95,7 +90,7 @@ class Role < TableCell
   attr_reader :value
 
   def initialize(repo:)
-    @value = (NAME_SCHEMA_REGEXP.match(repo.name)&.named_captures || {}).fetch('role', 'GM')
+    @value = repo.role
   end
 end
 

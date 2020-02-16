@@ -14,7 +14,6 @@ module Telefactor::RepoManagement
     class << self
       def resources_to_repos(resources)
         repo_name_schema_regexp = /(?<game>telefactor-fam)-(?<role>examiner|sourcerer)-(?<phase>\w*)/
-
         resources.map do |resource|
           name_captures =
             repo_name_schema_regexp
@@ -24,7 +23,7 @@ module Telefactor::RepoManagement
           Repo.new(
             name: resource[:name],
             url: resource[:html_url],
-            phase: name_captures.fetch('phase'),
+            phase: name_captures.fetch('phase', -1),
             role: name_captures.fetch('role', Roles::GM)
           )
         end
@@ -32,7 +31,7 @@ module Telefactor::RepoManagement
     end
 
     def repos
-      @repos ||= resources_to_repos(fetch_repo_resources)
+      @repos ||= self.class.resources_to_repos(fetch_repo_resources)
     end
 
     def fetch_repo_resources
@@ -55,6 +54,25 @@ module Telefactor::RepoManagement
       end
     end
 
+    class Phases
+      def self.members
+        {
+          -1  => ''  ,
+          0  => 'zero'  ,
+          1  => 'one'   ,
+          2  => 'two'   ,
+          3  => 'three' ,
+          4  => 'four'  ,
+          5  => 'five'  ,
+          6  => 'six'   ,
+          7  => 'seven' ,
+          8  => 'eight' ,
+          9  => 'nine'  ,
+          10 => 'ten'   ,
+        }.freeze
+      end
+    end
+
     class Repo < Types::Custom::StrictStruct
       ##
       # Core resource fields:
@@ -63,7 +81,7 @@ module Telefactor::RepoManagement
 
       ##
       # Telefactor fields:
-      attribute :phase, Types::Coercible::Integer
+      attribute :phase, Types::Coercible::Integer.enum(Phases.members)
       attribute :role, Types::Strict::String.enum(Roles.members)
     end
   end
