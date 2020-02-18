@@ -28,12 +28,13 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'awesome_print', '~> 1.8'
   spec.add_runtime_dependency 'faraday-http-cache', '~> 2.0'
   spec.add_runtime_dependency 'git', '~> 1.5'
+  spec.add_runtime_dependency 'lightly', '~> 0.3'
   spec.add_runtime_dependency 'octokit', '~> 4.14'
   spec.add_runtime_dependency 'safe_yaml', '~> 1.0'
   spec.add_runtime_dependency 'tty-prompt', '~> 0.19.0'
-  spec.add_runtime_dependency 'tty-table', '~> 0.11.0'
+  spec.add_runtime_dependency 'tty-table', '~> 0.11'
 
-  # dry-rb suite:
+  # dry-rb suite
   spec.add_runtime_dependency 'dry-initializer', '~> 3.0'
   spec.add_runtime_dependency 'dry-struct', '~> 1.0'
   spec.add_runtime_dependency 'dry-types', '~> 1.2'

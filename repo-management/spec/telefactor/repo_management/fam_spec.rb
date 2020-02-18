@@ -3,14 +3,12 @@
 require 'spec_helper'
 
 RSpec.describe Telefactor::RepoManagement::Fam do
-
   describe '.resources_to_repos' do
     subject(:repos) { described_class.resources_to_repos(resources) }
     let(:resources) do
       [
         {
-          name: 'telefactor-fam-examiner-1',
-          html_url: 'example.com/telefactor'
+          name: 'telefactor-fam-examiner-1', html_url: 'example.com/telefactor'
         }
       ]
     end
@@ -20,4 +18,3 @@ RSpec.describe Telefactor::RepoManagement::Fam do
     end
   end
 end
-

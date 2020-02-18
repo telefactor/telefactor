@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'pry'
+require 'awesome_print'
+
 require 'telefactor/repo_management'
 
 RSpec.configure do |config|

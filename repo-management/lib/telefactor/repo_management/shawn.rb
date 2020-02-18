@@ -11,6 +11,7 @@ module Telefactor::RepoManagement
 
     REPO_NAME_SCHEMA_REGEXP = /(?<game>shawn)-(?<phase>\d+)/.freeze
 
+    option :repos, optional: true
     option :oktokit_gateway, default: proc { OktokitGateway.new }
 
     class << self
@@ -31,6 +32,12 @@ module Telefactor::RepoManagement
     def repos
       @repos ||= self.class.resources_to_repos(fetch_repo_resources)
     end
+
+    def latest_phase
+      repos.max_by(&:phase)
+    end
+
+    private 
 
     def fetch_repo_resources
       oktokit_gateway.repos.select do |resource|
