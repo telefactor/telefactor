@@ -44,7 +44,7 @@ earlist players and the finale. Hopefully this will be more engaging.
 
 ## The code
 
-Here's a preview of the readme for each app: [APP_README_PREVIEW.md](APP_README_PREVIEW.md)
+Here's a boilerplate you can clone and get started on!: [connery-boilerplate](https://github.com/telefactor/connery-boilerplate)
 
 ### Language: TypeScript (3.7)
 
