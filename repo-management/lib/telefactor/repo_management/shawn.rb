@@ -11,7 +11,7 @@ module Telefactor::RepoManagement
 
     REPO_NAME_SCHEMA_REGEXP = /(?<game>shawn)-(?<phase>\d+)/.freeze
 
-    option :repos, optional: true
+    option :repos, default: proc { nil }
     option :oktokit_gateway, default: proc { OktokitGateway.new }
 
     class << self
