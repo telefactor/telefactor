@@ -33,7 +33,7 @@ module Telefactor::RepoManagement
       @repos ||= self.class.resources_to_repos(fetch_repo_resources)
     end
 
-    def latest_phase
+    def latest_repo
       repos.max_by(&:phase)
     end
 
