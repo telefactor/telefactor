@@ -23,6 +23,7 @@ module Telefactor::RepoManagement
           Repo.new(
             name: resource[:name],
             url: resource[:html_url],
+            ssh_url: resource[:ssh_url],
             phase: name_captures.fetch('phase')
           )
         end
@@ -60,6 +61,7 @@ module Telefactor::RepoManagement
       # Core resource fields:
       attribute :name, Types::Strict::String
       attribute :url, Types::Strict::String
+      attribute :ssh_url, Types::Strict::String
 
       ##
       # Telefactor fields:

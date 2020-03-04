@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler'
+require 'bundler/setup'
+
+require 'lightly'
+require 'pry' 
+require 'git'
+require 'shell'
+require 'awesome_print'
+
+require 'telefactor/repo_management'
+include Telefactor::RepoManagement
+
+THIS_FILE = Pathname(__FILE__).expand_path
+TELEFACTOR_ROOT = begin
+    dir = THIS_FILE.parent
+    while dir.exist? && !(dir/'.git').exist? do
+      puts dir
+      dir = dir.parent
+    end
+    dir
+  end
+
+GAME_SUBMODULES_DIR = TELEFACTOR_ROOT / 'games' / '01-connery' / 'repos' / 'shawn'
+ap(
+  'TELEFACTOR_ROOT' => TELEFACTOR_ROOT,
+  'GAME_SUBMODULES_DIR' => GAME_SUBMODULES_DIR
+)
+
+
+local_repos =
+  GAME_SUBMODULES_DIR
+  .each_child
+  .select(&:directory?)
+  .map { |repo_path|
+    Git.open(repo_path) rescue nil
+  }.compact
+
+
+lightly = Lightly.new(
+  dir: 'tmp/cache',
+  life: '1d'
+)
+
+game = lightly.get 'shawn' do
+  Shawn.new
+end
+
+class RepoSync
+  extend Dry::Initializer
+
+  option :remote, type: Shawn::Repo
+  option :local, type: Types.Instance(Git::Base)
+end
+
+class RepoUnsync
+  extend Dry::Initializer
+
+  option :remote, type: Shawn::Repo
+end
+
+syncs = []
+unsyncs = []
+
+game.repos.each { |remote|
+  ap(remote.url)
+  local_repo = local_repos.find { |local_repo| 
+    remote_urls = local_repo.remotes.map(&:url)
+    ap(remote_urls)
+    remote_urls.include?(remote.ssh_url)
+  }
+  if local_repo.nil?
+    unsyncs << RepoUnsync.new(
+      remote: remote,
+    )
+    break
+  end
+
+  syncs << RepoSync.new(
+    remote: remote,
+    local: local_repo,
+  )
+}
+
+ap(
+  syncs: syncs,
+  unsyncs: unsyncs,
+)
+
+
+
+# sh = Shell.cd(TELEFACTOR_ROOT)
+# sh.pushdir(GAME_SUBMODULES_DIR)
+# telefactor_git = Git.open(TELEFACTOR_ROOT)
