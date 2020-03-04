@@ -89,7 +89,23 @@ ap(
   unsyncs: unsyncs,
 )
 
+unsyncs.each { |unsync| 
+  local = Git.clone(
+    unsync.remote.ssh_url,
+    unsync.remote.name,
+    path: GAME_SUBMODULES_DIR.to_s 
+  )
+  syncs << RepoSync.new(
+    remote: unsync.remote,
+    local: local,
+  )
+}
+unsyncs = []
 
+ap(
+  syncs: syncs,
+  unsyncs: unsyncs,
+)
 
 # sh = Shell.cd(TELEFACTOR_ROOT)
 # sh.pushdir(GAME_SUBMODULES_DIR)
