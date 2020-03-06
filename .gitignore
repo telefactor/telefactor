@@ -1,3 +1,6 @@
+# No nested git repos
+**/repos/
+
 *.gem
 *.rbc
 /.config
