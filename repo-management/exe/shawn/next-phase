@@ -9,6 +9,9 @@ require 'pry'
 require 'git'
 require 'shell'
 require 'awesome_print'
+require 'tty-prompt'
+
+prompt = TTY::Prompt.new
 
 require 'telefactor/repo_management'
 include Telefactor::RepoManagement
@@ -24,7 +27,9 @@ TELEFACTOR_ROOT = begin
   end
 
 GAME_SUBMODULES_DIR = TELEFACTOR_ROOT / 'games' / '01-connery' / 'repos' / 'shawn'
-ap(
+GAME_SUBMODULES_DIR.mkpath unless GAME_SUBMODULES_DIR.exist?
+
+prompt.warn(
   'TELEFACTOR_ROOT' => TELEFACTOR_ROOT,
   'GAME_SUBMODULES_DIR' => GAME_SUBMODULES_DIR
 )
@@ -48,34 +53,31 @@ game = lightly.get 'shawn' do
   Shawn.new
 end
 
-class RepoSync
-  extend Dry::Initializer
+prompt.warn('game.repos' => game.repos.map(&:name))
 
-  option :remote, type: Shawn::Repo
-  option :local, type: Types.Instance(Git::Base)
+class RepoSync < Types::Custom::StrictStruct
+  attribute :remote, Shawn::Repo
+  attribute :local, Types.Instance(Git::Base)
 end
 
-class RepoUnsync
-  extend Dry::Initializer
-
-  option :remote, type: Shawn::Repo
+class RepoUnsync < Types::Custom::StrictStruct
+  attribute :remote, Shawn::Repo
 end
 
 syncs = []
 unsyncs = []
 
 game.repos.each { |remote|
-  ap(remote.url)
+  prompt.warn(remote.url)
   local_repo = local_repos.find { |local_repo| 
     remote_urls = local_repo.remotes.map(&:url)
-    ap(remote_urls)
     remote_urls.include?(remote.ssh_url)
   }
   if local_repo.nil?
     unsyncs << RepoUnsync.new(
       remote: remote,
     )
-    break
+    next
   end
 
   syncs << RepoSync.new(
@@ -84,28 +86,56 @@ game.repos.each { |remote|
   )
 }
 
-ap(
-  syncs: syncs,
-  unsyncs: unsyncs,
+prompt.warn(
+  "Synched: #{syncs.count}",
+  "Unsynched: #{unsyncs.count}",
 )
 
+still_unsyncs = []
 unsyncs.each { |unsync| 
-  local = Git.clone(
-    unsync.remote.ssh_url,
-    unsync.remote.name,
-    path: GAME_SUBMODULES_DIR.to_s 
-  )
-  syncs << RepoSync.new(
-    remote: unsync.remote,
-    local: local,
-  )
+  local = begin
+    Git.clone(
+      unsync.remote.ssh_url,
+      unsync.remote.name,
+      path: GAME_SUBMODULES_DIR.to_s 
+    )
+    syncs << RepoSync.new(
+      remote: unsync.remote,
+      local: local,
+    )    
+  rescue Exception => e
+    still_unsyncs << unsync
+  end
 }
-unsyncs = []
 
-ap(
-  syncs: syncs,
-  unsyncs: unsyncs,
+prompt.warn(
+  "Synched: #{syncs.count}" ,
+  "Still unsynched: #{still_unsyncs.count}",
 )
+
+if still_unsyncs.any?
+  prompt.error(
+    'Some repos could not be synched:',
+    *still_unsyncs.map(&:name)
+  )
+  exit 1
+end
+
+latest = syncs.max_by { |s| s.remote.phase }
+
+prompt.warn("Latest repo: #{latest.remote.name}")
+if prompt.yes?('Pull latest master?')
+  latest.local.add(all: true)
+  Git::Lib.new(latest.local).stash_save('Stash before pull.') rescue nil
+  latest.local.checkout('master')
+  latest.local.pull('origin', 'master')
+  prompt.ok('Pulled.')
+end
+
+if prompt.yes?('Create next phase repo?')
+  oktokit_gateway = OktokitGateway.new
+  oktokit_gateway.create_repo('shawn-05')
+end
 
 # sh = Shell.cd(TELEFACTOR_ROOT)
 # sh.pushdir(GAME_SUBMODULES_DIR)

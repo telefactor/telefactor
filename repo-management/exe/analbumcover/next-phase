@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler'
+require 'bundler/setup'
+
+require 'lightly'
+require 'pry' 
+require 'git'
+require 'shell'
+require 'awesome_print'
+require 'tty-prompt'
+
+prompt = TTY::Prompt.new
+
+require 'telefactor/repo_management'
+include Telefactor::RepoManagement
+
+oktokit_gateway = OktokitGateway.new
+
+# oktokit_gateway.create_repo('analbumcover-05')

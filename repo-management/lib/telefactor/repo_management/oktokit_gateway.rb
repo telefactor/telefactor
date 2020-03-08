@@ -33,5 +33,14 @@ module Telefactor::RepoManagement
     def repos
       client.repositories
     end
+
+    def create_repo(name)
+      client.create_repository(
+        name,
+        private: true,
+        description: "Telefactor: #{name}",
+        auto_init: true
+      )
+    end
   end
 end

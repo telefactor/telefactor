@@ -1,6 +1,10 @@
 # No nested git repos
 **/repos/
 
+# No secrets for you, mister hacker.
+*secrets*.y?ml
+tmp
+
 *.gem
 *.rbc
 /.config

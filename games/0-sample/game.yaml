@@ -1,0 +1,26 @@
+name: sample
+id: '0'
+gm:
+  name: Sebastian
+  username: ssangervasi
+
+players:
+  - name: Sebastian
+    username: ssangervasi
+  - name: Kyle
+    username: kcheung
+  - name: Nickie
+    username: NVanmeter
+
+apps:
+  - index: 0
+    name: ringo
+    phases: 
+      - index: 0
+        role: sourcerer
+        player: ssangervasi
+        url:
+      - index: 1
+        role: examiner
+        player:
+        url:
