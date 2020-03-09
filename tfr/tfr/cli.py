@@ -1,7 +1,6 @@
 import click
 
-
-from . import secrets
+from .secrets import load_secrets
 
 
 @click.group()
@@ -11,9 +10,10 @@ def cli():
 
 @cli.command()
 def login():
-    secs = secrets.load_secrets()
-    token = secs["github"]["access_token"]
-    click.echo(f"Your access token is {len(token)} chars long.")
+    secrets = load_secrets()
+    token_len = len(secrets.github.access_token)
+    click.echo(f"Your access token is {token_len} chars long.")
+
 
 @cli.command()
 @click.option("--count", default=1, help="Number of greetings.")

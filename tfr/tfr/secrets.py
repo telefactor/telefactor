@@ -1,5 +1,7 @@
+from typing import NamedTuple
+
 import yaml
-from hamcrest import assert_that, has_entries, instance_of
+from cerberus import Validator
 
 from .app import PATHS
 
@@ -7,19 +9,62 @@ from .app import PATHS
 # Secrets
 
 
-def load_secrets():
+def make(cls):
+    def maker(d):
+        return cls(**d)
+
+    return maker
+
+
+class Secrets(NamedTuple):
+    class GitHub(NamedTuple):
+        access_token: str
+
+    github: GitHub
+
+
+secrets_validator = Validator(
+    {
+        "secrets": {
+            "type": "dict",
+            "require_all": True,
+            "schema": {
+                "github": {
+                    "type": "dict",
+                    # "require_all": True,
+                    # "schema:": {"access_token": {"type": "string"}},
+                },
+            },
+        }
+    }
+)
+
+secrets_normalizer = Validator(
+    {
+        "secrets": {
+            "coerce": [
+                Validator(
+                    {"github": {"type": "dict", "coerce": make(Secrets.GitHub)}}
+                ).normalized,
+                make(Secrets),
+            ]
+        }
+    }
+)
+
+
+def load_secrets() -> Secrets:
+
     if not PATHS.SECRETS.exists():
         raise Exception(f"Cannot locate secrets! Expected: {PATHS.SECRETS}")
 
     with PATHS.SECRETS.open() as secrets_file:
         parsed_secrets = yaml.full_load(secrets_file)
 
-    assert_required_secrets_are_included(parsed_secrets)
-    return parsed_secrets
+    is_valid = secrets_validator.validate({"secrets": parsed_secrets})
+    if not is_valid:
+        errors = repr(secrets_validator.errors)
+        raise Exception(f"Invalid secrets: {errors}")
 
-
-def assert_required_secrets_are_included(secrets_dict):
-    assert_that(
-        secrets_dict,
-        has_entries({"github": has_entries({"access_token": instance_of(str)}),}),
-    )
+    normalized = secrets_normalizer.normalized(secrets_validator.document)
+    return normalized["secrets"]
