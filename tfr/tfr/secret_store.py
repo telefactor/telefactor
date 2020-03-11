@@ -1,9 +1,10 @@
 from typing import NamedTuple
+from functools import lru_cache
 
 import yaml
 from cerberus import Validator
 
-from .app import PATHS
+from .constants import PATHS
 
 ##
 # Secrets
@@ -53,8 +54,8 @@ secrets_normalizer = Validator(
 )
 
 
-def load_secrets() -> Secrets:
-
+@lru_cache()
+def load() -> Secrets:
     if not PATHS.SECRETS.exists():
         raise Exception(f"Cannot locate secrets! Expected: {PATHS.SECRETS}")
 
