@@ -22,5 +22,17 @@ apps:
         url:
       - index: 1
         role: examiner
-        player:
+        player: kcheung
+        url: 
+
+  - index: 1
+    name: george
+    phases: 
+      - index: 0
+        role: sourcerer
+        player: ssangervasi
+        url:
+      - index: 1
+        role: examiner
+        player: NVanmeter
         url:

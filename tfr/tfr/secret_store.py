@@ -5,22 +5,14 @@ import yaml
 from cerberus import Validator
 
 from .constants import PATHS
-
-##
-# Secrets
+from .vlad import make
 
 
-def make(cls):
-    def maker(d):
-        return cls(**d)
-
-    return maker
+class GitHub(NamedTuple):
+    access_token: str
 
 
 class Secrets(NamedTuple):
-    class GitHub(NamedTuple):
-        access_token: str
-
     github: GitHub
 
 
@@ -33,7 +25,9 @@ secrets_validator = Validator(
                 "github": {
                     "type": "dict",
                     # "require_all": True,
-                    # "schema:": {"access_token": {"type": "string"}},
+                    # "schema:": {
+                    #     "access_token": {"type": "string"}
+                    # },
                 },
             },
         }
@@ -43,9 +37,10 @@ secrets_validator = Validator(
 secrets_normalizer = Validator(
     {
         "secrets": {
+            # "type": Secrets,
             "coerce": [
                 Validator(
-                    {"github": {"type": "dict", "coerce": make(Secrets.GitHub)}}
+                    {"github": {"type": "dict", "coerce": make(GitHub)}}
                 ).normalized,
                 make(Secrets),
             ]
