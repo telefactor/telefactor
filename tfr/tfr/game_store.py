@@ -35,7 +35,7 @@ class Game(NamedTuple):
     apps: List[App]
 
 
-def load(path):
+def load(path: str):
     return normer(file_store.load(path))
 
 

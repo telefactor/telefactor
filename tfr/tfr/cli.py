@@ -10,14 +10,16 @@ def echo(*msgs):
 
 
 @click.group()
-def cli():
-    pass
+@click.pass_context
+def cli(ctx):
+    app = get_app()
+    app.login()
+    ctx.obj = app
 
 
 @cli.command()
-def login():
-    app = get_app()
-    app.login()
+@click.pass_obj
+def login(app):
     click.echo(f"Logged in with user: {app.user.login}")
 
 
@@ -35,10 +37,9 @@ def repos():
 @repos.command()
 @click.argument("pattern")
 @click.option("--details/--no-details", default=False)
-def ls(pattern, details):
+@click.pass_obj
+def ls(app, pattern, details):
     """List repositories matching PATTERN regular expression."""
-    app = get_app()
-    app.login()
     for repo in app.ls(pattern):
         click.echo(repo.name)
         if details:
@@ -48,10 +49,9 @@ def ls(pattern, details):
 
 @repos.command()
 @click.argument("name")
-def new(name):
+@click.pass_obj
+def new(app, name):
     """Create a private repository with the given NAME."""
-    app = get_app()
-    app.login()
     if not click.confirm(f"Create a new repository named {repr(name)}?"):
         click.echo("Okay nevermind")
 
@@ -78,10 +78,11 @@ def game():
     default="./game.yaml",
     type=click.Path(exists=True, dir_okay=False, readable=True),
 )
-def load(path):
+@click.pass_obj
+def load(app, path):
     """Load a game definition."""
-    with open(path) as f:
-        click.echo(f"Len: {len(f.readlines())}")
+    app.load_game(path)
+    echo(app.game.name)
 
 
 if __name__ == "__main__":

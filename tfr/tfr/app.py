@@ -4,6 +4,7 @@ from typing import List
 
 from github.Repository import Repository
 
+from . import game_store
 from . import secret_store
 from . import hub
 
@@ -13,6 +14,7 @@ class App:
     github = None
     user = None
     repos = None
+    game = None
 
     def login(self):
         self.secrets = secret_store.load()
@@ -44,6 +46,9 @@ class App:
         self.repos = None
         return created_repo
         
+    def load_game(self, path):
+        self.game = game_store.load(path)
+        return self.game
 
 @lru_cache()
 def get_app() -> App:
