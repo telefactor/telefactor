@@ -37,11 +37,8 @@ secrets_validator = Validator(
 secrets_normalizer = Validator(
     {
         "secrets": {
-            # "type": Secrets,
             "coerce": [
-                Validator(
-                    {"github": {"type": "dict", "coerce": make(GitHub)}}
-                ).normalized,
+                Validator({"github": {"coerce": make(GitHub)}}).normalized,
                 make(Secrets),
             ]
         }

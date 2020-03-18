@@ -4,17 +4,21 @@ alias pe='pipenv'
 alias ped='PIPENV_DEV=1 pe'
 
 tfr() {
-  pe run tfr "$@"
+	pe run tfr "$@"
 }
 
 cli() {
-  pe run python -m tfr.cli "$@"
+	pe run python -m tfr.cli "$@"
+}
+
+test() {
+	pe run pytest "$@"
 }
 
 console() {
-  pe run ipython
+	pe run ipython
 }
 
 refresh() {
-  source $BASH_SOURCE;
+	source $BASH_SOURCE;
 }

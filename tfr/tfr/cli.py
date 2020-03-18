@@ -5,6 +5,10 @@ import click
 from .app import get_app
 
 
+def echo(*msgs):
+    click.echo("\n".join(map(dd, msgs)))
+
+
 @click.group()
 def cli():
     pass
@@ -15,6 +19,12 @@ def login():
     app = get_app()
     app.login()
     click.echo(f"Logged in with user: {app.user.login}")
+
+
+@cli.command()
+@click.argument("WORDS", nargs=-1)
+def say(words):
+    echo(*words)
 
 
 @cli.group()
@@ -42,7 +52,9 @@ def new(name):
     """Create a private repository with the given NAME."""
     app = get_app()
     app.login()
-    click.confirm(f"Create a new repository named {repr(name)}?")
+    if not click.confirm(f"Create a new repository named {repr(name)}?"):
+        click.echo("Okay nevermind")
+
     created_repo = app.new_repo(name)
     click.echo(
         dd(

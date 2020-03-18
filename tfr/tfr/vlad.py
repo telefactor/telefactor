@@ -1,6 +1,5 @@
 from typing import Callable, Mapping, NewType, TypeVar
 
-from cerberus import Validator
 
 def make(cls):
     def maker(d):
@@ -8,29 +7,21 @@ def make(cls):
 
     return maker
 
-# Normer = NewTypeCallable[Mapping, ]
-T = TypeVar('T') 
+
+T = TypeVar("T")
+Normer = NewType("Normer", Callable[[Mapping], T])
+
+
 def normer(cls: T) -> Callable[[Mapping], T]:
-    schema = normalizer_schema(cls)
-    validator = Validator({
-        "cls": schema
-    })
-    def cls_normer(document):
-        return validator.normalized(document) 
+    if not hasattr(cls, "_field_types"):
+        return cls
+
+    def cls_normer(attr_dict):
+        fields = {}
+        for field, value in attr_dict.items():
+            sub_normer = normer(cls._field_types[field])
+            fields[field] = sub_normer(value)
+
+        return cls(**fields)
 
     return cls_normer
-
-def normalizer_schema(cls):
-    if cls.hasattr('_field_types'):
-        sub_coercers = coercers_for_field_types(cls)
-    else:
-        sub_coercers = []
-
-    coercers = sub_coercers + [make(cls)]
-    schema = {
-        "type": cls,
-        "coerce": coercers
-    }
-
-def coercers_for_field_types(cls):
-    return []
