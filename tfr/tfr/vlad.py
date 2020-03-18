@@ -1,13 +1,6 @@
 from typing import Callable, Mapping, NewType, TypeVar
 
 
-def make(cls):
-    def maker(d):
-        return cls(**d)
-
-    return maker
-
-
 T = TypeVar("T")
 Normer = NewType("Normer", Callable[[Mapping], T])
 
@@ -25,3 +18,10 @@ def normer(cls: T) -> Callable[[Mapping], T]:
         return cls(**fields)
 
     return cls_normer
+
+
+def make(cls):
+    def maker(d):
+        return cls(**d)
+
+    return maker

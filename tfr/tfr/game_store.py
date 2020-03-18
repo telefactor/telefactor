@@ -1,9 +1,7 @@
 from enum import Enum
 from typing import NamedTuple, List, Optional
 
-import yaml
-from cerberus import Validator
-
+from . import file_store
 from . import vlad
 
 
@@ -37,14 +35,8 @@ class Game(NamedTuple):
     apps: List[App]
 
 
-def parse():
-    pass
+def load(path):
+    return normer(file_store.load(path))
+
 
 normer = vlad.normer(Game)
-
-def normalize():
-    pass
-
-
-def load(path):
-    return normalize(parse(path))
