@@ -6,7 +6,31 @@ from .app import get_app
 
 
 def echo(*msgs):
-    click.echo("\n".join(map(dd, msgs)))
+    """
+    Handles lines and indentation!
+
+        cli.echo(
+           '''
+              line
+                 indented
+           ''',
+           'inline',
+           '   inline indented',
+           '''
+           different indent
+           '''
+        )
+
+    Output:
+        line
+              indented
+
+        inline
+           inline indented
+
+        different indent
+    """
+    click.echo(str.strip(dd("\n".join(msgs))))
 
 
 @click.group()
@@ -53,36 +77,43 @@ def ls(app, pattern, details):
 def new(app, name):
     """Create a private repository with the given NAME."""
     if not click.confirm(f"Create a new repository named {repr(name)}?"):
-        click.echo("Okay nevermind")
+        echo("Okay nevermind")
+        return
 
     created_repo = app.new_repo(name)
-    click.echo(
-        dd(
-            f"""
-                Created!
-                HTML URL: {created_repo.html_url}
-                Clone URL: {created_repo.clone_url}
-            """
-        )
+    echo(
+        f"""
+        Created!
+        HTML URL: {created_repo.html_url}
+        Clone URL: {created_repo.clone_url}
+        """
     )
 
 
 @cli.group()
-def game():
-    pass
-
-
-@game.command()
 @click.option(
     "--path",
     default="./game.yaml",
     type=click.Path(exists=True, dir_okay=False, readable=True),
 )
 @click.pass_obj
-def load(app, path):
-    """Load a game definition."""
+def game(app, path):
     app.load_game(path)
-    echo(app.game.name)
+
+
+@game.command()
+@click.pass_obj
+def info(app):
+    """Load a game definition."""
+    echo(
+        f"""
+        {'Name ':-<15} {app.game.name}
+        {'Id ':<15} {app.game.id}
+        {'GM ':-<15} {app.game.gm.name}
+        {'Players # ':<15} {len(app.game.players)}
+        {'Apps ':-<15} {', '.join(app.name for app in app.game.apps)}
+        """
+    )
 
 
 if __name__ == "__main__":
