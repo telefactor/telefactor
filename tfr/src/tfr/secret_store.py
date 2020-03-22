@@ -1,15 +1,18 @@
-from typing import NamedTuple
+from dataclasses import dataclass
+
+import dacite
 
 from .constants import PATHS
-from . import vlad
 from . import file_store
 
 
-class GitHub(NamedTuple):
+@dataclass
+class GitHub:
     access_token: str
 
 
-class Secrets(NamedTuple):
+@dataclass
+class Secrets:
     github: GitHub
 
 
@@ -19,4 +22,5 @@ def load() -> Secrets:
     return normer(content)
 
 
-normer = vlad.normer(Secrets)
+def normer(data: dict) -> Secrets:
+    return dacite.from_dict(data_class=Secrets, data=data)

@@ -38,3 +38,30 @@ class TestNested:
 
         assert nested.a.aa == "ayy"
         assert nested.b.bb == 420
+
+
+class TestFieldFunction:
+    class HasFunc(NamedTuple):
+        da_func: str
+
+    nested_data = {"a": {"aa": "ayy"}, "b": {"bb": 420}}
+
+    def test_normer(self):
+        normer = vlad.normer(self.Nested)
+        nested = normer(self.nested_data)
+
+        assert nested.a.aa == "ayy"
+        assert nested.b.bb == 420
+
+
+from dataclasses import dataclass
+
+
+class TestDataclass:
+    @dataclass
+    class Child:
+        name: str
+
+    @dataclass
+    class Parent:
+        child: Child

@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 class PATHS:
-    ROOT = Path(__file__).parent.parent
+    ROOT = Path(__file__).parent.parent.parent
 
     CONFIG = ROOT / "config"
     SECRETS = CONFIG / "secrets.yaml"

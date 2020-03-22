@@ -30,7 +30,7 @@ class App:
         def matcher(repo):
             return regex.match(repo.name) is not None
 
-        return filter(matcher, self.get_repos())
+        return sorted(filter(matcher, self.get_repos()), key=(lambda r: r.name))
 
     def get_repos(self):
         if self.repos is None:
@@ -38,17 +38,14 @@ class App:
         return self.repos
 
     def new_repo(self, name) -> Repository:
-        created_repo = self.user.create_repo(
-            name=name,
-            private=True,
-            auto_init=True,
-        )
+        created_repo = self.user.create_repo(name=name, private=True, auto_init=True,)
         self.repos = None
         return created_repo
-        
+
     def load_game(self, path):
         self.game = game_store.load(path)
         return self.game
+
 
 @lru_cache()
 def get_app() -> App:

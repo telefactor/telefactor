@@ -1,11 +1,14 @@
 from enum import Enum
-from typing import NamedTuple, List, Optional
+from typing import List, Optional
+from dataclasses import dataclass
+
+import dacite
 
 from . import file_store
-from . import vlad
 
 
-class User(NamedTuple):
+@dataclass
+class User:
     name: str
     username: str
 
@@ -15,19 +18,22 @@ class Role(Enum):
     EXAMINER = "examiner"
 
 
-class Phase(NamedTuple):
+@dataclass
+class Phase:
     index: int
     role: int
     player: int
     url: Optional[int]
 
 
-class App(NamedTuple):
-    index: int
+@dataclass
+class App:
+    id: str
     name: str
 
 
-class Game(NamedTuple):
+@dataclass
+class Game:
     name: str
     id: str
     gm: User
@@ -35,8 +41,9 @@ class Game(NamedTuple):
     apps: List[App]
 
 
-def load(path: str):
+def load(path: str) -> Game:
     return normer(file_store.load(path))
 
 
-normer = vlad.normer(Game)
+def normer(data: dict) -> Game:
+    return dacite.from_dict(data_class=Game, data=data)
