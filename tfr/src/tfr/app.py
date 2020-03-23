@@ -46,6 +46,9 @@ class App:
         self.game = game_store.load(path)
         return self.game
 
+    # def fetch_metadata(self):
+    #     for repo
+
 
 @lru_cache()
 def get_app() -> App:

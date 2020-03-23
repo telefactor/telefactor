@@ -1,21 +1,110 @@
 name: connery
-number: 1
-gm: ssangervasi
+id: '01-connery'
+gm:
+  id: ssangervasi
+  name: Sebastian
 
 players:
-  - kcheung
-  - vanmeternicole
+- id: ssangervasi
+  name: Sebastian
+- id: peckb1
+- id: clanam
+- id: manolosavi
+- id: NVanmeter
+  name: Nickie
+- id: ilyakatz
+- id: kcheung
+  name: Kyle
+- id: jamesmharvey
+- id: ninduni
+
+apps:
+- id: '00-analbumcover'
+  name: analbumcover
+  phases: 
+  - index: 0
+    repository: analbumcover-00
+    player: ssangervasi
+  - index: 1
+    repository: analbumcover-01
+    player: gmkohler
+  - index: 2
+    repository: analbumcover-02
+    player: ilyakatz
+  - index: 3
+    repository: analbumcover-03
+    player: peckb1
+  - index: 4
+    repository: analbumcover-04
+    player: manolosavi
+  - index: 5
+    repository: analbumcover-05
+    player: NVanmeter
+  - index: 6
+    repository: analbumcover-06
+    player: kcheung
+  - index: 7
+    repository: analbumcover-07
+    player: clanam
+  - index: 8
+    repository: analbumcover-08
+    player: jamesmharvey
+  - index: 9
+    repository: analbumcover-09
+    player: ninduni
+
+- id: '01-shawn'
+  name: shawn
+  phases: 
+  - index: 0
+    repository: analbumcover-00
+    player: ssangervasi
+  - index: 1
+    repository: shawn-01
+    player: manolosavi
+  - index: 2
+    repository: shawn-02
+    player: NVanmeter
+  - index: 3
+    repository: shawn-03
+    player: kcheung
+  - index: 4
+    repository: shawn-04
+    player: clanam
+  - index: 5
+    repository: shawn-05
+    player: gmkohler
+  - index: 6
+    repository: shawn-06
+    player: peckb1
+  - index: 7
+    repository: shawn-07
+    player: ilyakatz
+  - index: 8
+    repository: shawn-08
+    player: ninduni
+  - index: 9
+    repository: shawn-09
+    player: jamesmharvey
 
 repositories:
-  - number: 0
-    phase: 0
-    role: sourcerer
-    player: ssangervasi
-    url:
-  - number: 1
-    phase: 0
-    role: examiner
-    player:
-    url:
-      
-
+- id: analbumcover-00
+- id: analbumcover-01
+- id: analbumcover-02
+- id: analbumcover-03
+- id: analbumcover-04
+- id: analbumcover-05
+- id: analbumcover-06
+- id: analbumcover-07
+- id: analbumcover-08
+- id: analbumcover-09
+- id: shawn-00
+- id: shawn-01
+- id: shawn-02
+- id: shawn-03
+- id: shawn-04
+- id: shawn-05
+- id: shawn-06
+- id: shawn-07
+- id: shawn-08
+- id: shawn-09

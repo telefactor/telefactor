@@ -1,36 +1,7 @@
-from textwrap import dedent as dd
-
 import click
 
 from .app import get_app
-
-
-def echo(*msgs):
-    """
-    Handles lines and indentation!
-
-        cli.echo(
-           '''
-              line
-                 indented
-           ''',
-           'inline',
-           '   inline indented',
-           '''
-           different indent
-           '''
-        )
-
-    Output:
-        line
-              indented
-
-        inline
-           inline indented
-
-        different indent
-    """
-    click.echo(str.strip(dd("\n".join(msgs))))
+from .io_utils import echo, echo_info, definition_list
 
 
 @click.group()
@@ -44,7 +15,7 @@ def cli(ctx):
 @cli.command()
 @click.pass_obj
 def login(app):
-    click.echo(f"Logged in with user: {app.user.login}")
+    echo(f"Logged in with user: {app.user.login}")
 
 
 @cli.command()
@@ -65,10 +36,10 @@ def repos():
 def ls(app, pattern, details):
     """List repositories matching PATTERN regular expression."""
     for repo in app.ls(pattern):
-        click.echo(repo.name)
+        echo(repo.name)
         if details:
-            click.echo(repo.html_url)
-            click.echo(repo.ssh_url)
+            echo(repo.html_url)
+            echo(repo.ssh_url)
 
 
 @repos.command()
@@ -104,16 +75,35 @@ def game(app, path):
 @game.command()
 @click.pass_obj
 def info(app):
-    """Load a game definition."""
     echo(
-        f"""
-        {'Name ':-<15} {app.game.name}
-        {'Id ':<15} {app.game.id}
-        {'GM ':-<15} {app.game.gm.name}
-        {'Players # ':<15} {len(app.game.players)}
-        {'Apps ':-<15} {', '.join(app.name for app in app.game.apps)}
-        """
+        definition_list(
+            (
+                ("Name", app.game.name),
+                ("Id", app.game.id),
+                ("GM", app.game.gm.name),
+                ("Apps", ",".join(app.name for app in app.game.apps)),
+                ("Num Players", len(app.game.players)),
+                ("Num Repos", len(app.game.repositories)),
+            )
+        )
     )
+
+
+@game.command()
+@click.pass_obj
+def fetch_metadata(app):
+    echo_info("Logging in...")
+    app.login()
+    echo_info("Loading all repos...")
+    app.get_repos()
+    echo_info("Game time.")
+    for local in app.game.repositories:
+        remotes = app.ls(local.id)
+        if not remotes:
+            echo_info(f"No remote for {local.id}")
+            continue
+
+        echo_info(f"Found {remotes[0].name} for {local.id}")
 
 
 if __name__ == "__main__":

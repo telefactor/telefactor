@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Optional
+import typing as t
 from dataclasses import dataclass
 
 import dacite
@@ -9,8 +9,8 @@ from . import file_store
 
 @dataclass
 class User:
-    name: str
-    username: str
+    id: str
+    name: t.Optional[str]
 
 
 class Role(Enum):
@@ -21,15 +21,23 @@ class Role(Enum):
 @dataclass
 class Phase:
     index: int
-    role: int
-    player: int
-    url: Optional[int]
+    repository: t.Optional[str]
+    player: t.Optional[str]
+    role: t.Optional[Role]
 
 
 @dataclass
 class App:
     id: str
     name: str
+    phases: t.List[Phase]
+
+
+@dataclass
+class Repository:
+    id: str
+    name: t.Optional[str]
+    metadata: t.Optional[dict]
 
 
 @dataclass
@@ -37,8 +45,9 @@ class Game:
     name: str
     id: str
     gm: User
-    players: List[User]
-    apps: List[App]
+    players: t.List[User]
+    apps: t.List[App]
+    repositories: t.List[Repository]
 
 
 def load(path: str) -> Game:
