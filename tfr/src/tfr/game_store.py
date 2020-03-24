@@ -1,6 +1,6 @@
 from enum import Enum
 import typing as t
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 
 import dacite
 
@@ -56,3 +56,7 @@ def load(path: str) -> Game:
 
 def normer(data: dict) -> Game:
     return dacite.from_dict(data_class=Game, data=data)
+
+
+def save(path: str, game: Game) -> None:
+    file_store.save(path, asdict(game))

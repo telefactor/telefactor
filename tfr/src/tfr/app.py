@@ -15,6 +15,7 @@ class App:
     user = None
     repos = None
     game = None
+    game_path: str = None
 
     def login(self, secrets_path: str):
         self.secrets = secret_store.load(secrets_path)
@@ -44,10 +45,11 @@ class App:
 
     def load_game(self, path):
         self.game = game_store.load(path)
+        self.game_path = path
         return self.game
 
-    # def fetch_metadata(self):
-    #     for repo
+    def save_game(self):
+        game_store.save(self.game_path, self.game)
 
 
 @lru_cache()

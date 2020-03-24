@@ -1,110 +1,292 @@
-name: connery
-id: '01-connery'
+apps:
+- id: 00-analbumcover
+  name: analbumcover
+  phases:
+  - index: 0
+    player: ssangervasi
+    repository: analbumcover-00
+    role: null
+  - index: 1
+    player: gmkohler
+    repository: analbumcover-01
+    role: null
+  - index: 2
+    player: ilyakatz
+    repository: analbumcover-02
+    role: null
+  - index: 3
+    player: peckb1
+    repository: analbumcover-03
+    role: null
+  - index: 4
+    player: manolosavi
+    repository: analbumcover-04
+    role: null
+  - index: 5
+    player: NVanmeter
+    repository: analbumcover-05
+    role: null
+  - index: 6
+    player: kcheung
+    repository: analbumcover-06
+    role: null
+  - index: 7
+    player: clanam
+    repository: analbumcover-07
+    role: null
+  - index: 8
+    player: jamesmharvey
+    repository: analbumcover-08
+    role: null
+  - index: 9
+    player: ninduni
+    repository: analbumcover-09
+    role: null
+- id: 01-shawn
+  name: shawn
+  phases:
+  - index: 0
+    player: ssangervasi
+    repository: analbumcover-00
+    role: null
+  - index: 1
+    player: manolosavi
+    repository: shawn-01
+    role: null
+  - index: 2
+    player: NVanmeter
+    repository: shawn-02
+    role: null
+  - index: 3
+    player: kcheung
+    repository: shawn-03
+    role: null
+  - index: 4
+    player: clanam
+    repository: shawn-04
+    role: null
+  - index: 5
+    player: gmkohler
+    repository: shawn-05
+    role: null
+  - index: 6
+    player: peckb1
+    repository: shawn-06
+    role: null
+  - index: 7
+    player: ilyakatz
+    repository: shawn-07
+    role: null
+  - index: 8
+    player: ninduni
+    repository: shawn-08
+    role: null
+  - index: 9
+    player: jamesmharvey
+    repository: shawn-09
+    role: null
 gm:
   id: ssangervasi
   name: Sebastian
-
+id: 01-connery
+name: connery
 players:
 - id: ssangervasi
   name: Sebastian
 - id: peckb1
+  name: null
 - id: clanam
+  name: null
 - id: manolosavi
+  name: null
 - id: NVanmeter
   name: Nickie
 - id: ilyakatz
+  name: null
 - id: kcheung
   name: Kyle
 - id: jamesmharvey
+  name: null
 - id: ninduni
-
-apps:
-- id: '00-analbumcover'
-  name: analbumcover
-  phases: 
-  - index: 0
-    repository: analbumcover-00
-    player: ssangervasi
-  - index: 1
-    repository: analbumcover-01
-    player: gmkohler
-  - index: 2
-    repository: analbumcover-02
-    player: ilyakatz
-  - index: 3
-    repository: analbumcover-03
-    player: peckb1
-  - index: 4
-    repository: analbumcover-04
-    player: manolosavi
-  - index: 5
-    repository: analbumcover-05
-    player: NVanmeter
-  - index: 6
-    repository: analbumcover-06
-    player: kcheung
-  - index: 7
-    repository: analbumcover-07
-    player: clanam
-  - index: 8
-    repository: analbumcover-08
-    player: jamesmharvey
-  - index: 9
-    repository: analbumcover-09
-    player: ninduni
-
-- id: '01-shawn'
-  name: shawn
-  phases: 
-  - index: 0
-    repository: analbumcover-00
-    player: ssangervasi
-  - index: 1
-    repository: shawn-01
-    player: manolosavi
-  - index: 2
-    repository: shawn-02
-    player: NVanmeter
-  - index: 3
-    repository: shawn-03
-    player: kcheung
-  - index: 4
-    repository: shawn-04
-    player: clanam
-  - index: 5
-    repository: shawn-05
-    player: gmkohler
-  - index: 6
-    repository: shawn-06
-    player: peckb1
-  - index: 7
-    repository: shawn-07
-    player: ilyakatz
-  - index: 8
-    repository: shawn-08
-    player: ninduni
-  - index: 9
-    repository: shawn-09
-    player: jamesmharvey
-
+  name: null
 repositories:
 - id: analbumcover-00
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-00.git
+    full_name: ssangervasi/analbumcover-00
+    html_url: https://github.com/ssangervasi/analbumcover-00.git
+    id: 207427110
+    name: analbumcover-00
+    ssh_url: git@github.com:ssangervasi/analbumcover-00.git
+  name: null
 - id: analbumcover-01
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-01.git
+    full_name: ssangervasi/analbumcover-01
+    html_url: https://github.com/ssangervasi/analbumcover-01.git
+    id: 241284003
+    name: analbumcover-01
+    ssh_url: git@github.com:ssangervasi/analbumcover-01.git
+  name: null
 - id: analbumcover-02
+  metadata:
+    clone_url: https://github.com/ilyakatz/analbumcover-02.git
+    full_name: ilyakatz/analbumcover-02
+    html_url: https://github.com/ilyakatz/analbumcover-02.git
+    id: 243393583
+    name: analbumcover-02
+    ssh_url: git@github.com:ilyakatz/analbumcover-02.git
+  name: null
 - id: analbumcover-03
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-03.git
+    full_name: ssangervasi/analbumcover-03
+    html_url: https://github.com/ssangervasi/analbumcover-03.git
+    id: 244222709
+    name: analbumcover-03
+    ssh_url: git@github.com:ssangervasi/analbumcover-03.git
+  name: null
 - id: analbumcover-04
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-04.git
+    full_name: ssangervasi/analbumcover-04
+    html_url: https://github.com/ssangervasi/analbumcover-04.git
+    id: 245000285
+    name: analbumcover-04
+    ssh_url: git@github.com:ssangervasi/analbumcover-04.git
+  name: null
 - id: analbumcover-05
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-05.git
+    full_name: ssangervasi/analbumcover-05
+    html_url: https://github.com/ssangervasi/analbumcover-05.git
+    id: 245877586
+    name: analbumcover-05
+    ssh_url: git@github.com:ssangervasi/analbumcover-05.git
+  name: null
 - id: analbumcover-06
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-06.git
+    full_name: ssangervasi/analbumcover-06
+    html_url: https://github.com/ssangervasi/analbumcover-06.git
+    id: 246666023
+    name: analbumcover-06
+    ssh_url: git@github.com:ssangervasi/analbumcover-06.git
+  name: null
 - id: analbumcover-07
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-07.git
+    full_name: ssangervasi/analbumcover-07
+    html_url: https://github.com/ssangervasi/analbumcover-07.git
+    id: 247537231
+    name: analbumcover-07
+    ssh_url: git@github.com:ssangervasi/analbumcover-07.git
+  name: null
 - id: analbumcover-08
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-08.git
+    full_name: ssangervasi/analbumcover-08
+    html_url: https://github.com/ssangervasi/analbumcover-08.git
+    id: 248327544
+    name: analbumcover-08
+    ssh_url: git@github.com:ssangervasi/analbumcover-08.git
+  name: null
 - id: analbumcover-09
+  metadata:
+    clone_url: https://github.com/ssangervasi/analbumcover-09.git
+    full_name: ssangervasi/analbumcover-09
+    html_url: https://github.com/ssangervasi/analbumcover-09.git
+    id: 249261319
+    name: analbumcover-09
+    ssh_url: git@github.com:ssangervasi/analbumcover-09.git
+  name: null
 - id: shawn-00
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-00.git
+    full_name: ssangervasi/shawn-00
+    html_url: https://github.com/ssangervasi/shawn-00.git
+    id: 229512018
+    name: shawn-00
+    ssh_url: git@github.com:ssangervasi/shawn-00.git
+  name: null
 - id: shawn-01
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-01.git
+    full_name: ssangervasi/shawn-01
+    html_url: https://github.com/ssangervasi/shawn-01.git
+    id: 241283160
+    name: shawn-01
+    ssh_url: git@github.com:ssangervasi/shawn-01.git
+  name: null
 - id: shawn-02
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-02.git
+    full_name: ssangervasi/shawn-02
+    html_url: https://github.com/ssangervasi/shawn-02.git
+    id: 241286250
+    name: shawn-02
+    ssh_url: git@github.com:ssangervasi/shawn-02.git
+  name: null
 - id: shawn-03
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-03.git
+    full_name: ssangervasi/shawn-03
+    html_url: https://github.com/ssangervasi/shawn-03.git
+    id: 244222731
+    name: shawn-03
+    ssh_url: git@github.com:ssangervasi/shawn-03.git
+  name: null
 - id: shawn-04
+  metadata:
+    clone_url: https://github.com/clanam/shawn-04.git
+    full_name: clanam/shawn-04
+    html_url: https://github.com/clanam/shawn-04.git
+    id: 245691744
+    name: shawn-04
+    ssh_url: git@github.com:clanam/shawn-04.git
+  name: null
 - id: shawn-05
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-05.git
+    full_name: ssangervasi/shawn-05
+    html_url: https://github.com/ssangervasi/shawn-05.git
+    id: 245877645
+    name: shawn-05
+    ssh_url: git@github.com:ssangervasi/shawn-05.git
+  name: null
 - id: shawn-06
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-06.git
+    full_name: ssangervasi/shawn-06
+    html_url: https://github.com/ssangervasi/shawn-06.git
+    id: 246906809
+    name: shawn-06
+    ssh_url: git@github.com:ssangervasi/shawn-06.git
+  name: null
 - id: shawn-07
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-07.git
+    full_name: ssangervasi/shawn-07
+    html_url: https://github.com/ssangervasi/shawn-07.git
+    id: 247537269
+    name: shawn-07
+    ssh_url: git@github.com:ssangervasi/shawn-07.git
+  name: null
 - id: shawn-08
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-08.git
+    full_name: ssangervasi/shawn-08
+    html_url: https://github.com/ssangervasi/shawn-08.git
+    id: 248327580
+    name: shawn-08
+    ssh_url: git@github.com:ssangervasi/shawn-08.git
+  name: null
 - id: shawn-09
+  metadata:
+    clone_url: https://github.com/ssangervasi/shawn-09.git
+    full_name: ssangervasi/shawn-09
+    html_url: https://github.com/ssangervasi/shawn-09.git
+    id: 249261296
+    name: shawn-09
+    ssh_url: git@github.com:ssangervasi/shawn-09.git
+  name: null

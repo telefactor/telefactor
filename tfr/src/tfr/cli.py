@@ -102,13 +102,39 @@ def fetch_metadata(app):
     echo_info("Loading all repos...")
     app.get_repos()
     echo_info("Game time.")
+
+    changed_count = 0
     for local in app.game.repositories:
         remotes = app.ls(local.id)
         if not remotes:
             echo_info(f"No remote for {local.id}")
             continue
 
-        echo_info(f"Found {remotes[0].name} for {local.id}")
+        remote = remotes[0]
+        echo_info(f"Found {remote.name} for {local.id}")
+
+        if local.metadata:
+            echo_info("Original metadata:", local.metadata)
+            echo_info("Incoming metadata:", remote.metadata)
+            if not click.confirm("Overwrite?"):
+                continue
+
+        local.metadata = {
+            "id": remote.id,
+            "name": remote.name,
+            "full_name": remote.full_name,
+            "html_url": remote.clone_url,
+            "clone_url": remote.clone_url,
+            "ssh_url": remote.ssh_url,
+        }
+        changed_count += 1
+
+    if changed_count < 1:
+        echo_info("Nothing changed.")
+        return
+
+    echo_info("Writing changes to game file:", app.game_path)
+    app.save_game()
 
 
 if __name__ == "__main__":
