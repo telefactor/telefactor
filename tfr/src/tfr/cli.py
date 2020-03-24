@@ -113,13 +113,7 @@ def fetch_metadata(app):
         remote = remotes[0]
         echo_info(f"Found {remote.name} for {local.id}")
 
-        if local.metadata:
-            echo_info("Original metadata:", local.metadata)
-            echo_info("Incoming metadata:", remote.metadata)
-            if not click.confirm("Overwrite?"):
-                continue
-
-        local.metadata = {
+        incoming_metadata = {
             "id": remote.id,
             "name": remote.name,
             "full_name": remote.full_name,
@@ -127,6 +121,17 @@ def fetch_metadata(app):
             "clone_url": remote.clone_url,
             "ssh_url": remote.ssh_url,
         }
+        if local.metadata == incoming_metadata:
+            echo_info('No difference.')
+            continue
+
+        if local.metadata:
+            echo_info("Original metadata:", local.metadata)
+            echo_info("Incoming metadata:", incoming_metadata)
+            if not click.confirm("Overwrite?"):
+                continue
+
+        local.metadata = incoming_metadata
         changed_count += 1
 
     if changed_count < 1:

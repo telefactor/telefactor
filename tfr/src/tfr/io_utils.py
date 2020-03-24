@@ -1,3 +1,4 @@
+from collections.abc import Collection, Mapping
 from textwrap import dedent as dd
 
 
@@ -37,7 +38,18 @@ def fmt_msgs(msgs):
 
         different indent
     """
-    return str.strip(dd("\n".join(msgs)))
+    return str.strip(dd("\n".join(map(fmt, msgs))))
+
+
+def fmt(msg):
+    if isinstance(msg, str):
+        return msg
+    if isinstance(msg, Mapping):
+        return definition_list(msg.items())
+    if isinstance(msg, Collection):
+        return "\n".join(f" · {m}" for m in msg)
+
+    return str(msg)
 
 
 def definition_list(rows: "[(str, str)]") -> str:
