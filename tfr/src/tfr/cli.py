@@ -1,14 +1,21 @@
 import click
 
 from .app import get_app
+from .constants import PATHS
 from .io_utils import echo, echo_info, definition_list
 
 
 @click.group()
+@click.option(
+    "-s",
+    "--secrets-path",
+    default=str(PATHS.SECRETS),
+    type=click.Path(exists=True, dir_okay=False, readable=True),
+)
 @click.pass_context
-def cli(ctx):
+def cli(ctx, secrets_path):
     app = get_app()
-    app.login()
+    app.login(secrets_path)
     ctx.obj = app
 
 
@@ -92,8 +99,6 @@ def info(app):
 @game.command()
 @click.pass_obj
 def fetch_metadata(app):
-    echo_info("Logging in...")
-    app.login()
     echo_info("Loading all repos...")
     app.get_repos()
     echo_info("Game time.")

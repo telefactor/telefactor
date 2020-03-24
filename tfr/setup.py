@@ -8,6 +8,10 @@ setup(
     package_dir={'': 'src'},
     install_requires=[
         'Click',
+        'pyyaml',
+        'click',
+        'pygithub',
+        'dacite',
     ],
     entry_points='''
         [console_scripts]

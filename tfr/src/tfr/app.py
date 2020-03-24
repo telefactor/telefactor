@@ -16,8 +16,8 @@ class App:
     repos = None
     game = None
 
-    def login(self):
-        self.secrets = secret_store.load()
+    def login(self, secrets_path: str):
+        self.secrets = secret_store.load(secrets_path)
         if self.secrets.github.access_token in (None, ""):
             raise Exception("No access token!")
 

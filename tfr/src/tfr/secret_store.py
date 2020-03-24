@@ -2,7 +2,6 @@ from dataclasses import dataclass
 
 import dacite
 
-from .constants import PATHS
 from . import file_store
 
 
@@ -16,8 +15,8 @@ class Secrets:
     github: GitHub
 
 
-def load() -> Secrets:
-    content = file_store.load(PATHS.SECRETS)
+def load(path: str) -> Secrets:
+    content = file_store.load(path)
 
     return normer(content)
 
