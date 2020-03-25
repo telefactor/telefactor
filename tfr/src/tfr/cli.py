@@ -120,6 +120,7 @@ def fetch_metadata(app):
             "html_url": remote.clone_url,
             "clone_url": remote.clone_url,
             "ssh_url": remote.ssh_url,
+            "isPrivate": remote.private
         }
         if local.metadata == incoming_metadata:
             echo_info('No difference.')
