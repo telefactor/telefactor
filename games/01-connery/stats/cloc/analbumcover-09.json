@@ -1,0 +1,19 @@
+{"header" : {
+  "cloc_url"           : "github.com/AlDanial/cloc",
+  "cloc_version"       : "1.82",
+  "elapsed_seconds"    : 0.0057060718536377,
+  "n_files"            : 5,
+  "n_lines"            : 200,
+  "files_per_second"   : 876.259557932562,
+  "lines_per_second"   : 35050.3823173025,
+  "report_file"        : "/home/sebastian/workspace/telefactor/games/01-connery/stats/cloc/analbumcover-09.json"},
+"TypeScript" :{
+  "nFiles": 5,
+  "blank": 29,
+  "comment": 11,
+  "code": 160},
+"SUM": {
+  "blank": 29,
+  "comment": 11,
+  "code": 160,
+  "nFiles": 5} }
