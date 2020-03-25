@@ -69,17 +69,11 @@ class App:
         for local in self.game.get_repos():
             yield (local, self.get_name_to_repo()[local.id])
 
-    # def iter_phases(self):
-    #     self.name_to_local = self.app.get_name_to_local()
-    #     self.repos_dir = self.root_dir / "repos"
-    #     self.repos_dir.mkdir(exist_ok=True)
-
-    #     for game_app in self.app.game.apps:
-    #         repos_app_dir = self.repos_dir / game_app.name
-    #         repos_app_dir.mkdir(exist_ok=True)
-
-    #         for phase in game_app.phases:
-    #             self.handle_phase(phase, repos_app_dir
+    def iter_phase_locals(self):
+        for game_app in self.game.apps:
+            for phase in game_app.phases:
+                local = self.get_name_to_local()[phase.repository]
+                yield (phase, local)
 
 
 @lru_cache()
