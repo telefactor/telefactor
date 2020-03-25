@@ -116,7 +116,7 @@ repositories:
     full_name: ssangervasi/analbumcover-00
     html_url: https://github.com/ssangervasi/analbumcover-00.git
     id: 207427110
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-00
     ssh_url: git@github.com:ssangervasi/analbumcover-00.git
   name: null
@@ -126,19 +126,19 @@ repositories:
     full_name: ssangervasi/analbumcover-01
     html_url: https://github.com/ssangervasi/analbumcover-01.git
     id: 241284003
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-01
     ssh_url: git@github.com:ssangervasi/analbumcover-01.git
   name: null
 - id: analbumcover-02
   metadata:
-    clone_url: https://github.com/ilyakatz/analbumcover-02.git
-    full_name: ilyakatz/analbumcover-02
-    html_url: https://github.com/ilyakatz/analbumcover-02.git
-    id: 243393583
-    isPrivate: true
+    clone_url: https://github.com/ssangervasi/analbumcover-02.git
+    full_name: ssangervasi/analbumcover-02
+    html_url: https://github.com/ssangervasi/analbumcover-02.git
+    id: 241286285
+    isPrivate: false
     name: analbumcover-02
-    ssh_url: git@github.com:ilyakatz/analbumcover-02.git
+    ssh_url: git@github.com:ssangervasi/analbumcover-02.git
   name: null
 - id: analbumcover-03
   metadata:
@@ -146,7 +146,7 @@ repositories:
     full_name: ssangervasi/analbumcover-03
     html_url: https://github.com/ssangervasi/analbumcover-03.git
     id: 244222709
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-03
     ssh_url: git@github.com:ssangervasi/analbumcover-03.git
   name: null
@@ -156,7 +156,7 @@ repositories:
     full_name: ssangervasi/analbumcover-04
     html_url: https://github.com/ssangervasi/analbumcover-04.git
     id: 245000285
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-04
     ssh_url: git@github.com:ssangervasi/analbumcover-04.git
   name: null
@@ -166,7 +166,7 @@ repositories:
     full_name: ssangervasi/analbumcover-05
     html_url: https://github.com/ssangervasi/analbumcover-05.git
     id: 245877586
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-05
     ssh_url: git@github.com:ssangervasi/analbumcover-05.git
   name: null
@@ -176,7 +176,7 @@ repositories:
     full_name: ssangervasi/analbumcover-06
     html_url: https://github.com/ssangervasi/analbumcover-06.git
     id: 246666023
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-06
     ssh_url: git@github.com:ssangervasi/analbumcover-06.git
   name: null
@@ -186,7 +186,7 @@ repositories:
     full_name: ssangervasi/analbumcover-07
     html_url: https://github.com/ssangervasi/analbumcover-07.git
     id: 247537231
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-07
     ssh_url: git@github.com:ssangervasi/analbumcover-07.git
   name: null
@@ -196,7 +196,7 @@ repositories:
     full_name: ssangervasi/analbumcover-08
     html_url: https://github.com/ssangervasi/analbumcover-08.git
     id: 248327544
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-08
     ssh_url: git@github.com:ssangervasi/analbumcover-08.git
   name: null
@@ -206,7 +206,7 @@ repositories:
     full_name: ssangervasi/analbumcover-09
     html_url: https://github.com/ssangervasi/analbumcover-09.git
     id: 249261319
-    isPrivate: true
+    isPrivate: false
     name: analbumcover-09
     ssh_url: git@github.com:ssangervasi/analbumcover-09.git
   name: null
@@ -216,7 +216,7 @@ repositories:
     full_name: ssangervasi/shawn-00
     html_url: https://github.com/ssangervasi/shawn-00.git
     id: 229512018
-    isPrivate: true
+    isPrivate: false
     name: shawn-00
     ssh_url: git@github.com:ssangervasi/shawn-00.git
   name: null
@@ -226,7 +226,7 @@ repositories:
     full_name: ssangervasi/shawn-01
     html_url: https://github.com/ssangervasi/shawn-01.git
     id: 241283160
-    isPrivate: true
+    isPrivate: false
     name: shawn-01
     ssh_url: git@github.com:ssangervasi/shawn-01.git
   name: null
@@ -236,7 +236,7 @@ repositories:
     full_name: ssangervasi/shawn-02
     html_url: https://github.com/ssangervasi/shawn-02.git
     id: 241286250
-    isPrivate: true
+    isPrivate: false
     name: shawn-02
     ssh_url: git@github.com:ssangervasi/shawn-02.git
   name: null
@@ -246,19 +246,19 @@ repositories:
     full_name: ssangervasi/shawn-03
     html_url: https://github.com/ssangervasi/shawn-03.git
     id: 244222731
-    isPrivate: true
+    isPrivate: false
     name: shawn-03
     ssh_url: git@github.com:ssangervasi/shawn-03.git
   name: null
 - id: shawn-04
   metadata:
-    clone_url: https://github.com/clanam/shawn-04.git
-    full_name: clanam/shawn-04
-    html_url: https://github.com/clanam/shawn-04.git
-    id: 245691744
-    isPrivate: true
+    clone_url: https://github.com/ssangervasi/shawn-04.git
+    full_name: ssangervasi/shawn-04
+    html_url: https://github.com/ssangervasi/shawn-04.git
+    id: 245000352
+    isPrivate: false
     name: shawn-04
-    ssh_url: git@github.com:clanam/shawn-04.git
+    ssh_url: git@github.com:ssangervasi/shawn-04.git
   name: null
 - id: shawn-05
   metadata:
@@ -266,7 +266,7 @@ repositories:
     full_name: ssangervasi/shawn-05
     html_url: https://github.com/ssangervasi/shawn-05.git
     id: 245877645
-    isPrivate: true
+    isPrivate: false
     name: shawn-05
     ssh_url: git@github.com:ssangervasi/shawn-05.git
   name: null
@@ -276,7 +276,7 @@ repositories:
     full_name: ssangervasi/shawn-06
     html_url: https://github.com/ssangervasi/shawn-06.git
     id: 246906809
-    isPrivate: true
+    isPrivate: false
     name: shawn-06
     ssh_url: git@github.com:ssangervasi/shawn-06.git
   name: null
@@ -286,7 +286,7 @@ repositories:
     full_name: ssangervasi/shawn-07
     html_url: https://github.com/ssangervasi/shawn-07.git
     id: 247537269
-    isPrivate: true
+    isPrivate: false
     name: shawn-07
     ssh_url: git@github.com:ssangervasi/shawn-07.git
   name: null
@@ -296,7 +296,7 @@ repositories:
     full_name: ssangervasi/shawn-08
     html_url: https://github.com/ssangervasi/shawn-08.git
     id: 248327580
-    isPrivate: true
+    isPrivate: false
     name: shawn-08
     ssh_url: git@github.com:ssangervasi/shawn-08.git
   name: null
@@ -306,7 +306,7 @@ repositories:
     full_name: ssangervasi/shawn-09
     html_url: https://github.com/ssangervasi/shawn-09.git
     id: 249261296
-    isPrivate: true
+    isPrivate: false
     name: shawn-09
     ssh_url: git@github.com:ssangervasi/shawn-09.git
   name: null

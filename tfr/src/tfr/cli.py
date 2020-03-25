@@ -120,17 +120,15 @@ def fetch_metadata(app):
             "html_url": remote.clone_url,
             "clone_url": remote.clone_url,
             "ssh_url": remote.ssh_url,
-            "isPrivate": remote.private
+            "isPrivate": remote.private,
         }
         if local.metadata == incoming_metadata:
-            echo_info('No difference.')
+            echo_info("No difference.")
             continue
 
         if local.metadata:
             echo_info("Original metadata:", local.metadata)
             echo_info("Incoming metadata:", incoming_metadata)
-            if not click.confirm("Overwrite?"):
-                continue
 
         local.metadata = incoming_metadata
         changed_count += 1
@@ -141,6 +139,26 @@ def fetch_metadata(app):
 
     echo_info("Writing changes to game file:", app.game_path)
     app.save_game()
+
+
+@game.command()
+@click.pass_obj
+def publicize(app):
+    for local in app.game.repositories:
+        remote = app.user.get_repo(local.metadata["name"])
+        echo_info(f"Making {remote.name} public.")
+        remote.edit(private=False)
+
+
+@game.command()
+@click.pass_obj
+def links(app):
+    echo(f"|name|url|")
+    echo(f"|--  |-- |")
+    for local in app.game.repositories:
+        name = local.metadata["name"]
+        html_url = local.metadata["html_url"]
+        echo(f"|{name} |{html_url}|")
 
 
 if __name__ == "__main__":

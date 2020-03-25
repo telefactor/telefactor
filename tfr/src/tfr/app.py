@@ -35,7 +35,7 @@ class App:
 
     def get_repos(self):
         if self.repos is None:
-            self.repos = self.user.get_repos()
+            self.repos = self.user.get_repos(affiliation='owner')
         return self.repos
 
     def new_repo(self, name) -> Repository:

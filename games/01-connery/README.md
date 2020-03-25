@@ -52,4 +52,25 @@ Before the game starts I would suggest you install [NVM](http://nvm.sh) and Node
 
 ### Repositories
 
-[game.yaml](game.yaml)
+|name|url|
+|--  |-- |
+|analbumcover-00 |https://github.com/ssangervasi/analbumcover-00.git|
+|analbumcover-01 |https://github.com/ssangervasi/analbumcover-01.git|
+|analbumcover-02 |https://github.com/ssangervasi/analbumcover-02.git|
+|analbumcover-03 |https://github.com/ssangervasi/analbumcover-03.git|
+|analbumcover-04 |https://github.com/ssangervasi/analbumcover-04.git|
+|analbumcover-05 |https://github.com/ssangervasi/analbumcover-05.git|
+|analbumcover-06 |https://github.com/ssangervasi/analbumcover-06.git|
+|analbumcover-07 |https://github.com/ssangervasi/analbumcover-07.git|
+|analbumcover-08 |https://github.com/ssangervasi/analbumcover-08.git|
+|analbumcover-09 |https://github.com/ssangervasi/analbumcover-09.git|
+|shawn-00 |https://github.com/ssangervasi/shawn-00.git|
+|shawn-01 |https://github.com/ssangervasi/shawn-01.git|
+|shawn-02 |https://github.com/ssangervasi/shawn-02.git|
+|shawn-03 |https://github.com/ssangervasi/shawn-03.git|
+|shawn-04 |https://github.com/ssangervasi/shawn-04.git|
+|shawn-05 |https://github.com/ssangervasi/shawn-05.git|
+|shawn-06 |https://github.com/ssangervasi/shawn-06.git|
+|shawn-07 |https://github.com/ssangervasi/shawn-07.git|
+|shawn-08 |https://github.com/ssangervasi/shawn-08.git|
+|shawn-09 |https://github.com/ssangervasi/shawn-09.git|
