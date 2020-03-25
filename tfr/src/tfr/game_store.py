@@ -37,6 +37,9 @@ class App:
 class Repository:
     id: str
     name: t.Optional[str]
+    directory: t.Optional[str]
+    ssh_url: t.Optional[str]
+    commit: t.Optional[str]
     metadata: t.Optional[dict]
 
 

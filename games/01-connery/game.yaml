@@ -47,7 +47,7 @@ apps:
   phases:
   - index: 0
     player: ssangervasi
-    repository: analbumcover-00
+    repository: shawn-00
     role: null
   - index: 1
     player: manolosavi
@@ -110,7 +110,9 @@ players:
 - id: ninduni
   name: null
 repositories:
-- id: analbumcover-00
+- commit: 0f61291f8dfa58ccb3fbe9985cc5c4595e4e2664
+  directory: repos/analbumcover/analbumcover-00
+  id: analbumcover-00
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-00.git
     full_name: ssangervasi/analbumcover-00
@@ -119,8 +121,11 @@ repositories:
     isPrivate: false
     name: analbumcover-00
     ssh_url: git@github.com:ssangervasi/analbumcover-00.git
-  name: null
-- id: analbumcover-01
+  name: analbumcover-00
+  ssh_url: git@github.com:ssangervasi/analbumcover-00.git
+- commit: 86d708598963aac0cc717e1c18859d88c4b02bd5
+  directory: repos/analbumcover/analbumcover-01
+  id: analbumcover-01
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-01.git
     full_name: ssangervasi/analbumcover-01
@@ -129,8 +134,11 @@ repositories:
     isPrivate: false
     name: analbumcover-01
     ssh_url: git@github.com:ssangervasi/analbumcover-01.git
-  name: null
-- id: analbumcover-02
+  name: analbumcover-01
+  ssh_url: git@github.com:ssangervasi/analbumcover-01.git
+- commit: 885c62dda60938cae607f3167007c6e7e78a6647
+  directory: repos/analbumcover/analbumcover-02
+  id: analbumcover-02
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-02.git
     full_name: ssangervasi/analbumcover-02
@@ -139,8 +147,11 @@ repositories:
     isPrivate: false
     name: analbumcover-02
     ssh_url: git@github.com:ssangervasi/analbumcover-02.git
-  name: null
-- id: analbumcover-03
+  name: analbumcover-02
+  ssh_url: git@github.com:ssangervasi/analbumcover-02.git
+- commit: 8123dff8deb0c936bb27b6bd1e93c43f1b01735e
+  directory: repos/analbumcover/analbumcover-03
+  id: analbumcover-03
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-03.git
     full_name: ssangervasi/analbumcover-03
@@ -149,8 +160,11 @@ repositories:
     isPrivate: false
     name: analbumcover-03
     ssh_url: git@github.com:ssangervasi/analbumcover-03.git
-  name: null
-- id: analbumcover-04
+  name: analbumcover-03
+  ssh_url: git@github.com:ssangervasi/analbumcover-03.git
+- commit: 8f564bacedc03c9c95cc7c1c9e0cce224e3ad052
+  directory: repos/analbumcover/analbumcover-04
+  id: analbumcover-04
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-04.git
     full_name: ssangervasi/analbumcover-04
@@ -159,8 +173,11 @@ repositories:
     isPrivate: false
     name: analbumcover-04
     ssh_url: git@github.com:ssangervasi/analbumcover-04.git
-  name: null
-- id: analbumcover-05
+  name: analbumcover-04
+  ssh_url: git@github.com:ssangervasi/analbumcover-04.git
+- commit: 54c774855b16aa695f197ade38843b88d7689b33
+  directory: repos/analbumcover/analbumcover-05
+  id: analbumcover-05
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-05.git
     full_name: ssangervasi/analbumcover-05
@@ -169,8 +186,11 @@ repositories:
     isPrivate: false
     name: analbumcover-05
     ssh_url: git@github.com:ssangervasi/analbumcover-05.git
-  name: null
-- id: analbumcover-06
+  name: analbumcover-05
+  ssh_url: git@github.com:ssangervasi/analbumcover-05.git
+- commit: 3175a25ef0bd4683693f6c5086df3a3d68313b98
+  directory: repos/analbumcover/analbumcover-06
+  id: analbumcover-06
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-06.git
     full_name: ssangervasi/analbumcover-06
@@ -179,8 +199,11 @@ repositories:
     isPrivate: false
     name: analbumcover-06
     ssh_url: git@github.com:ssangervasi/analbumcover-06.git
-  name: null
-- id: analbumcover-07
+  name: analbumcover-06
+  ssh_url: git@github.com:ssangervasi/analbumcover-06.git
+- commit: f182d5d6e0bb72f38d780a1e3c6412a9bf078cd3
+  directory: repos/analbumcover/analbumcover-07
+  id: analbumcover-07
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-07.git
     full_name: ssangervasi/analbumcover-07
@@ -189,8 +212,11 @@ repositories:
     isPrivate: false
     name: analbumcover-07
     ssh_url: git@github.com:ssangervasi/analbumcover-07.git
-  name: null
-- id: analbumcover-08
+  name: analbumcover-07
+  ssh_url: git@github.com:ssangervasi/analbumcover-07.git
+- commit: 1c9440853169562c9397743ad36b32c7bab75d5a
+  directory: repos/analbumcover/analbumcover-08
+  id: analbumcover-08
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-08.git
     full_name: ssangervasi/analbumcover-08
@@ -199,8 +225,11 @@ repositories:
     isPrivate: false
     name: analbumcover-08
     ssh_url: git@github.com:ssangervasi/analbumcover-08.git
-  name: null
-- id: analbumcover-09
+  name: analbumcover-08
+  ssh_url: git@github.com:ssangervasi/analbumcover-08.git
+- commit: d81b9e9176961a26b55788c514f74dbc0abcb77f
+  directory: repos/analbumcover/analbumcover-09
+  id: analbumcover-09
   metadata:
     clone_url: https://github.com/ssangervasi/analbumcover-09.git
     full_name: ssangervasi/analbumcover-09
@@ -209,8 +238,11 @@ repositories:
     isPrivate: false
     name: analbumcover-09
     ssh_url: git@github.com:ssangervasi/analbumcover-09.git
-  name: null
-- id: shawn-00
+  name: analbumcover-09
+  ssh_url: git@github.com:ssangervasi/analbumcover-09.git
+- commit: cd11e0f2eace78e79c80e2e10bd0f1f87f2e9f39
+  directory: repos/shawn/shawn-00
+  id: shawn-00
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-00.git
     full_name: ssangervasi/shawn-00
@@ -219,8 +251,11 @@ repositories:
     isPrivate: false
     name: shawn-00
     ssh_url: git@github.com:ssangervasi/shawn-00.git
-  name: null
-- id: shawn-01
+  name: shawn-00
+  ssh_url: git@github.com:ssangervasi/shawn-00.git
+- commit: f146591673600cceeac57003df6834d901fbae60
+  directory: repos/shawn/shawn-01
+  id: shawn-01
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-01.git
     full_name: ssangervasi/shawn-01
@@ -229,8 +264,11 @@ repositories:
     isPrivate: false
     name: shawn-01
     ssh_url: git@github.com:ssangervasi/shawn-01.git
-  name: null
-- id: shawn-02
+  name: shawn-01
+  ssh_url: git@github.com:ssangervasi/shawn-01.git
+- commit: 4b0d840af58b9d247e61f50f135fbaed0ee2106e
+  directory: repos/shawn/shawn-02
+  id: shawn-02
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-02.git
     full_name: ssangervasi/shawn-02
@@ -239,8 +277,11 @@ repositories:
     isPrivate: false
     name: shawn-02
     ssh_url: git@github.com:ssangervasi/shawn-02.git
-  name: null
-- id: shawn-03
+  name: shawn-02
+  ssh_url: git@github.com:ssangervasi/shawn-02.git
+- commit: 316d147d25ffd710b980186b7bbb9eeea1221369
+  directory: repos/shawn/shawn-03
+  id: shawn-03
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-03.git
     full_name: ssangervasi/shawn-03
@@ -249,8 +290,11 @@ repositories:
     isPrivate: false
     name: shawn-03
     ssh_url: git@github.com:ssangervasi/shawn-03.git
-  name: null
-- id: shawn-04
+  name: shawn-03
+  ssh_url: git@github.com:ssangervasi/shawn-03.git
+- commit: 0551e5cfc2d620fbfa255f388092ea52468d775f
+  directory: repos/shawn/shawn-04
+  id: shawn-04
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-04.git
     full_name: ssangervasi/shawn-04
@@ -259,8 +303,11 @@ repositories:
     isPrivate: false
     name: shawn-04
     ssh_url: git@github.com:ssangervasi/shawn-04.git
-  name: null
-- id: shawn-05
+  name: shawn-04
+  ssh_url: git@github.com:ssangervasi/shawn-04.git
+- commit: 326a540dc659d34e1f915afa371bb46ff7d7482d
+  directory: repos/shawn/shawn-05
+  id: shawn-05
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-05.git
     full_name: ssangervasi/shawn-05
@@ -269,8 +316,11 @@ repositories:
     isPrivate: false
     name: shawn-05
     ssh_url: git@github.com:ssangervasi/shawn-05.git
-  name: null
-- id: shawn-06
+  name: shawn-05
+  ssh_url: git@github.com:ssangervasi/shawn-05.git
+- commit: f20ac811bb928298b334654ed3c15b79625706f9
+  directory: repos/shawn/shawn-06
+  id: shawn-06
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-06.git
     full_name: ssangervasi/shawn-06
@@ -279,8 +329,11 @@ repositories:
     isPrivate: false
     name: shawn-06
     ssh_url: git@github.com:ssangervasi/shawn-06.git
-  name: null
-- id: shawn-07
+  name: shawn-06
+  ssh_url: git@github.com:ssangervasi/shawn-06.git
+- commit: 326fb8e6be17ef2867483174ebbd1316b819a026
+  directory: repos/shawn/shawn-07
+  id: shawn-07
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-07.git
     full_name: ssangervasi/shawn-07
@@ -289,8 +342,11 @@ repositories:
     isPrivate: false
     name: shawn-07
     ssh_url: git@github.com:ssangervasi/shawn-07.git
-  name: null
-- id: shawn-08
+  name: shawn-07
+  ssh_url: git@github.com:ssangervasi/shawn-07.git
+- commit: 386aceffa51e9c5c7fc3ab7192ac9617ccbad739
+  directory: repos/shawn/shawn-08
+  id: shawn-08
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-08.git
     full_name: ssangervasi/shawn-08
@@ -299,8 +355,11 @@ repositories:
     isPrivate: false
     name: shawn-08
     ssh_url: git@github.com:ssangervasi/shawn-08.git
-  name: null
-- id: shawn-09
+  name: shawn-08
+  ssh_url: git@github.com:ssangervasi/shawn-08.git
+- commit: b91bac036de7b2b0d8cd52dad66e306876cc57b8
+  directory: repos/shawn/shawn-09
+  id: shawn-09
   metadata:
     clone_url: https://github.com/ssangervasi/shawn-09.git
     full_name: ssangervasi/shawn-09
@@ -309,4 +368,5 @@ repositories:
     isPrivate: false
     name: shawn-09
     ssh_url: git@github.com:ssangervasi/shawn-09.git
-  name: null
+  name: shawn-09
+  ssh_url: git@github.com:ssangervasi/shawn-09.git

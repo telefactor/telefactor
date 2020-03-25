@@ -15,6 +15,7 @@ class App:
     user = None
     repos = None
     name_to_repo: dict = None
+    name_to_local: dict = None
     game = None
     game_path: str = None
 
@@ -45,6 +46,12 @@ class App:
 
         return self.name_to_repo
 
+    def get_name_to_local(self):
+        if self.name_to_local is None:
+            self.name_to_local = {local.id: local for local in self.game.repositories}
+
+        return self.name_to_local
+
     def new_repo(self, name) -> Repository:
         created_repo = self.user.create_repo(name=name, private=True, auto_init=True,)
         self.repos = None
@@ -61,6 +68,18 @@ class App:
     def iter_locals_remotes(self):
         for local in self.game.get_repos():
             yield (local, self.get_name_to_repo()[local.id])
+
+    # def iter_phases(self):
+    #     self.name_to_local = self.app.get_name_to_local()
+    #     self.repos_dir = self.root_dir / "repos"
+    #     self.repos_dir.mkdir(exist_ok=True)
+
+    #     for game_app in self.app.game.apps:
+    #         repos_app_dir = self.repos_dir / game_app.name
+    #         repos_app_dir.mkdir(exist_ok=True)
+
+    #         for phase in game_app.phases:
+    #             self.handle_phase(phase, repos_app_dir
 
 
 @lru_cache()

@@ -9,6 +9,7 @@ click = "*"
 pygithub = "*"
 dacite = "*"
 tfr = {editable = true,path = "."}
+gitpython = "*"
 
 [dev-packages]
 tfr = {editable = true,path = "."}

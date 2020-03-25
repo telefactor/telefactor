@@ -7,11 +7,11 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     install_requires=[
-        'Click',
-        'pyyaml',
         'click',
-        'pygithub',
         'dacite',
+        'gitpython',
+        'pygithub',
+        'pyyaml',
     ],
     entry_points='''
         [console_scripts]
