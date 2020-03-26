@@ -1,1 +1,76 @@
-{"numFailedTestSuites":0,"numFailedTests":0,"numPassedTestSuites":1,"numPassedTests":4,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":4,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1585117526173,"success":true,"testResults":[{"assertionResults":[{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase assassin","location":null,"status":"passed","title":"assassin"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase clowns","location":null,"status":"passed","title":"clowns"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase regular connery","location":null,"status":"passed","title":"regular connery"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase annoying connery","location":null,"status":"passed","title":"annoying connery"}],"endTime":1585117528246,"message":"","name":"/home/sebastian/workspace/telefactor/games/01-connery/repos/shawn/shawn-02/src/shawn.test.ts","startTime":1585117526194,"status":"passed","summary":""}],"wasInterrupted":false}
+{
+	"numFailedTestSuites": 0,
+	"numFailedTests": 0,
+	"numPassedTestSuites": 1,
+	"numPassedTests": 4,
+	"numPendingTestSuites": 0,
+	"numPendingTests": 0,
+	"numRuntimeErrorTestSuites": 0,
+	"numTodoTests": 0,
+	"numTotalTestSuites": 1,
+	"numTotalTests": 4,
+	"openHandles": [],
+	"snapshot": {
+		"added": 0,
+		"didUpdate": false,
+		"failure": false,
+		"filesAdded": 0,
+		"filesRemoved": 0,
+		"filesRemovedList": [],
+		"filesUnmatched": 0,
+		"filesUpdated": 0,
+		"matched": 0,
+		"total": 0,
+		"unchecked": 0,
+		"uncheckedKeysByFile": [],
+		"unmatched": 0,
+		"updated": 0
+	},
+	"startTime": 1585117526173,
+	"success": true,
+	"testResults": [
+		{
+			"assertionResults": [
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase assassin",
+					"location": null,
+					"status": "passed",
+					"title": "assassin"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase clowns",
+					"location": null,
+					"status": "passed",
+					"title": "clowns"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase regular connery",
+					"location": null,
+					"status": "passed",
+					"title": "regular connery"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase annoying connery",
+					"location": null,
+					"status": "passed",
+					"title": "annoying connery"
+				}
+			],
+			"endTime": 1585117528246,
+			"message": "",
+			"name": "/home/sebastian/workspace/telefactor/games/01-connery/repos/shawn/shawn-02/src/shawn.test.ts",
+			"startTime": 1585117526194,
+			"status": "passed",
+			"summary": ""
+		}
+	],
+	"wasInterrupted": false
+}

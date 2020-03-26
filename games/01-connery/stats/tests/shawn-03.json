@@ -1,1 +1,100 @@
-{"numFailedTestSuites":0,"numFailedTests":0,"numPassedTestSuites":1,"numPassedTests":7,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":7,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1585117541068,"success":true,"testResults":[{"assertionResults":[{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase replaces [sS]ean with [sS]hawn","location":null,"status":"passed","title":"replaces [sS]ean with [sS]hawn"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase adds [h] after [sS]","location":null,"status":"passed","title":"adds [h] after [sS]"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase does not repeat [sh]","location":null,"status":"passed","title":"does not repeat [sh]"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase replaces [cC] with [(sh)(Sh)] if followed by [eiyEIY]","location":null,"status":"passed","title":"replaces [cC] with [(sh)(Sh)] if followed by [eiyEIY]"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase does not replace [cC] with [(sh)(Sh)] if followed by [aouAOU]","location":null,"status":"passed","title":"does not replace [cC] with [(sh)(Sh)] if followed by [aouAOU]"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase replaces multiple s`s with a single s","location":null,"status":"passed","title":"replaces multiple s`s with a single s"},{"ancestorTitles":["rephrase"],"failureMessages":[],"fullName":"rephrase jeopardy","location":null,"status":"passed","title":"jeopardy"}],"endTime":1585117542922,"message":"","name":"/home/sebastian/workspace/telefactor/games/01-connery/repos/shawn/shawn-03/src/shawn.test.ts","startTime":1585117541086,"status":"passed","summary":""}],"wasInterrupted":false}
+{
+	"numFailedTestSuites": 0,
+	"numFailedTests": 0,
+	"numPassedTestSuites": 1,
+	"numPassedTests": 7,
+	"numPendingTestSuites": 0,
+	"numPendingTests": 0,
+	"numRuntimeErrorTestSuites": 0,
+	"numTodoTests": 0,
+	"numTotalTestSuites": 1,
+	"numTotalTests": 7,
+	"openHandles": [],
+	"snapshot": {
+		"added": 0,
+		"didUpdate": false,
+		"failure": false,
+		"filesAdded": 0,
+		"filesRemoved": 0,
+		"filesRemovedList": [],
+		"filesUnmatched": 0,
+		"filesUpdated": 0,
+		"matched": 0,
+		"total": 0,
+		"unchecked": 0,
+		"uncheckedKeysByFile": [],
+		"unmatched": 0,
+		"updated": 0
+	},
+	"startTime": 1585117541068,
+	"success": true,
+	"testResults": [
+		{
+			"assertionResults": [
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase replaces [sS]ean with [sS]hawn",
+					"location": null,
+					"status": "passed",
+					"title": "replaces [sS]ean with [sS]hawn"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase adds [h] after [sS]",
+					"location": null,
+					"status": "passed",
+					"title": "adds [h] after [sS]"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase does not repeat [sh]",
+					"location": null,
+					"status": "passed",
+					"title": "does not repeat [sh]"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase replaces [cC] with [(sh)(Sh)] if followed by [eiyEIY]",
+					"location": null,
+					"status": "passed",
+					"title": "replaces [cC] with [(sh)(Sh)] if followed by [eiyEIY]"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase does not replace [cC] with [(sh)(Sh)] if followed by [aouAOU]",
+					"location": null,
+					"status": "passed",
+					"title": "does not replace [cC] with [(sh)(Sh)] if followed by [aouAOU]"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase replaces multiple s`s with a single s",
+					"location": null,
+					"status": "passed",
+					"title": "replaces multiple s`s with a single s"
+				},
+				{
+					"ancestorTitles": ["rephrase"],
+					"failureMessages": [],
+					"fullName": "rephrase jeopardy",
+					"location": null,
+					"status": "passed",
+					"title": "jeopardy"
+				}
+			],
+			"endTime": 1585117542922,
+			"message": "",
+			"name": "/home/sebastian/workspace/telefactor/games/01-connery/repos/shawn/shawn-03/src/shawn.test.ts",
+			"startTime": 1585117541086,
+			"status": "passed",
+			"summary": ""
+		}
+	],
+	"wasInterrupted": false
+}

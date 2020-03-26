@@ -1,1 +1,389 @@
-{"numFailedTestSuites":0,"numFailedTests":0,"numPassedTestSuites":1,"numPassedTests":42,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":42,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1585117463698,"success":true,"testResults":[{"assertionResults":[{"ancestorTitles":["rephrase","error-handling"],"failureMessages":[],"fullName":"rephrase error-handling throws errors if word length is -1","location":null,"status":"passed","title":"throws errors if word length is -1"},{"ancestorTitles":["rephrase","error-handling"],"failureMessages":[],"fullName":"rephrase error-handling throws errors if word length is 0","location":null,"status":"passed","title":"throws errors if word length is 0"},{"ancestorTitles":["rephrase","error-handling"],"failureMessages":[],"fullName":"rephrase error-handling does not throw errors if word length is 1","location":null,"status":"passed","title":"does not throw errors if word length is 1"},{"ancestorTitles":["rephrase","word: \"\" 🈲"],"failureMessages":[],"fullName":"rephrase word: \"\" 🈲 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"\" 🈲"],"failureMessages":[],"fullName":"rephrase word: \"\" 🈲 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"\" 🈲"],"failureMessages":[],"fullName":"rephrase word: \"\" 🈲 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"       \" 🈲"],"failureMessages":[],"fullName":"rephrase word: \"       \" 🈲 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"       \" 🈲"],"failureMessages":[],"fullName":"rephrase word: \"       \" 🈲 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"       \" 🈲"],"failureMessages":[],"fullName":"rephrase word: \"       \" 🈲 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"μ\" 🇬🇷"],"failureMessages":[],"fullName":"rephrase word: \"μ\" 🇬🇷 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"μ\" 🇬🇷"],"failureMessages":[],"fullName":"rephrase word: \"μ\" 🇬🇷 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"μ\" 🇬🇷"],"failureMessages":[],"fullName":"rephrase word: \"μ\" 🇬🇷 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"子犬\" 🐶"],"failureMessages":[],"fullName":"rephrase word: \"子犬\" 🐶 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"子犬\" 🐶"],"failureMessages":[],"fullName":"rephrase word: \"子犬\" 🐶 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"子犬\" 🐶"],"failureMessages":[],"fullName":"rephrase word: \"子犬\" 🐶 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"asdfgh\" 🔤"],"failureMessages":[],"fullName":"rephrase word: \"asdfgh\" 🔤 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"asdfgh\" 🔤"],"failureMessages":[],"fullName":"rephrase word: \"asdfgh\" 🔤 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"asdfgh\" 🔤"],"failureMessages":[],"fullName":"rephrase word: \"asdfgh\" 🔤 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"tea\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"tea\" 🍵 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"tea\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"tea\" 🍵 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"tea\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"tea\" 🍵 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \" t  e  a \" 🍵"],"failureMessages":[],"fullName":"rephrase word: \" t  e  a \" 🍵 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \" t  e  a \" 🍵"],"failureMessages":[],"fullName":"rephrase word: \" t  e  a \" 🍵 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \" t  e  a \" 🍵"],"failureMessages":[],"fullName":"rephrase word: \" t  e  a \" 🍵 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"T...  e...  a!\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"T...  e...  a!\" 🍵 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"T...  e...  a!\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"T...  e...  a!\" 🍵 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"T...  e...  a!\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"T...  e...  a!\" 🍵 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"milktea\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"milktea\" 🍵 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"milktea\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"milktea\" 🍵 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"milktea\" 🍵"],"failureMessages":[],"fullName":"rephrase word: \"milktea\" 🍵 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"analbumcover\" 💿"],"failureMessages":[],"fullName":"rephrase word: \"analbumcover\" 💿 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"analbumcover\" 💿"],"failureMessages":[],"fullName":"rephrase word: \"analbumcover\" 💿 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"analbumcover\" 💿"],"failureMessages":[],"fullName":"rephrase word: \"analbumcover\" 💿 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"hot dog\" 🌭"],"failureMessages":[],"fullName":"rephrase word: \"hot dog\" 🌭 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"hot dog\" 🌭"],"failureMessages":[],"fullName":"rephrase word: \"hot dog\" 🌭 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"hot dog\" 🌭"],"failureMessages":[],"fullName":"rephrase word: \"hot dog\" 🌭 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"hotdog\" 🌭"],"failureMessages":[],"fullName":"rephrase word: \"hotdog\" 🌭 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"hotdog\" 🌭"],"failureMessages":[],"fullName":"rephrase word: \"hotdog\" 🌭 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"hotdog\" 🌭"],"failureMessages":[],"fullName":"rephrase word: \"hotdog\" 🌭 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"},{"ancestorTitles":["rephrase","word: \"not hotdog\" 🚫🌭"],"failureMessages":[],"fullName":"rephrase word: \"not hotdog\" 🚫🌭 midWordLength = 1","location":null,"status":"passed","title":"midWordLength = 1"},{"ancestorTitles":["rephrase","word: \"not hotdog\" 🚫🌭"],"failureMessages":[],"fullName":"rephrase word: \"not hotdog\" 🚫🌭 midWordLength = 2","location":null,"status":"passed","title":"midWordLength = 2"},{"ancestorTitles":["rephrase","word: \"not hotdog\" 🚫🌭"],"failureMessages":[],"fullName":"rephrase word: \"not hotdog\" 🚫🌭 midWordLength = 3","location":null,"status":"passed","title":"midWordLength = 3"}],"endTime":1585117465448,"message":"","name":"/home/sebastian/workspace/telefactor/games/01-connery/repos/analbumcover/analbumcover-08/src/analbumcover.test.ts","startTime":1585117463717,"status":"passed","summary":""}],"wasInterrupted":false}
+{
+	"numFailedTestSuites": 0,
+	"numFailedTests": 0,
+	"numPassedTestSuites": 1,
+	"numPassedTests": 42,
+	"numPendingTestSuites": 0,
+	"numPendingTests": 0,
+	"numRuntimeErrorTestSuites": 0,
+	"numTodoTests": 0,
+	"numTotalTestSuites": 1,
+	"numTotalTests": 42,
+	"openHandles": [],
+	"snapshot": {
+		"added": 0,
+		"didUpdate": false,
+		"failure": false,
+		"filesAdded": 0,
+		"filesRemoved": 0,
+		"filesRemovedList": [],
+		"filesUnmatched": 0,
+		"filesUpdated": 0,
+		"matched": 0,
+		"total": 0,
+		"unchecked": 0,
+		"uncheckedKeysByFile": [],
+		"unmatched": 0,
+		"updated": 0
+	},
+	"startTime": 1585117463698,
+	"success": true,
+	"testResults": [
+		{
+			"assertionResults": [
+				{
+					"ancestorTitles": ["rephrase", "error-handling"],
+					"failureMessages": [],
+					"fullName": "rephrase error-handling throws errors if word length is -1",
+					"location": null,
+					"status": "passed",
+					"title": "throws errors if word length is -1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "error-handling"],
+					"failureMessages": [],
+					"fullName": "rephrase error-handling throws errors if word length is 0",
+					"location": null,
+					"status": "passed",
+					"title": "throws errors if word length is 0"
+				},
+				{
+					"ancestorTitles": ["rephrase", "error-handling"],
+					"failureMessages": [],
+					"fullName": "rephrase error-handling does not throw errors if word length is 1",
+					"location": null,
+					"status": "passed",
+					"title": "does not throw errors if word length is 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"\" 🈲"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"\" 🈲 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"\" 🈲"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"\" 🈲 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"\" 🈲"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"\" 🈲 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"       \" 🈲"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"       \" 🈲 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"       \" 🈲"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"       \" 🈲 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"       \" 🈲"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"       \" 🈲 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"μ\" 🇬🇷"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"μ\" 🇬🇷 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"μ\" 🇬🇷"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"μ\" 🇬🇷 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"μ\" 🇬🇷"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"μ\" 🇬🇷 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"子犬\" 🐶"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"子犬\" 🐶 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"子犬\" 🐶"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"子犬\" 🐶 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"子犬\" 🐶"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"子犬\" 🐶 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"asdfgh\" 🔤"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"asdfgh\" 🔤 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"asdfgh\" 🔤"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"asdfgh\" 🔤 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"asdfgh\" 🔤"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"asdfgh\" 🔤 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"tea\" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"tea\" 🍵 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"tea\" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"tea\" 🍵 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"tea\" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"tea\" 🍵 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \" t  e  a \" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \" t  e  a \" 🍵 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \" t  e  a \" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \" t  e  a \" 🍵 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \" t  e  a \" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \" t  e  a \" 🍵 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": [
+						"rephrase",
+						"word: \"T...  e...  a!\" 🍵"
+					],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"T...  e...  a!\" 🍵 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": [
+						"rephrase",
+						"word: \"T...  e...  a!\" 🍵"
+					],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"T...  e...  a!\" 🍵 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": [
+						"rephrase",
+						"word: \"T...  e...  a!\" 🍵"
+					],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"T...  e...  a!\" 🍵 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"milktea\" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"milktea\" 🍵 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"milktea\" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"milktea\" 🍵 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"milktea\" 🍵"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"milktea\" 🍵 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"analbumcover\" 💿"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"analbumcover\" 💿 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"analbumcover\" 💿"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"analbumcover\" 💿 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"analbumcover\" 💿"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"analbumcover\" 💿 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"hot dog\" 🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"hot dog\" 🌭 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"hot dog\" 🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"hot dog\" 🌭 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"hot dog\" 🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"hot dog\" 🌭 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"hotdog\" 🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"hotdog\" 🌭 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"hotdog\" 🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"hotdog\" 🌭 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"hotdog\" 🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"hotdog\" 🌭 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"not hotdog\" 🚫🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"not hotdog\" 🚫🌭 midWordLength = 1",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 1"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"not hotdog\" 🚫🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"not hotdog\" 🚫🌭 midWordLength = 2",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 2"
+				},
+				{
+					"ancestorTitles": ["rephrase", "word: \"not hotdog\" 🚫🌭"],
+					"failureMessages": [],
+					"fullName": "rephrase word: \"not hotdog\" 🚫🌭 midWordLength = 3",
+					"location": null,
+					"status": "passed",
+					"title": "midWordLength = 3"
+				}
+			],
+			"endTime": 1585117465448,
+			"message": "",
+			"name": "/home/sebastian/workspace/telefactor/games/01-connery/repos/analbumcover/analbumcover-08/src/analbumcover.test.ts",
+			"startTime": 1585117463717,
+			"status": "passed",
+			"summary": ""
+		}
+	],
+	"wasInterrupted": false
+}

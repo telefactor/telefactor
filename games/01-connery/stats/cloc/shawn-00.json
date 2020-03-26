@@ -1,11 +1,11 @@
 {"header" : {
   "cloc_url"           : "github.com/AlDanial/cloc",
   "cloc_version"       : "1.82",
-  "elapsed_seconds"    : 0.00483179092407227,
+  "elapsed_seconds"    : 0.00492000579833984,
   "n_files"            : 3,
   "n_lines"            : 113,
-  "files_per_second"   : 620.887792361591,
-  "lines_per_second"   : 23386.7735122866,
+  "files_per_second"   : 609.755378949409,
+  "lines_per_second"   : 22967.4526070944,
   "report_file"        : "/home/sebastian/workspace/telefactor/games/01-connery/stats/cloc/shawn-00.json"},
 "TypeScript" :{
   "nFiles": 3,

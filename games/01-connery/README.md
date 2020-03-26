@@ -74,3 +74,13 @@ Before the game starts I would suggest you install [NVM](http://nvm.sh) and Node
 |shawn-07 |https://github.com/ssangervasi/shawn-07.git|
 |shawn-08 |https://github.com/ssangervasi/shawn-08.git|
 |shawn-09 |https://github.com/ssangervasi/shawn-09.git|
+
+
+# Shortest impl:
+sh02 	64
+Nickie
+
+# Longest test desc:
+ab01 65
+it does not return anything if the minimum word-length is onerous
+
