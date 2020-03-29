@@ -1,6 +1,6 @@
-from enum import Enum
 import typing as t
 from dataclasses import asdict, dataclass
+from enum import Enum
 
 import dacite
 
