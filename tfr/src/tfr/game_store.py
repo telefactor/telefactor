@@ -30,6 +30,7 @@ class Phase:
 class App:
     id: str
     name: str
+    editable_paths: t.List[str]
     phases: t.List[Phase]
 
 

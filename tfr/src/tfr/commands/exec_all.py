@@ -1,7 +1,9 @@
 import subprocess
 
-from .base import game, click
-from .io_utils import echo, echo_info
+from tfr.io_utils import echo, echo_info
+
+from .base import click
+from .game import game
 
 
 @game.command()

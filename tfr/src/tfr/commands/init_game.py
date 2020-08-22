@@ -1,5 +1,3 @@
-import typing as t
-
 from tfr import data_utils, game_store
 from tfr.io_utils import echo_info
 
@@ -8,28 +6,18 @@ from .base import cli, click
 
 @cli.command("init")
 @click.option("--name", prompt=True)
-@click.option("--players", default="", help="Comma-separated list of player names")
+@click.option("--players", help="Comma-separated list of player names", prompt=True)
 @click.option(
     "--path",
     default="./game.yaml",
     type=click.Path(exists=False, dir_okay=False, readable=True),
     prompt=True,
 )
-def init_game(name: str, players: t.List[str], path: str):
+@click.option("--apps", help="Comma-separated list of player names", prompt=True)
+def init_game(name: str, players: str, path: str):
     id = data_utils.name_to_id(name)
 
     player_names = [n for n in players.split(",") if len(n)]
-    if len(player_names) < 1:
-        while True:
-            try:
-                pass
-                next_name = click.prompt("Add player").strip()
-            except click.Abort:
-                print()
-                break
-
-            if len(next_name):
-                player_names.append(next_name)
 
     game = game_store.Game(
         name=name, id=id, gm=None, players=player_names, apps=[], repositories=[]

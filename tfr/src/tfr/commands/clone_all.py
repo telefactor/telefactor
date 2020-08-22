@@ -1,9 +1,11 @@
 from pathlib import Path
 
 import git
+from tfr.app import App
+from tfr.io_utils import echo_info
 
-from .base import game, click
-from .io_utils import echo, echo_info
+from .base import click
+from .game import game
 
 
 @game.command()
@@ -13,7 +15,7 @@ def clone_all(app):
 
 
 class Cloner:
-    app: "App" = None
+    app: App = None
     root_dir: Path = None
     repos_dir: Path = None
     name_to_local: dict = None
