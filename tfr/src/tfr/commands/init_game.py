@@ -1,34 +1,47 @@
+import typing as t
+
 from tfr import data_utils, game_store
 
 from .base import cli, click
-from .io_utils import echo, echo_info
+from .io_utils import echo_info
 
 
-@cli.group()
-def init():
-    pass
-
-
-@init.command("game")
-def init_game():
-    steps = Steps(["Name your game", "Add players"])
-    steps.next()
-    name = click.prompt("name")
+@cli.command("init")
+@click.option("--name", prompt=True)
+@click.option("--players")
+@click.option(
+    "--path",
+    default="./game.yaml",
+    type=click.Path(exists=False, dir_okay=False, readable=True),
+    prompt=True
+)
+def init_game(name: str, players: t.List[str], path: str):
     id = data_utils.name_to_id(name)
 
+    player_names = players.split(',')
+    if len(player_names) < 1:
+        while player_name := click.prompt("Add player:") is not "":
+            player_names.append(player_name)
+
+    echo_info("Add players")
+
     game = game_store.Game(
-        name=name, id=id, gm=None, players=[], apps=[], repositories=[]
+        name=name, id=id, gm=None, players=player, apps=[], repositories=[]
     )
     game_store.save("./game.yaml", game)
 
 
-class Steps:
-    def __init__(self, names):
-        self.names = names
-        self.current = -1
-        self.total = len(names)
+# @game.command("init")
+# def init_game():
+#     # steps = Steps(["Name your game", "Add players"])
+#     echo_info("Name your game")
+#     name = click.prompt("name")
+#     id = data_utils.name_to_id(name)
 
-    def next(self):
-        self.current += 1
-        name = self.names[self.current]
-        echo_info(f"{name} ({self.current}/{self.total})")
+#     echo_info("Add players")
+#     name = click.prompt("name")
+
+#     game = game_store.Game(
+#         name=name, id=id, gm=None, players=[], apps=[], repositories=[]
+#     )
+#     game_store.save("./game.yaml", game)
