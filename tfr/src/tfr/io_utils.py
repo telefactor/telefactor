@@ -1,7 +1,6 @@
 from collections.abc import Collection, Mapping
 from textwrap import dedent as dd
 
-
 import click
 
 
@@ -11,6 +10,10 @@ def echo(*msgs):
 
 def echo_info(*msgs):
     click.secho(fmt_msgs(msgs), fg="yellow")
+
+
+def echo_error(*msgs):
+    click.secho(fmt_msgs(msgs), fg="red")
 
 
 def fmt_msgs(msgs):
