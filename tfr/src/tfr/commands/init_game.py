@@ -5,38 +5,32 @@ from .base import cli, click
 
 
 @cli.command("init")
-@click.option("--name", prompt=True)
-@click.option("--players", help="Comma-separated list of player names", prompt=True)
 @click.option(
     "--path",
-    default="./game.yaml",
+    default="./tfr.yaml",
     type=click.Path(exists=False, dir_okay=False, readable=True),
     prompt=True,
 )
-@click.option("--apps", help="Comma-separated list of player names", prompt=True)
-def init_game(name: str, players: str, path: str):
+@click.option("--name", prompt=True)
+@click.option("--players", help="Comma-separated list of player usernames (GitHub)", prompt=True)
+@click.option("--gm", help="Game master username", prompt=True)
+def init_game(path: str, name: str, players: str, gm: str):
     id = data_utils.name_to_id(name)
 
-    player_names = [n for n in players.split(",") if len(n)]
+    gm_user = game_store.User(username=gm, name=gm)
+    # Create user objects from unique player ids.
+    player_users = [
+        game_store.User(username=username, name=username)
+        for username in set(n for n in players.split(",") if len(n))
+    ]
 
     game = game_store.Game(
-        name=name, id=id, gm=None, players=player_names, apps=[], repositories=[]
+        name=name,
+        id=id,
+        gm=gm_user,
+        players=player_users,
+        apps=[],
+        repositories=[]
     )
     game_store.save(path, game)
     echo_info("New game at", path)
-
-
-# @game.command("init")
-# def init_game():
-#     # steps = Steps(["Name your game", "Add players"])
-#     echo_info("Name your game")
-#     name = click.prompt("name")
-#     id = data_utils.name_to_id(name)
-
-#     echo_info("Add players")
-#     name = click.prompt("name")
-
-#     game = game_store.Game(
-#         name=name, id=id, gm=None, players=[], apps=[], repositories=[]
-#     )
-#     game_store.save("./game.yaml", game)

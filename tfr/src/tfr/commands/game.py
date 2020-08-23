@@ -7,7 +7,7 @@ from .base import cli
 @cli.group()
 @click.option(
     "--path",
-    default="./game.yaml",
+    default="./tfr.yaml",
     type=click.Path(exists=True, dir_okay=False, readable=True),
 )
 @click.pass_obj

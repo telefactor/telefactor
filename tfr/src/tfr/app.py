@@ -4,9 +4,7 @@ from typing import List
 
 from github.Repository import Repository
 
-from . import game_store
-from . import secret_store
-from . import hub
+from . import game_store, hub, secret_store
 
 
 class App:
@@ -18,6 +16,9 @@ class App:
     name_to_local: dict = None
     game = None
     game_path: str = None
+
+    def __repr__(self):
+        return f"App(game_path='{self.game_path}')"
 
     def login(self, secrets_path: str):
         self.secrets = secret_store.load(secrets_path)

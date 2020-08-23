@@ -2,7 +2,7 @@ import re
 import time
 
 
-def name_to_id(name):
+def name_to_id(name, pre="g"):
     cleaned = (
         Subber(name.lower())
         .sub(r"^\W+", "")
@@ -12,7 +12,7 @@ def name_to_id(name):
         .string
     )
     timestamp = time.time()
-    return f"G:{cleaned}:{timestamp:.0f}"
+    return f"{pre}:{cleaned}:{timestamp:.0f}"
 
 
 def subber(string):
