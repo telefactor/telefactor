@@ -79,6 +79,12 @@ def fetch_metadata(app):
 
 @game.command()
 @click.pass_obj
+def push(app):
+    pass
+
+
+@game.command()
+@click.pass_obj
 def publicize(app):
     for local, remote in app.iter_locals_remotes():
         echo_info(f"Making {remote.name} public.")

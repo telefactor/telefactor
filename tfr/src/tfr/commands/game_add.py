@@ -1,3 +1,4 @@
+import typing as t
 from pathlib import Path
 
 import click
@@ -19,19 +20,27 @@ def add(app):
 @click.option(
     "--path",
     help="Path to the template repository for the app.",
-    type=click.Path(exists=True, file_okay=False, dir_okay=True, readable=True),
-    prompt=True,
+    type=click.Path(file_okay=False, dir_okay=True, readable=True),
 )
 @click.pass_obj
-def app(app: App, name: str, path: str):
+def app(app: App, name: str, path: t.Optional[str]):
     echo_info("App", app)
+
+    phase_index = 0
+    repo_name = data_utils.make_repo_name(
+        app_name=name, phase_index=phase_index
+    )
+
     game_dir = Path(app.game_path).resolve().parent
-    repo_path = Path(path).expanduser().resolve()
-    repo_relative = repo_path.relative_to(game_dir)
+    repo_dir = game_dir / repo_name
+    if path is not None:
+        repo_path = Path(path).expanduser().resolve()
+        repo_dir = repo_path.relative_to(game_dir)
+    repo_dir.mkdir(exist_ok=True)
+
     repo = game_store.Repository(
-        id=data_utils.name_to_id(repo_relative.name, "r"),
-        name=repo_relative.name,
-        directory=str(repo_relative),
+        name=repo_name,
+        directory=str(repo_dir),
         ssh_url=None,
         commit=None,
         metadata=None,
@@ -39,17 +48,12 @@ def app(app: App, name: str, path: str):
     app.game.repositories.append(repo)
 
     phase = game_store.Phase(
-        index=0,
-        repository=repo.id,
+        index=phase_index,
+        repository=repo.name,
         player=app.game.gm.username,
         role=game_store.Role.SOURCERER,
     )
 
-    game_app = game_store.App(
-        id=data_utils.name_to_id(name, pre="a"),
-        name=name,
-        editable_paths=[],
-        phases=[phase],
-    )
+    game_app = game_store.App(name=name, editable_paths=[], phases=[phase],)
     app.game.apps.append(game_app)
     app.save_game()

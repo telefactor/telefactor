@@ -1,18 +1,22 @@
 import re
-import time
 
 
-def name_to_id(name, pre="g"):
-    cleaned = (
+def make_repo_name(
+    app_name: str,
+    phase_index: int,
+) -> str:
+    parts = [app_name, str(phase_index)]
+    return ".".join(map(clean, parts))
+
+
+def clean(name):
+    return (
         Subber(name.lower())
         .sub(r"^\W+", "")
-        .sub(r"\W+$", '')
-        .sub(r"\W+", " ")
-        .sub(r"\s+", "-")
+        .sub(r"\W+$", "")
+        .sub(r"\W+", "-")
         .string
     )
-    timestamp = time.time()
-    return f"{pre}:{cleaned}:{timestamp:.0f}"
 
 
 def subber(string):

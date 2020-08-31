@@ -1,4 +1,4 @@
-from tfr import data_utils, game_store
+from tfr import game_store
 from tfr.io_utils import echo_info
 
 from .base import cli, click
@@ -15,8 +15,6 @@ from .base import cli, click
 @click.option("--players", help="Comma-separated list of player usernames (GitHub)", prompt=True)
 @click.option("--gm", help="Game master username", prompt=True)
 def init_game(path: str, name: str, players: str, gm: str):
-    id = data_utils.name_to_id(name)
-
     gm_user = game_store.User(username=gm, name=gm)
     # Create user objects from unique player ids.
     player_users = [
@@ -26,7 +24,6 @@ def init_game(path: str, name: str, players: str, gm: str):
 
     game = game_store.Game(
         name=name,
-        id=id,
         gm=gm_user,
         players=player_users,
         apps=[],

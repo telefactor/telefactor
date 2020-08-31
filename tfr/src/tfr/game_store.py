@@ -28,7 +28,6 @@ class Phase:
 
 @dataclass
 class App:
-    id: str
     name: str
     editable_paths: t.List[str]
     phases: t.List[Phase]
@@ -36,8 +35,7 @@ class App:
 
 @dataclass
 class Repository:
-    id: str
-    name: t.Optional[str]
+    name: str
     directory: t.Optional[str]
     ssh_url: t.Optional[str]
     commit: t.Optional[str]
@@ -47,7 +45,6 @@ class Repository:
 @dataclass
 class Game:
     name: str
-    id: str
     gm: User
     players: t.List[User]
     apps: t.List[App]
