@@ -36,7 +36,7 @@ def info(tfr: TFR):
 
 @game.command()
 @click.pass_obj
-def fetch_metadata(tfr: TFR):
+def fetch(tfr: TFR):
     hub = Hub(tfr)
 
     changed_count = hub.fetch()
@@ -52,7 +52,7 @@ def fetch_metadata(tfr: TFR):
 @click.pass_obj
 def push(tfr: TFR):
     hub = Hub(tfr)
-    hub.fetch_metadata()
+    hub.push()
 
 
 @game.command()

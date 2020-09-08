@@ -53,3 +53,16 @@ class Hub:
             changed_count += 1
 
         return changed_count
+
+    def push(self):
+        self.fetch()
+        for local in self.tfr.game.repositories:
+            if local.metadata:
+                echo_info(f"Repo {local.name} up to date")
+                continue
+
+            echo_info(f"Creating remote for {local.name}")
+            remote = self.tfr.user.create_repo(
+                name=local.name, private=True, auto_init=True
+            )
+            self.tfr.add_remote(remote)
