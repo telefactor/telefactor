@@ -16,6 +16,7 @@ tfr = {editable = true,path = "."}
 ipython = "*"
 ipdb = "*"
 pytest = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.8"

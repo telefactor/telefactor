@@ -1,7 +1,7 @@
 import click
-from tfr.app import get_app
 from tfr.constants import PATHS
 from tfr.io_utils import echo
+from tfr.tfr import TFR, get_tfr
 
 
 @click.group()
@@ -13,15 +13,15 @@ from tfr.io_utils import echo
 )
 @click.pass_context
 def cli(ctx, secrets_path):
-    app = get_app()
-    app.login(secrets_path)
-    ctx.obj = app
+    tfr = get_tfr()
+    tfr.login(secrets_path)
+    ctx.obj = tfr
 
 
 @cli.command()
 @click.pass_obj
-def login(app):
-    echo(f"Logged in with user: {app.user.login}")
+def login(tfr: TFR):
+    echo(f"Logged in with user: {tfr.user.login}")
 
 
 @cli.command()

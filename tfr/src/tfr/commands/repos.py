@@ -1,5 +1,6 @@
 import click
 from tfr.io_utils import echo
+from tfr.tfr import TFR
 
 from .base import cli
 
@@ -13,9 +14,9 @@ def repos():
 @click.argument("pattern")
 @click.option("--details/--no-details", default=False)
 @click.pass_obj
-def ls(app, pattern, details):
+def ls(tfr: TFR, pattern, details):
     """List repositories matching PATTERN regular expression."""
-    for repo in app.ls(pattern):
+    for repo in tfr.ls(pattern):
         echo(repo.name)
         if details:
             echo(repo.html_url)
@@ -25,13 +26,13 @@ def ls(app, pattern, details):
 @repos.command()
 @click.argument("name")
 @click.pass_obj
-def new(app, name):
+def new(tfr: TFR, name):
     """Create a private repository with the given NAME."""
     if not click.confirm(f"Create a new repository named {repr(name)}?"):
         echo("Okay nevermind")
         return
 
-    created_repo = app.new_repo(name)
+    created_repo = tfr.new_repo(name)
     echo(
         f"""
         Created!

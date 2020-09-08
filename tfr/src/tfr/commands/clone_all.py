@@ -1,8 +1,8 @@
 from pathlib import Path
 
 import git
-from tfr.app import App
 from tfr.io_utils import echo_info
+from tfr.tfr import TFR
 
 from .base import click
 from .game import game
@@ -10,33 +10,33 @@ from .game import game
 
 @game.command()
 @click.pass_obj
-def clone_all(app):
-    Cloner(app).clone_all()
+def clone_all(tfr: TFR):
+    Cloner(tfr).clone_all()
 
 
 class Cloner:
-    app: App = None
+    tfr: TFR = None
     root_dir: Path = None
     repos_dir: Path = None
     name_to_local: dict = None
 
-    def __init__(self, app):
-        self.app = app
-        self.root_dir = Path(app.game_path).parent
+    def __init__(self, tfr: TFR):
+        self.tfr = tfr
+        self.root_dir = Path(tfr.game_path).parent
 
     def clone_all(self):
-        self.name_to_local = self.app.get_name_to_local()
+        self.name_to_local = self.tfr.get_name_to_local()
         self.repos_dir = self.root_dir / "repos"
         self.repos_dir.mkdir(exist_ok=True)
 
-        for game_app in self.app.game.apps:
+        for game_app in self.tfr.game.tfrs:
             game_app_dir = self.repos_dir / game_app.name
             game_app_dir.mkdir(exist_ok=True)
 
             for phase in game_app.phases:
                 self.handle_phase(phase, game_app_dir)
 
-        self.app.save_game()
+        self.tfr.save_game()
 
     def handle_phase(self, phase, game_app_dir):
         local = self.name_to_local[phase.repository]

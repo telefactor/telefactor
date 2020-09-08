@@ -1,24 +1,24 @@
 import re
+import typing as t
 from functools import lru_cache
-from typing import List
 
 from github.Repository import Repository
 
 from . import game_store, hub, secret_store
 
 
-class App:
+class TFR:
     secrets = None
     github = None
     user = None
     repos = None
     name_to_remote: dict = None
     name_to_local: dict = None
-    game = None
+    game: game_store.Game = None
     game_path: str = None
 
     def __repr__(self):
-        return f"App(game_path='{self.game_path}')"
+        return f"TFR(game_path='{self.game_path}')"
 
     def login(self, secrets_path: str):
         self.secrets = secret_store.load(secrets_path)
@@ -28,7 +28,7 @@ class App:
         self.github = hub.login(self.secrets.github)
         self.user = self.github.get_user()
 
-    def ls(self, pattern) -> List[Repository]:
+    def ls(self, pattern) -> t.List[Repository]:
         regex = re.compile(pattern)
 
         def matcher(repo):
@@ -78,5 +78,5 @@ class App:
 
 
 @lru_cache()
-def get_app() -> App:
-    return App()
+def get_tfr() -> TFR:
+    return TFR()
