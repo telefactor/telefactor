@@ -1,5 +1,6 @@
 import click
 from tfr.constants import PATHS
+from tfr.hub import Hub
 from tfr.io_utils import echo
 from tfr.tfr import TFR, get_tfr
 
@@ -14,7 +15,7 @@ from tfr.tfr import TFR, get_tfr
 @click.pass_context
 def cli(ctx, secrets_path):
     tfr = get_tfr()
-    tfr.login(secrets_path)
+    Hub(tfr).login(secrets_path)
     ctx.obj = tfr
 
 

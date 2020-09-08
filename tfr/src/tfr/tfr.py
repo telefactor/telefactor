@@ -2,33 +2,26 @@ import re
 import typing as t
 from functools import lru_cache
 
-from github.Repository import Repository
+from github.NamedUser import NamedUser as GhNamedUser
+from github.Repository import Repository as GhRepository
 
-from . import game_store, hub, secret_store
+from . import game_store
 
 
 class TFR:
     secrets = None
     github = None
-    user = None
-    repos = None
-    name_to_remote: dict = None
-    name_to_local: dict = None
-    game: game_store.Game = None
-    game_path: str = None
+    user: GhNamedUser = None
+    repos: t.List[GhRepository] = None
+    name_to_remote: dict
+    name_to_local: dict
+    game: game_store.Game
+    game_path: str
 
     def __repr__(self):
         return f"TFR(game_path='{self.game_path}')"
 
-    def login(self, secrets_path: str):
-        self.secrets = secret_store.load(secrets_path)
-        if self.secrets.github.access_token in (None, ""):
-            raise Exception("No access token!")
-
-        self.github = hub.login(self.secrets.github)
-        self.user = self.github.get_user()
-
-    def ls(self, pattern) -> t.List[Repository]:
+    def ls(self, pattern) -> t.List[GhRepository]:
         regex = re.compile(pattern)
 
         def matcher(repo):
@@ -53,7 +46,7 @@ class TFR:
 
         return self.name_to_local
 
-    def new_remote(self, name) -> Repository:
+    def new_remote(self, name) -> GhRepository:
         created_repo = self.user.create_repo(name=name, private=True, auto_init=True,)
         self.remotes = None
         return created_repo

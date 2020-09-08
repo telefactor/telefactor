@@ -1,4 +1,5 @@
 import click
+from tfr.hub import Hub
 from tfr.io_utils import definition_list, echo, echo_info
 from tfr.tfr import TFR
 
@@ -35,53 +36,23 @@ def info(tfr: TFR):
 
 @game.command()
 @click.pass_obj
-def fetch_metadata(tfr_app: TFR):
-    echo_info("Loading all remotes...")
-    tfr_app.get_remotes()
-    echo_info("Game time.")
+def fetch_metadata(tfr: TFR):
+    hub = Hub(tfr)
 
-    changed_count = 0
-    for local in tfr_app.game.repositories:
-        remotes = tfr_app.ls(local.name)
-        if not remotes:
-            echo_info(f"No remote for {local.name}")
-            continue
-
-        remote = remotes[0]
-        echo_info(f"Found {remote.name} for {local.name}")
-
-        incoming_metadata = {
-            "id": remote.id,
-            "name": remote.name,
-            "full_name": remote.full_name,
-            "html_url": remote.clone_url,
-            "clone_url": remote.clone_url,
-            "ssh_url": remote.ssh_url,
-            "isPrivate": remote.private,
-        }
-        if local.metadata == incoming_metadata:
-            echo_info("No difference.")
-            continue
-
-        if local.metadata:
-            echo_info("Original metadata:", local.metadata)
-            echo_info("Incoming metadata:", incoming_metadata)
-
-        local.metadata = incoming_metadata
-        changed_count += 1
-
+    changed_count = hub.fetch()
     if changed_count < 1:
         echo_info("Nothing changed.")
         return
 
-    echo_info("Writing changes to game file:", tfr_app.game_path)
-    tfr_app.save_game()
+    echo_info("Writing changes to game file:", tfr.game_path)
+    tfr.save_game()
 
 
 @game.command()
 @click.pass_obj
 def push(tfr: TFR):
-    name_to_remote = tfr.get_name_to_repo()
+    hub = Hub(tfr)
+    hub.fetch_metadata()
 
 
 @game.command()
