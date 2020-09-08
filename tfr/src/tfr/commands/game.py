@@ -80,7 +80,7 @@ def fetch_metadata(app):
 @game.command()
 @click.pass_obj
 def push(app):
-    pass
+    name_to_remote = app.get_name_to_repo()
 
 
 @game.command()
