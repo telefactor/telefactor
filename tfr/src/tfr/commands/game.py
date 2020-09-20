@@ -36,9 +36,7 @@ def info(tfr: TFR):
 @game.command()
 @click.pass_obj
 def fetch(tfr: TFR):
-    hub = Hub(tfr)
-
-    changed_count = hub.fetch()
+    changed_count = tfr.hub.fetch(tfr.game)
     if changed_count < 1:
         echo_info("Nothing changed.")
         return
@@ -50,8 +48,7 @@ def fetch(tfr: TFR):
 @game.command()
 @click.pass_obj
 def push(tfr: TFR):
-    hub = Hub(tfr)
-    hub.push()
+    tfr.hub.push(tfr.game)
 
 
 @game.command()
