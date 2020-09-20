@@ -1,44 +1,22 @@
-import re
-import typing as t
+# import typing as t
 from functools import lru_cache
 
-from github.NamedUser import NamedUser as GhNamedUser
-from github.Repository import Repository as GhRepository
-
 from . import game_store
+from .hub import Hub
 
 
 class TFR:
-    secrets = None
-    github = None
-    user: GhNamedUser = None
-    remotes: t.List[GhRepository] = None
-    name_to_remote: dict
+    hub: Hub
     name_to_local: dict
     game: game_store.Game
     game_path: str
 
     def __init__(self):
         self.remotes = []
-        self.name_to_remote = {}
         self.name_to_local = {}
 
     def __repr__(self):
         return f"TFR(game_path='{self.game_path}')"
-
-    def ls(self, pattern) -> t.List[GhRepository]:
-        regex = re.compile(pattern)
-
-        def matcher(repo):
-            return regex.match(repo.name) is not None
-
-        return sorted(filter(matcher, self.remotes), key=(lambda r: r.name))
-
-    def add_remotes(self, *remotes: t.List[GhRepository]):
-        self.remotes += remotes
-
-    def get_name_to_remote(self):
-        return {remote.name: remote for remote in self.remotes}
 
     def get_name_to_local(self):
         return {local.name: local for local in self.game.repositories}

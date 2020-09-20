@@ -24,9 +24,8 @@ def info(tfr: TFR):
         definition_list(
             (
                 ("Name", tfr.game.name),
-                ("Id", tfr.game.id),
                 ("GM", tfr.game.gm.name),
-                ("Apps", ",".join(tfr.name for app in tfr.game.apps)),
+                ("Apps", ",".join(app.name for app in tfr.game.apps)),
                 ("Num Players", len(tfr.game.players)),
                 ("Num Repos", len(tfr.game.repositories)),
             )

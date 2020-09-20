@@ -15,14 +15,16 @@ from tfr.tfr import TFR, get_tfr
 @click.pass_context
 def cli(ctx, secrets_path):
     tfr = get_tfr()
-    Hub(tfr).login(secrets_path)
     ctx.obj = tfr
+
+    tfr.hub = Hub()
+    tfr.hub.login(secrets_path)
 
 
 @cli.command()
 @click.pass_obj
 def login(tfr: TFR):
-    echo(f"Logged in with user: {tfr.user.login}")
+    echo(f"Logged in with user: {tfr.hub.user.login}")
 
 
 @cli.command()

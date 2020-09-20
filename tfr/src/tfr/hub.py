@@ -1,35 +1,63 @@
-from github import Github
+import re
+import typing as t
 
-from . import secret_store
+from github import Github
+from github.NamedUser import NamedUser as GhNamedUser
+from github.Repository import Repository as GhRepository
+
+from . import game_store, secret_store
 from .io_utils import echo_info
-from .tfr import TFR
 
 
 class Hub:
-    def __init__(self, tfr: TFR):
-        self.tfr = tfr
+    user: GhNamedUser = None
+    remotes: t.List[GhRepository] = None
+    name_to_remote: t.Dict[str, GhRepository]
+
+    def __init__(self):
+        self.remotes = []
+        self.name_to_remote = {}
 
     def login(self, secrets_path: str):
-        self.tfr.secrets = secret_store.load(secrets_path)
-        if self.tfr.secrets.github.access_token in (None, ""):
+        secrets = secret_store.load(secrets_path)
+        if secrets.github.access_token in (None, ""):
             raise Exception("No access token!")
 
-        self.tfr.github = Github(self.tfr.secrets.github.access_token)
-        self.tfr.user = self.tfr.github.get_user()
+        # github = Github(secrets.github.access_token)
+        github = Github(secrets.github.access_token)
+        self.user = github.get_user()
+        return self
 
-    def fetch(self) -> int:
-        echo_info("Fetching remotes from GitHub...")
-        self.tfr.get_remotes()
+    def fetch_remotes(self):
+        """Freshly populates remotes."""
+        self.remotes = []
+        self.add_remotes(*self.user.get_repos())
 
-        echo_info("Diffing metadata.")
+    def add_remotes(self, *remotes: t.List[GhRepository]):
+        self.remotes += remotes
+        self.name_to_remote = {remote.name for remote in self.remotes}
+
+    def ls(self, pattern) -> t.List[GhRepository]:
+        regex = re.compile(pattern)
+
+        def matcher(repo):
+            return regex.match(repo.name) is not None
+
+        return sorted(filter(matcher, self.remotes), key=(lambda r: r.name))
+
+    def fetch(self, game: game_store.Game) -> int:
+        """Populates a game with remote metadata."""
+        echo_info("Fetching remotes from GitHub")
+        self.fetch_remotes()
+
+        echo_info("Diffing metadata")
         changed_count = 0
-        for local in self.tfr.game.repositories:
-            remotes = self.tfr.ls(local.name)
-            if not remotes:
+        for local in game.repositories:
+            remote = self.name_to_remote.get(local.name, None)
+            if not remote:
                 echo_info(f"No remote for {local.name}")
                 continue
 
-            remote = remotes[0]
             echo_info(f"Found {remote.name} for {local.name}")
 
             incoming_metadata = {
@@ -54,15 +82,17 @@ class Hub:
 
         return changed_count
 
-    def push(self):
+    def push(self, game: game_store.Game):
+        echo_info("Fetching before push")
+
         self.fetch()
-        for local in self.tfr.game.repositories:
+        for local in game.repositories:
             if local.metadata:
                 echo_info(f"Repo {local.name} up to date")
                 continue
 
             echo_info(f"Creating remote for {local.name}")
-            remote = self.tfr.user.create_repo(
+            remote = self.user.create_repo(
                 name=local.name, private=True, auto_init=True
             )
-            self.tfr.add_remote(remote)
+            self.add_remote(remote)
