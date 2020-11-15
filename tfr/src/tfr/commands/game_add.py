@@ -3,7 +3,7 @@ from pathlib import Path
 
 import click
 from tfr import data_utils, game_store
-from tfr.io_utils import definition_list, echo, echo_info
+from tfr.io_utils import echo_info
 from tfr.tfr import TFR
 
 from .game import game
@@ -33,10 +33,13 @@ def app(tfr: TFR, name: str, path: t.Optional[str]):
     repo_name = data_utils.make_repo_name(app_name=name, phase_index=phase_index)
 
     game_dir = Path(tfr.game_path).resolve().parent
-    repo_dir = game_dir / repo_name
+    repo_abs_dir = game_dir / repo_name
     if path is not None:
-        repo_path = Path(path).expanduser().resolve()
-        repo_dir = repo_path.relative_to(game_dir)
+        repo_abs_dir = Path(path).expanduser().resolve()
+
+    repo_dir = repo_abs_dir.relative_to(game_dir)
+
+    # Create directory if it does not exist
     repo_dir.mkdir(exist_ok=True)
 
     repo = game_store.Repository(
