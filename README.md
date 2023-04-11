@@ -43,6 +43,7 @@ until after the game is finished.
 
 0. [Fam](/games/00-fam/README.md) - The first completed game. A good starting point for templating
 how a came should run.
+1. [Connery](https://github.com/telefactor/telefactor/tree/hamster/games/01-connery#readme) - A playthrough of the game with two apps developed in parallel, so that every player got to write some features as well as some tests.
 
 ## Inspiration links
 
