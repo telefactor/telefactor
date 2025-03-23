@@ -1,5 +1,5 @@
 import typing as t
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from enum import Enum
 
 import dacite
@@ -30,8 +30,8 @@ class Phase:
 class App:
     id: str
     name: str
-    editable_paths: t.List[str]
-    phases: t.List[Phase]
+    editable_paths: t.List[str] = field(default_factory=list)
+    phases: t.List[Phase] = field(default_factory=list)
 
 
 @dataclass
@@ -49,9 +49,9 @@ class Game:
     name: str
     id: str
     gm: User
-    players: t.List[User]
-    apps: t.List[App]
-    repositories: t.List[Repository]
+    players: t.List[User] = field(default_factory=list)
+    apps: t.List[App] = field(default_factory=list)
+    repositories: t.List[Repository] = field(default_factory=list)
 
 
 def load(path: str) -> Game:
