@@ -10,6 +10,8 @@ pygithub = "*"
 dacite = "*"
 tfr = {editable = true,path = "."}
 gitpython = "*"
+ipython = "*"
+ipdb = "*"
 
 [dev-packages]
 tfr = {editable = true,path = "."}
@@ -18,4 +20,4 @@ ipdb = "*"
 pytest = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.11"

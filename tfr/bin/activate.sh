@@ -11,7 +11,7 @@ cli() {
 	pe run python -m tfr.cli "$@"
 }
 
-test() {
+tests() {
 	pe run pytest "$@"
 }
 

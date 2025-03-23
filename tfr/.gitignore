@@ -3,6 +3,7 @@
 *secrets*.y?ml
 tmp
 
+*.sublime-workspace
 
 ##
 # Github defualt python gitignore

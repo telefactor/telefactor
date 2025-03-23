@@ -8,6 +8,6 @@ class DescribeNameToId:
         result = data_utils.name_to_id("@Horse.*Cow+ ")
         assert re.fullmatch(r".+:.+:.+", result)
         prefix, name, ts = result.split(":")
-        assert prefix == "G"
+        assert prefix == "g"
         assert name == "horse-cow"
         assert re.fullmatch(r"\d+", ts)

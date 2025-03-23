@@ -12,15 +12,20 @@ class DescribeNormer:
 
         killbot = {"name": "Killbot", "id": "id-killbot"}
 
-        return game_store.normer(
-            data={
-                "name": "dat-game-doh",
-                "id": "eye dee",
-                "gm": gm,
-                "players": [gm, pj, dj],
-                "apps": [killbot],
-            }
-        )
+        try:
+            return game_store.normer(
+                data={
+                    "name": "dat-game-doh",
+                    "id": "eye dee",
+                    "gm": gm,
+                    "players": [gm, pj, dj],
+                    "apps": [killbot],
+                }
+            )
+        except Exception as e:
+            print(dict(e=e, message=str(e)))
+            breakpoint()
+            raise e
 
     def it_constructs_game(self, game):
         assert isinstance(game, game_store.Game)
