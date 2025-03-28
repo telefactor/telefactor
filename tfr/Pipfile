@@ -18,5 +18,6 @@ ipdb = "*"
 pytest = "*"
 mypy = "*"
 
-[requires]
-python_version = "3.8"
+# [requires]
+# No support for minimum specifier?
+# python_version = "3.8"
