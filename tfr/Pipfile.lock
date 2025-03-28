@@ -1,10 +1,12 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d9ed930d1fe56787500718bd04c0329a31859f733963e6f4da89d2cd96107f0e"
+            "sha256": "2cccb67d0254abb7f2e66d7524aeb554c24ab69f392d4e1f7207d927b13edf1d"
         },
         "pipfile-spec": 6,
-        "requires": {},
+        "requires": {
+            "python_version": "3.13"
+        },
         "sources": [
             {
                 "name": "pypi",
@@ -240,6 +242,7 @@
                 "sha256:efcfe97d1b3c79e486554efddeb8f6f53a4cdd4cf6086642784fa31fc384e1d7",
                 "sha256:f514ef4cd14bb6fb484b4a60203e912cfcb64f2ab139e88c2274511514bf7308"
             ],
+            "markers": "python_version >= '3.7' and python_full_version not in '3.9.0, 3.9.1'",
             "version": "==44.0.2"
         },
         "dacite": {
@@ -403,10 +406,6 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==5.0.2"
-        },
-        "tfr": {
-            "editable": true,
-            "path": "."
         },
         "typing-extensions": {
             "hashes": [
@@ -745,6 +744,7 @@
                 "sha256:efcfe97d1b3c79e486554efddeb8f6f53a4cdd4cf6086642784fa31fc384e1d7",
                 "sha256:f514ef4cd14bb6fb484b4a60203e912cfcb64f2ab139e88c2274511514bf7308"
             ],
+            "markers": "python_version >= '3.7' and python_full_version not in '3.9.0, 3.9.1'",
             "version": "==44.0.2"
         },
         "dacite": {

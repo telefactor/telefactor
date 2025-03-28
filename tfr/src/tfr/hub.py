@@ -9,6 +9,11 @@ from . import game_store, secret_store
 from .io_utils import echo_info
 
 
+def nn[T](obj: T | None) -> T:
+    assert obj is not None
+    return obj
+
+
 class Hub:
     user: GhNamedUser = None
     remotes: t.List[GhRepository] = None

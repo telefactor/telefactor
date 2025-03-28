@@ -1,5 +1,6 @@
 export PYTHONBREAKPOINT=ipdb.set_trace
 
+export PIPENV_IGNORE_VIRTUALENVS=1
 alias pe='pipenv'
 alias ped='PIPENV_DEV=1 pe'
 

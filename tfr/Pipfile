@@ -8,7 +8,7 @@ pyyaml = "*"
 click = "*"
 pygithub = "*"
 dacite = "*"
-tfr = {editable = true,path = "."}
+# tfr = {editable = true,path = "."}
 gitpython = "*"
 
 [dev-packages]
@@ -18,6 +18,6 @@ ipdb = "*"
 pytest = "*"
 mypy = "*"
 
-# [requires]
+[requires]
 # No support for minimum specifier?
-# python_version = "3.8"
+python_version = "3.13"
