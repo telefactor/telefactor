@@ -1,8 +1,11 @@
-
 # No secrets for you, mister hacker.
 *secrets*.y?ml
 tmp
 
+##
+# Editors
+.vscode/settings.json
+*.sublime-*
 
 ##
 # Github defualt python gitignore
