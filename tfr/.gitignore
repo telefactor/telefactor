@@ -2,6 +2,9 @@
 *secrets*.y?ml
 tmp
 
+# Test output
+tests/**/test_output/*
+
 ##
 # Editors
 .vscode/settings.json
