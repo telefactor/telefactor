@@ -1,6 +1,6 @@
 import click
 from tfr.io_utils import echo
-from tfr.tfr import TFR
+from tfr.app import TfrApp
 
 from .base import cli
 
@@ -14,7 +14,7 @@ def repos():
 @click.argument("pattern")
 @click.option("--details/--no-details", default=False)
 @click.pass_obj
-def ls(tfr: TFR, pattern, details):
+def ls(tfr: TfrApp, pattern, details):
     """List repositories matching PATTERN regular expression."""
     tfr.hub.fetch_remotes()
     for repo in tfr.hub.ls(pattern):
@@ -27,8 +27,8 @@ def ls(tfr: TFR, pattern, details):
 @repos.command()
 @click.argument("name")
 @click.pass_obj
-def new(tfr: TFR, name):
-    raise Exception('Deprecated')
+def new(tfr: TfrApp, name):
+    raise Exception("Deprecated")
     """Create a private repository with the given NAME."""
     if not click.confirm(f"Create a new repository named {repr(name)}?"):
         echo("Okay nevermind")

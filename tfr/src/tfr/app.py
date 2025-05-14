@@ -4,7 +4,7 @@ from functools import lru_cache
 from tfr import game_store
 
 
-class TFR:
+class TfrApp:
     game: game_store.Game
     game_path: str
 
@@ -25,13 +25,22 @@ class TFR:
     ##
     # Traversal
 
-    def get_phase_repo(self, phase: game_store.Phase) -> t.Optional[game_store.Repository]:
+    def get_phase_repo(
+        self, phase: game_store.Phase
+    ) -> t.Optional[game_store.Repository]:
         return self.get_name_to_repo().get(phase.repository)
 
     def get_name_to_repo(self):
         return {repo.name: repo for repo in self.game.repositories}
 
+    def summarize(self):
+        return {
+            "name": self.game.name,
+            "gm": self.game.gm.username,
+            "players": sorted([player.username for player in self.game.players]),
+        }
+
 
 @lru_cache()
-def get_tfr() -> TFR:
-    return TFR()
+def get_app() -> TfrApp:
+    return TfrApp()

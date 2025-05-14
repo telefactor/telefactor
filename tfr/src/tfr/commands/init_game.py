@@ -12,7 +12,9 @@ from .base import cli, click
     prompt=True,
 )
 @click.option("--name", prompt=True)
-@click.option("--players", help="Comma-separated list of player usernames (GitHub)", prompt=True)
+@click.option(
+    "--players", help="Comma-separated list of player usernames (GitHub)", prompt=True
+)
 @click.option("--gm", help="Game master username", prompt=True)
 def init_game(path: str, name: str, players: str, gm: str):
     gm_user = game_store.User(username=gm, name=gm)
@@ -23,11 +25,7 @@ def init_game(path: str, name: str, players: str, gm: str):
     ]
 
     game = game_store.Game(
-        name=name,
-        gm=gm_user,
-        players=player_users,
-        apps=[],
-        repositories=[]
+        name=name, gm=gm_user, players=player_users, apps=[], repositories=[]
     )
     game_store.save(path, game)
     echo_info("New game at", path)

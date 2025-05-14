@@ -4,21 +4,21 @@ from pathlib import Path
 import click
 from tfr import data_utils, game_store, wit
 from tfr.io_utils import echo_error, echo_info
-from tfr.tfr import TFR
+from tfr.app import TfrApp
 
 from .game import game
 
 
 @game.command()
 @click.pass_obj
-def lock(tfr: TFR):
+def lock(tfr: TfrApp):
     for app in tfr.game.apps:
         lock_app(tfr, app)
 
     # tfr.save_game()
 
 
-def lock_app(tfr: TFR, app: game_store.App):
+def lock_app(tfr: TfrApp, app: game_store.App):
     echo_info(app.name)
     if len(app.phases) == 0:
         echo_error("App has no phases")

@@ -2,7 +2,7 @@ from pathlib import Path
 
 import git
 from tfr.io_utils import echo_info
-from tfr.tfr import TFR
+from tfr.app import TfrApp
 
 from .base import click
 from .game import game
@@ -10,17 +10,17 @@ from .game import game
 
 @game.command()
 @click.pass_obj
-def clone_all(tfr: TFR):
+def clone_all(tfr: TfrApp):
     Cloner(tfr).clone_all()
 
 
 class Cloner:
-    tfr: TFR = None
+    tfr: TfrApp = None
     root_dir: Path = None
     repos_dir: Path = None
     name_to_local: dict = None
 
-    def __init__(self, tfr: TFR):
+    def __init__(self, tfr: TfrApp):
         self.tfr = tfr
         self.root_dir = Path(tfr.game_path).parent
 

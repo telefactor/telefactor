@@ -6,7 +6,8 @@ from click.testing import CliRunner
 import git
 import pytest
 
-from tfr import commands
+import tfr.commands
+import tfr.app
 
 
 @pytest.fixture
@@ -45,40 +46,47 @@ def ensure_output_repo_dir(request, test_output_dir):
 @pytest.fixture
 def ensure_git_repo(ensure_output_repo_dir):
     repo = git.Repo.init(ensure_output_repo_dir)
-    repo.index.add(".")
+    repo.index.add(repo.untracked_files)
     repo.index.commit("init")
     return repo
 
 
 @pytest.fixture
-def repo_cwd(ensure_output_repo_dir):
+def game_root_cwd(test_output_dir):
     prev_cwd = os.getcwd()
 
     try:
-        os.chdir(ensure_output_repo_dir)
-        yield ensure_output_repo_dir
+        os.chdir(test_output_dir)
+        yield test_output_dir
     finally:
         os.chdir(prev_cwd)
 
 
 class DescribeExampleInit:
-    def it_works(self, repo_cwd, ensure_git_repo):
+    def test_template_repo_fixtures(self, game_root_cwd, ensure_git_repo: git.Repo):
         git_repo = ensure_git_repo
         # breakpoint()
-        print("Hello!!", {"repo_cwd": repo_cwd, "cwd": os.getcwd()})
-        print(git_repo.index.diff(None))
-        print(git_repo.untracked_files)
-        pass
+        print("Hello!!", {"game_root_cwd": game_root_cwd, "cwd": os.getcwd()})
+        assert len(git_repo.untracked_files) == 0
 
-    # @pytest.fixture
-    # def game(self):
+    def test_bootstrap(self, game_root_cwd, ensure_git_repo: git.Repo):
+        git_repo = ensure_git_repo
+        runner = CliRunner()
+        result = runner.invoke(
+            tfr.commands.init_game,
+            [
+                "--name=telefactor-test-cli",
+                "--gm=test-ss",
+                "--players=test-tt,test-uu,test-vv",
+            ],
+        )
+        print("stdout:", result.output)
 
-    # with runner.isolated_filesystem():
+        app = tfr.app.TfrApp()
+        app.load_game("./tfr.yaml")
 
-    # def it_bootstraps(self):
-    # def it_bootstraps(self):
-    #     runner = CliRunner()
-    #     result = runner.invoke(commands.init_game, [])
-    #     print(result.output)
-    #     assert result.exit_code == 0
-    #     assert result.output == "Hello World!\n"
+        assert app.summarize() == {
+            "name": "telefactor-test-cli",
+            "gm": "test-ss",
+            "players": ["test-tt", "test-uu", "test-vv"],
+        }

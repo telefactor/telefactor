@@ -19,7 +19,7 @@ def save(path: Union[str, Path], data: dict) -> Path:
     real_path = Path(path)
 
     # default_flow_style
-    with real_path.open('w') as yaml_file:
+    with real_path.open("w") as yaml_file:
         yaml.dump(data, yaml_file)
 
     return real_path

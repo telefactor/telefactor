@@ -4,7 +4,7 @@ from pathlib import Path
 import click
 from tfr import data_utils, game_store
 from tfr.io_utils import echo_info
-from tfr.tfr import TFR
+from tfr.app import TfrApp
 
 from .game import game
 
@@ -23,7 +23,7 @@ def add(tfr):
     type=click.Path(file_okay=False, dir_okay=True, readable=True),
 )
 @click.pass_obj
-def app(tfr: TFR, name: str, path: t.Optional[str]):
+def app(tfr: TfrApp, name: str, path: t.Optional[str]):
     echo_info("App", tfr)
     existing_apps = [existing for existing in tfr.game.apps if existing.name == name]
     if len(existing_apps):
@@ -58,6 +58,10 @@ def app(tfr: TFR, name: str, path: t.Optional[str]):
         role=game_store.Role.SOURCERER,
     )
 
-    game_app = game_store.App(name=name, editable_paths=[], phases=[phase],)
+    game_app = game_store.App(
+        name=name,
+        editable_paths=[],
+        phases=[phase],
+    )
     tfr.game.apps.append(game_app)
     tfr.save_game()

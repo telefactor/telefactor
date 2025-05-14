@@ -1,9 +1,9 @@
 import git
 from tfr import game_store
-from tfr.tfr import TFR
+from tfr.app import TfrApp
 
 
-def list_lockables(tfr: TFR, app: game_store.App):
+def list_lockables(tfr: TfrApp, app: game_store.App):
     phase = app.phases[0]
     repo = tfr.get_phase_repo(phase)
     if repo is None:

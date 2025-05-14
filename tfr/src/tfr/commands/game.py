@@ -1,7 +1,7 @@
 import click
 from tfr.hub import Hub
 from tfr.io_utils import definition_list, echo, echo_info
-from tfr.tfr import TFR
+from tfr.app import TfrApp
 
 from .base import cli
 
@@ -13,13 +13,13 @@ from .base import cli
     type=click.Path(exists=True, dir_okay=False, readable=True),
 )
 @click.pass_obj
-def game(tfr: TFR, path):
+def game(tfr: TfrApp, path):
     tfr.load_game(path)
 
 
 @game.command()
 @click.pass_obj
-def info(tfr: TFR):
+def info(tfr: TfrApp):
     echo(
         definition_list(
             (
@@ -35,7 +35,7 @@ def info(tfr: TFR):
 
 @game.command()
 @click.pass_obj
-def fetch(tfr: TFR):
+def fetch(tfr: TfrApp):
     changed_count = tfr.hub.fetch(tfr.game)
     if changed_count < 1:
         echo_info("Nothing changed.")
@@ -47,13 +47,13 @@ def fetch(tfr: TFR):
 
 @game.command()
 @click.pass_obj
-def push(tfr: TFR):
+def push(tfr: TfrApp):
     tfr.hub.push(tfr.game)
 
 
 @game.command()
 @click.pass_obj
-def publicize(tfr: TFR):
+def publicize(tfr: TfrApp):
     for local, remote in tfr.iter_locals_remotes():
         echo_info(f"Making {remote.name} public.")
         remote.edit(private=False)
@@ -61,7 +61,7 @@ def publicize(tfr: TFR):
 
 @game.command()
 @click.pass_obj
-def links(tfr: TFR):
+def links(tfr: TfrApp):
     echo(f"|name|url|")
     echo(f"|--  |-- |")
     for local in tfr.game.repositories:

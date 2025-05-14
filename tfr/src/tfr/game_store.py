@@ -9,6 +9,7 @@ from . import file_store
 
 @dataclass
 class User:
+    # Unique key
     username: str
     name: t.Optional[str]
 
@@ -20,14 +21,20 @@ class Role(Enum):
 
 @dataclass
 class Phase:
+    # Zero is initial phase when GM is setting up game.
     index: int
+    # Repository to operate within. Repository.name
     repository: t.Optional[str]
+    # Name of branch for phase.
+    branch: t.Optional[str]
+    # User.username
     player: t.Optional[str]
     role: t.Optional[Role]
 
 
 @dataclass
 class App:
+    # Unique key
     name: str
     editable_paths: t.List[str] = field(default_factory=list)
     phases: t.List[Phase] = field(default_factory=list)
@@ -35,15 +42,19 @@ class App:
 
 @dataclass
 class Repository:
+    # Unique key
     name: str
+    # Where to the repo is checked out, relative to game root.
     directory: t.Optional[str]
     ssh_url: t.Optional[str]
-    commit: t.Optional[str]
+    # Commit used as starting point for phase zero.
+    initial_commit: t.Optional[str]
     metadata: t.Optional[dict]
 
 
 @dataclass
 class Game:
+    # Unique key
     name: str
     gm: User
     players: t.List[User] = field(default_factory=list)
@@ -74,10 +85,10 @@ def as_dict(root):
 
 def clean(d):
     if isinstance(d, dict):
-        for (key, value) in d.items():
+        for key, value in d.items():
             d[key] = clean(value)
     elif isinstance(d, list):
-        for (i, value) in enumerate(d):
+        for i, value in enumerate(d):
             d[i] = clean(value)
     elif isinstance(d, Enum):
         # This is the reason for this in the first place!
