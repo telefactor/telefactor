@@ -8,8 +8,8 @@ pyyaml = "*"
 click = "*"
 pygithub = "*"
 dacite = "*"
-# tfr = {editable = true,path = "."}
 gitpython = "*"
+ipython = "*"
 
 [dev-packages]
 tfr = {editable = true,path = "."}

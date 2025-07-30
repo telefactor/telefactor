@@ -1,31 +1,29 @@
-from tfr import game_store
-from tfr.io_utils import echo_info
+from tfr.app import get_app
 
 from .base import cli, click
 
 
 @cli.command("init")
 @click.option(
-    "--path",
-    default="./tfr.yaml",
-    type=click.Path(exists=False, dir_okay=False, readable=True),
-    prompt=True,
+    "--root",
+    default=".",
+    type=click.Path(exists=True, file_okay=False, readable=True, writable=True),
+    prompt=False,
 )
-@click.option("--name", prompt=True)
+@click.option("--name", prompt=False)
+@click.option("--gm", help="Game Master username", prompt=False)
 @click.option(
-    "--players", help="Comma-separated list of player usernames (GitHub)", prompt=True
+    "--players", help="Comma-separated list of player usernames (GitHub)", prompt=False
 )
-@click.option("--gm", help="Game master username", prompt=True)
-def init_game(path: str, name: str, players: str, gm: str):
-    gm_user = game_store.User(username=gm, name=gm)
-    # Create user objects from unique player ids.
-    player_users = [
-        game_store.User(username=username, name=username)
-        for username in set(n for n in players.split(",") if len(n))
-    ]
+def init_game(root: str, name: str | None, gm: str | None, players: str | None):
+    click.echo("what")
+    player_usernames = players.split(",") if players else []
 
-    game = game_store.Game(
-        name=name, gm=gm_user, players=player_users, apps=[], repositories=[]
+    app = get_app()
+    app.init_game(
+        #
+        root_dir=root,
+        name=(name or ""),
+        gm_username=(gm or ""),
+        player_usernames=player_usernames,
     )
-    game_store.save(path, game)
-    echo_info("New game at", path)

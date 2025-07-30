@@ -1,0 +1,3 @@
+This is the template for the setting up the TEST examples. Not to be confused
+with the way Tfr itself uses a template/model repo made by the GM to generate
+the rounds for players.

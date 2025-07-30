@@ -5,6 +5,7 @@ from enum import Enum
 import dacite
 
 from . import file_store
+from .file_store import Pathish
 
 
 @dataclass
@@ -15,6 +16,7 @@ class User:
 
 
 class Role(Enum):
+    GM = "gm"
     SOURCERER = "sourcerer"
     EXAMINER = "examiner"
 
@@ -59,10 +61,11 @@ class Game:
     gm: User
     players: t.List[User] = field(default_factory=list)
     apps: t.List[App] = field(default_factory=list)
+    # Repository definitions
     repositories: t.List[Repository] = field(default_factory=list)
 
 
-def load(path: str) -> Game:
+def load(path: Pathish) -> Game:
     return normer(file_store.load(path))
 
 
@@ -74,7 +77,7 @@ def normer(data: dict) -> Game:
     )
 
 
-def save(path: str, game: Game) -> None:
+def save(path: Pathish, game: Game) -> None:
     file_store.save(path, as_dict(game))
 
 

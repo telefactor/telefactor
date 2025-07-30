@@ -4,6 +4,8 @@ from pathlib import Path
 
 import yaml
 
+Pathish = Union[str, Path]
+
 
 @lru_cache()
 def load(path: Union[str, Path]) -> dict:
