@@ -18,7 +18,7 @@ def echo_error(*msgs):
 
 def fmt_msgs(msgs):
     """
-    Handles lines and indentation!
+    Handles lines,  indentation, and bold.
 
         cli.echo(
            '''
@@ -45,6 +45,19 @@ def fmt_msgs(msgs):
 
 
 def fmt(msg):
+    after_collection = fmt_collections(msg)
+    splitted = after_collection.split("**")
+    bolded = []
+    for i in range(len(splitted)):
+        if i % 2 == 0:
+            bolded.append(splitted[i])
+        else:
+            bolded.append(click.style(splitted[i], bold=True))
+
+    return "".join(bolded)
+
+
+def fmt_collections(msg) -> str:
     if isinstance(msg, str):
         return msg
     if isinstance(msg, Mapping):

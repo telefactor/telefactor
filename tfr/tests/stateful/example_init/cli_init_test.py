@@ -28,6 +28,36 @@ def test_output_dir(request):
 
 
 @pytest.fixture
+def game_root_cwd(test_output_dir):
+    prev_cwd = os.getcwd()
+
+    try:
+        os.chdir(test_output_dir)
+        yield test_output_dir
+    finally:
+        os.chdir(prev_cwd)
+
+
+class DescribeExampleInitFromBlank:
+    def test_init_game(self, game_root_cwd):
+        runner = CliRunner()
+        result = runner.invoke(
+            tfr.commands.init_game,
+            [
+                "--name=telefactor-test-cli",
+            ],
+        )
+        assert not result.exception
+
+        assert "Initializing game at" in result.output
+        assert str(game_root_cwd) in result.output
+
+
+#####
+#
+
+
+@pytest.fixture
 def init_reference_repo(request, test_output_dir):
     test_path: Path = request.path
     repo_template_path = test_path.parent / "repo_template"
@@ -57,32 +87,6 @@ def ensure_git_repo(init_reference_repo):
     repo.index.add(repo.untracked_files)
     repo.index.commit("init")
     return repo
-
-
-@pytest.fixture
-def game_root_cwd(test_output_dir):
-    prev_cwd = os.getcwd()
-
-    try:
-        os.chdir(test_output_dir)
-        yield test_output_dir
-    finally:
-        os.chdir(prev_cwd)
-
-
-class DescribeExampleInitFromBlank:
-    def test_init_game(self, game_root_cwd):
-        runner = CliRunner()
-        result = runner.invoke(
-            tfr.commands.init_game,
-            [
-                "--name=telefactor-test-cli",
-            ],
-        )
-        assert not result.exception
-
-        assert "Initializing game at" in result.output
-        assert str(game_root_cwd) in result.output
 
 
 @pytest.mark.skip

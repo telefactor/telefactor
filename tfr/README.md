@@ -6,10 +6,10 @@
   - `tfr.yml`
   - `.git`, `.gitignore` - The root directory can be tracked in git.
   - `repos/`
-    - `phase-0/`
-      - GM reference implementation goes here.
-      - `{source}` - Includes source files (structure chosen by GM).
-      - `{tests}` - Includes test files (structure chosen by GM).
+    - `base/`
+      - GM base repo goes here.
+      - `{source}` - Includes reference implementation source files (structure chosen by GM).
+      - `{tests}` - Includes reference implementation test files (structure chosen by GM).
       - `.git` - Tracked as its own git repo.
     - `phase-{1,3,...N}/`
       - `{source N-1}` - Includes source from previous phase.

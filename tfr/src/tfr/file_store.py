@@ -4,11 +4,11 @@ from pathlib import Path
 
 import yaml
 
-Pathish = Union[str, Path]
+from .git_utils import PathLike
 
 
 @lru_cache()
-def load(path: Union[str, Path]) -> dict:
+def load(path: PathLike) -> dict:
     real_path = Path(path)
     if not real_path.exists():
         raise FileNotFoundError(f"File store cannot load file. Expected: {real_path}")
@@ -17,7 +17,7 @@ def load(path: Union[str, Path]) -> dict:
         return yaml.full_load(yaml_file)
 
 
-def save(path: Union[str, Path], data: dict) -> Path:
+def save(path: PathLike, data: dict) -> Path:
     real_path = Path(path)
 
     # default_flow_style

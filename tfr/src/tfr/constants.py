@@ -1,8 +1,20 @@
 from pathlib import Path
 
-TFR_FILENAME = "tfr.yaml"
 DEFAULT_NAME = "telefactor-game"
 DEFAULT_GM_USERNAME = "gm-username"
+
+TFR_FILENAME = "tfr.yaml"
+REPOS_DIRNAME = "repos"
+
+
+def make_phase_name(index: int) -> str:
+    if index < 0:
+        raise ValueError("Negative phase index")
+
+    if index == 0:
+        return "base"
+
+    return "phase-{index:02d}"
 
 
 class PATHS:
