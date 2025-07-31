@@ -12,11 +12,21 @@ from tfr.io_utils import echo, echo_error, echo_info
 
 
 class TfrApp:
-    game: game_store.Game
-    game_path: str
+    _game: game_store.Game | None = None
+    _game_path: Path | None = None
 
     def __repr__(self):
-        return f"TFR(game_path='{self.game_path}')"
+        return f"TFR(game_path='{self._game_path}')"
+
+    ##
+    # Accessors
+
+    @property
+    def game(self):
+        if not self._game:
+            raise ValueError()
+
+        return self._game
 
     ##
     # Storage Helpers
@@ -32,10 +42,10 @@ class TfrApp:
         root_path = Path(root_dir).absolute()
         echo_info("Initializing game at", root_path)
 
-        maybe_game_path = root_path / TFR_FILENAME
-        if maybe_game_path.exists():
+        self._game_path = root_path / TFR_FILENAME
+        if self._game_path.exists():
             echo_info(f"{TFR_FILENAME} exists. Loading existing game.")
-            self.load_game(maybe_game_path)
+            self.load_game(self._game_path)
         else:
             self._init_from_blank(
                 root_path=root_path,
@@ -43,6 +53,8 @@ class TfrApp:
                 gm_username=gm_username,
                 player_usernames=player_usernames,
             )
+
+        self.save_game()
 
     def _init_from_blank(
         self,
@@ -61,7 +73,16 @@ class TfrApp:
                 self._echo_error_base(analysis.expected_phase_base_dir)
                 exit(1)
 
-        self.game = game_store.Game(
+        echo_info(
+            "debug",
+            dict(
+                name=name,
+                gm_username=gm_username,
+                player_usernames=player_usernames,
+            ),
+        )
+
+        self._game = game_store.Game(
             name=(name or constants.DEFAULT_NAME),
             gm=game_store.User(
                 username=(gm_username or constants.DEFAULT_GM_USERNAME),
@@ -137,12 +158,15 @@ class TfrApp:
         )
 
     def load_game(self, path: PathLike):
-        self.game_path = str(path)
-        self.game = game_store.load(path)
+        self._game_path = Path(path)
+        self._game = game_store.load(self._game_path)
         return self.game
 
     def save_game(self):
-        game_store.save(self.game_path, self.game)
+        if not self._game_path:
+            raise ValueError("No game path")
+
+        game_store.save(self._game_path, self.game)
 
     def summarize(self):
         return {

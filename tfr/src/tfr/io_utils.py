@@ -68,7 +68,7 @@ def fmt_collections(msg) -> str:
     return str(msg)
 
 
-def definition_list(rows: "[(str, str)]") -> str:
+def definition_list(rows: list[tuple[str, str]]) -> str:
     return "\n".join(
         f"{title:{'·' if i % 2 == 0 else ' '}<15}{value}"
         for i, (title, value) in enumerate(rows)

@@ -16,7 +16,6 @@ from .base import cli, click
     "--players", help="Comma-separated list of player usernames (GitHub)", prompt=False
 )
 def init_game(root: str, name: str | None, gm: str | None, players: str | None):
-    click.echo("what")
     player_usernames = players.split(",") if players else []
 
     app = get_app()

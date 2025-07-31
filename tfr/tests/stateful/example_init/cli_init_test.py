@@ -10,10 +10,17 @@ import tfr.commands
 import tfr.app
 
 
+def output_dir_name(request: pytest.FixtureRequest):
+    return "_".join([request.node.parent.name, request.node.name])
+
+
 @pytest.fixture
-def test_output_dir(request):
+def test_output_dir(request: pytest.FixtureRequest):
     test_path: Path = request.path
-    test_output_path = test_path.parent / "test_output"
+    # print("\n>>>>> ", request.node.name)
+    # test_output_path = test_path.parent / "test_output"
+    test_output_path = test_path.parent / "test_output" / output_dir_name(request)
+    # print("\n>>>>> test_output_path", test_output_path)
 
     if test_output_path.exists():
         print(f"Cleaning up existing output directory: {test_output_path}")
@@ -52,6 +59,11 @@ class DescribeExampleInitFromBlank:
         assert "Initializing game at" in result.output
         assert str(game_root_cwd) in result.output
 
+        app = tfr.app.TfrApp()
+        app.load_game("./tfr.yaml")
+
+        assert app.game.name == "telefactor-test-cli"
+
 
 #####
 #
@@ -64,23 +76,23 @@ def init_reference_repo(request, test_output_dir):
     if not repo_template_path.exists():
         raise Exception(f"Test needs template at: {repo_template_path}")
 
-    reference_repo_path = test_output_dir / "repos" / "phase-0"
+    reference_repo_path = test_output_dir / "repos" / "base"
 
-    if reference_repo_path.exists():
-        print(f"Cleaning up existing repo path {reference_repo_path}")
-        shutil.rmtree(reference_repo_path)
+    # if reference_repo_path.exists():
+    #     print(f"Cleaning up existing repo path {reference_repo_path}")
+    #     shutil.rmtree(reference_repo_path)
 
     reference_repo_path.mkdir(parents=True)
 
     shutil.copytree(
         repo_template_path,
         reference_repo_path,
+        dirs_exist_ok=True,
         ignore=shutil.ignore_patterns("IS_TEMPLATE.txt"),
     )
     return reference_repo_path
 
 
-# TODO: I think I actually want this to be implemented by teh CLI.
 @pytest.fixture
 def ensure_git_repo(init_reference_repo):
     repo = git.Repo.init(init_reference_repo)
@@ -89,12 +101,7 @@ def ensure_git_repo(init_reference_repo):
     return repo
 
 
-@pytest.mark.skip
 class DescribeExampleInitWhenRepoExists:
-    def test_template_repo_fixtures(self, game_root_cwd, ensure_git_repo: git.Repo):
-        git_repo = ensure_git_repo
-        assert len(git_repo.untracked_files) == 0
-
     def test_init_game(self, game_root_cwd, ensure_git_repo: git.Repo):
         git_repo = ensure_git_repo
         runner = CliRunner()
@@ -106,7 +113,12 @@ class DescribeExampleInitWhenRepoExists:
                 "--players=test-tt,test-uu,test-vv",
             ],
         )
-        print("cli stdout:", result.stdout)
+        assert not result.exception
+        print(
+            "\n$$ stdout start $$\n",
+            result.stdout,
+            "\n$$ stdout end $$\n",
+        )
 
         app = tfr.app.TfrApp()
         app.load_game("./tfr.yaml")

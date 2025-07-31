@@ -7,7 +7,6 @@ import yaml
 from .git_utils import PathLike
 
 
-@lru_cache()
 def load(path: PathLike) -> dict:
     real_path = Path(path)
     if not real_path.exists():
