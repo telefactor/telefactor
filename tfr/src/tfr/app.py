@@ -29,7 +29,7 @@ class TfrApp:
         return self._game
 
     ##
-    # Storage Helpers
+    # Init
 
     def init_game(
         self,
@@ -41,30 +41,17 @@ class TfrApp:
     ):
         root_path = Path(root_dir).absolute()
         echo_info("Initializing game at", root_path)
+        analysis = self._analyze_initial_dir(root_path)
 
-        self._game_path = root_path / TFR_FILENAME
-        if self._game_path.exists():
+        if analysis.game_path_existed:
             echo_info(f"{TFR_FILENAME} exists. Loading existing game.")
-            self.load_game(self._game_path)
+            self.load_game(analysis.game_path)
         else:
             self._init_from_blank(
-                root_path=root_path,
                 name=name,
                 gm_username=gm_username,
                 player_usernames=player_usernames,
             )
-
-        self.save_game()
-
-    def _init_from_blank(
-        self,
-        *,
-        root_path: Path,
-        name: str,
-        gm_username: str,
-        player_usernames: list[str],
-    ):
-        analysis = self._analyze_initial_dir(root_path)
 
         if analysis.root_is_repo:
             self._echo_warn_repo(root_path)
@@ -73,15 +60,15 @@ class TfrApp:
                 self._echo_error_base(analysis.expected_phase_base_dir)
                 exit(1)
 
-        echo_info(
-            "debug",
-            dict(
-                name=name,
-                gm_username=gm_username,
-                player_usernames=player_usernames,
-            ),
-        )
+        self.save_game()
 
+    def _init_from_blank(
+        self,
+        *,
+        name: str,
+        gm_username: str,
+        player_usernames: list[str],
+    ):
         self._game = game_store.Game(
             name=(name or constants.DEFAULT_NAME),
             gm=game_store.User(
@@ -99,12 +86,17 @@ class TfrApp:
     class Analysis(t.NamedTuple):
         root_path: Path
         root_is_repo: bool
+        game_path: Path
+        game_path_existed: bool
         repos_dir: Path | None
         phase_dirs: list[Path] | None
         phase_base_dir: Path | None
         expected_phase_base_dir: Path
 
     def _analyze_initial_dir(self, root_path: Path) -> Analysis:
+        game_path = root_path / TFR_FILENAME
+        game_path_existed = game_path.exists()
+
         root_is_repo = False
         if is_git_repo(root_path):
             root_is_repo = True
@@ -128,6 +120,8 @@ class TfrApp:
         return self.Analysis(
             root_path=root_path,
             root_is_repo=root_is_repo,
+            game_path=game_path,
+            game_path_existed=game_path_existed,
             repos_dir=repos_dir,
             phase_dirs=phase_dirs,
             phase_base_dir=phase_base_dir,
