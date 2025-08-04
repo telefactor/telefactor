@@ -9,6 +9,7 @@ from tfr import constants
 from tfr.git_utils import PathLike, is_git_repo
 from tfr.constants import TFR_FILENAME
 from tfr.io_utils import echo, echo_error, echo_info
+from tfr.tree_manager import make_phase_name
 
 
 class TfrApp:
@@ -24,7 +25,7 @@ class TfrApp:
     @property
     def game(self):
         if not self._game:
-            raise ValueError()
+            raise AttributeError()
 
         return self._game
 
@@ -52,13 +53,16 @@ class TfrApp:
                 gm_username=gm_username,
                 player_usernames=player_usernames,
             )
+            self._game_path = analysis.game_path
 
-        if analysis.root_is_repo:
+        if analysis.root_is_repo and not analysis.game_path_existed:
             self._echo_warn_repo(root_path)
 
-            if not analysis.phase_base_dir:
-                self._echo_error_base(analysis.expected_phase_base_dir)
-                exit(1)
+        if analysis.root_is_repo and not analysis.phase_base_dir:
+            self._echo_error_base(analysis.expected_phase_base_dir)
+            exit(1)
+
+        self._make_phase_base()
 
         self.save_game()
 
@@ -102,7 +106,7 @@ class TfrApp:
             root_is_repo = True
 
         repos_dir = root_path / constants.REPOS_DIRNAME
-        expected_phase_base_dir = repos_dir / constants.make_phase_name(0)
+        expected_phase_base_dir = repos_dir / make_phase_name(0)
 
         if repos_dir.exists() and repos_dir.is_dir():
             phase_dirs = [
@@ -110,7 +114,7 @@ class TfrApp:
             ]
             phase_base_dir = None
             for phase_dir in phase_dirs:
-                if phase_dir.name == constants.make_phase_name(0):
+                if phase_dir.name == make_phase_name(0):
                     phase_base_dir = phase_dir
         else:
             repos_dir = None
@@ -150,6 +154,10 @@ class TfrApp:
             directory or run init in an empty directory and add copy your files in later.
             """
         )
+
+    def _make_phase_base(self):
+        # self.game.repositories
+        pass
 
     def load_game(self, path: PathLike):
         self._game_path = Path(path)

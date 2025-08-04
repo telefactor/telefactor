@@ -2,12 +2,24 @@ import os
 from pathlib import Path
 import shutil
 
-from click.testing import CliRunner
+from click.testing import CliRunner, Result as ClickResult
 import git
 import pytest
 
 import tfr.commands
 import tfr.app
+from tfr.constants import DEFAULT_GM_USERNAME, DEFAULT_NAME
+from tfr.game_store import Game, User
+from tfr.tree_manager import TreeManager
+
+
+def assert_click_result(result: ClickResult):
+    print(
+        "\n$$ stdout start $$\n",
+        result.stdout,
+        "\n$$ stdout end $$\n",
+    )
+    assert not result.exception
 
 
 def output_dir_name(request: pytest.FixtureRequest):
@@ -45,8 +57,30 @@ def game_root_cwd(test_output_dir):
         os.chdir(prev_cwd)
 
 
+class DescribeTreeManager:
+    def test_works(self, game_root_cwd: Path):
+        (game_root_cwd / "repos" / "base").mkdir(parents=True)
+        (game_root_cwd / "repos" / "phase-01").mkdir()
+
+        game = Game(
+            name=DEFAULT_NAME,
+            gm=User(username=DEFAULT_GM_USERNAME, name=None),
+        )
+        tree_manager = TreeManager(
+            game=game,
+            game_path=game_root_cwd,
+        )
+
+        assert sorted(
+            [(p.phase_index, str(p.directory)) for p in tree_manager._phases]
+        ) == [
+            (0, "repos/base"),
+            (1, "repos/phase-01"),
+        ]
+
+
 class DescribeExampleInitFromBlank:
-    def test_init_game(self, game_root_cwd):
+    def test_init_game(self, game_root_cwd: Path):
         runner = CliRunner()
         result = runner.invoke(
             tfr.commands.init_game,
@@ -54,11 +88,14 @@ class DescribeExampleInitFromBlank:
                 "--name=telefactor-test-cli",
             ],
         )
-        assert not result.exception
+        assert_click_result(result)
 
         assert "Initializing game at" in result.output
         assert str(game_root_cwd) in result.output
 
+        assert (game_root_cwd / "repos" / "base").exists()
+
+        ##
         app = tfr.app.TfrApp()
         app.load_game("./tfr.yaml")
 
@@ -113,12 +150,8 @@ class DescribeExampleInitWhenRepoExists:
                 "--players=test-tt,test-uu,test-vv",
             ],
         )
-        assert not result.exception
-        print(
-            "\n$$ stdout start $$\n",
-            result.stdout,
-            "\n$$ stdout end $$\n",
-        )
+
+        assert_click_result(result)
 
         app = tfr.app.TfrApp()
         app.load_game("./tfr.yaml")
