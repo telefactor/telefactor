@@ -38,7 +38,7 @@ def test_output_dir(request: pytest.FixtureRequest):
         print(f"Cleaning up existing output directory: {test_output_path}")
         shutil.rmtree(test_output_path)
 
-    test_output_path.mkdir(exist_ok=True)
+    test_output_path.mkdir(exist_ok=True, parents=True)
     yield test_output_path
 
     print(
@@ -58,9 +58,9 @@ def game_root_cwd(test_output_dir):
 
 
 class DescribeTreeManager:
-    def test_works(self, game_root_cwd: Path):
-        (game_root_cwd / "repos" / "base").mkdir(parents=True)
-        (game_root_cwd / "repos" / "phase-01").mkdir()
+    def test_scan_empty(self, game_root_cwd: Path):
+
+        (game_root_cwd / "repos").mkdir(parents=True)
 
         game = Game(
             name=DEFAULT_NAME,
@@ -74,8 +74,68 @@ class DescribeTreeManager:
         assert sorted(
             [(p.phase_index, str(p.directory)) for p in tree_manager._phases]
         ) == [
-            (0, "repos/base"),
-            (1, "repos/phase-01"),
+            #
+        ]
+
+    def test_scan_phases_no_git(self, game_root_cwd: Path):
+        (game_root_cwd / "repos" / "base").mkdir(parents=True)
+        (game_root_cwd / "repos" / "phase-01").mkdir()
+        (game_root_cwd / "repos" / "phase-02").mkdir()
+
+        game = Game(
+            name=DEFAULT_NAME,
+            gm=User(username=DEFAULT_GM_USERNAME, name=None),
+        )
+        tree_manager = TreeManager(
+            game=game,
+            game_path=game_root_cwd,
+        )
+
+        assert sorted(
+            [
+                (
+                    p.phase_index,
+                    str(p.directory),
+                    (p.git_repo.head.commit.summary if p.git_repo else None),
+                )
+                for p in tree_manager._phases
+            ]
+        ) == [
+            (0, "repos/base", None),
+            (1, "repos/phase-01", None),
+            (2, "repos/phase-02", None),
+        ]
+
+    def test_scan_phases_base_git(self, game_root_cwd: Path, repo_template_path):
+        (game_root_cwd / "repos" / "base").mkdir(parents=True)
+        (game_root_cwd / "repos" / "phase-01").mkdir()
+        (game_root_cwd / "repos" / "phase-02").mkdir()
+
+        factory_template_to_repo(repo_template_path, game_root_cwd / "repos" / "base")
+        factory_init_commit_repo(game_root_cwd / "repos" / "base")
+
+        game = Game(
+            name=DEFAULT_NAME,
+            gm=User(username=DEFAULT_GM_USERNAME, name=None),
+        )
+        tree_manager = TreeManager(
+            game=game,
+            game_path=game_root_cwd,
+        )
+
+        assert sorted(
+            [
+                (
+                    p.phase_index,
+                    str(p.directory),
+                    (p.git_repo.head.commit.summary if p.git_repo else None),
+                )
+                for p in tree_manager._phases
+            ]
+        ) == [
+            (0, "repos/base", "init"),
+            (1, "repos/phase-01", None),
+            (2, "repos/phase-02", None),
         ]
 
 
@@ -106,36 +166,48 @@ class DescribeExampleInitFromBlank:
 #
 
 
-@pytest.fixture
-def init_reference_repo(request, test_output_dir):
-    test_path: Path = request.path
-    repo_template_path = test_path.parent / "repo_template"
+def factory_template_to_repo(repo_template_path, repo_path):
     if not repo_template_path.exists():
         raise Exception(f"Test needs template at: {repo_template_path}")
 
+    repo_path.mkdir(parents=True, exist_ok=True)
+
+    shutil.copytree(
+        repo_template_path,
+        repo_path,
+        dirs_exist_ok=True,
+        ignore=shutil.ignore_patterns("IS_TEMPLATE.txt"),
+    )
+    return repo_path
+
+
+def factory_init_commit_repo(repo_path):
+    repo = git.Repo.init(repo_path)
+    repo.index.add(repo.untracked_files)
+    repo.index.commit("init")
+    return repo
+
+
+@pytest.fixture
+def repo_template_path(request):
+    test_path: Path = request.path
+    return test_path.parent / "repo_template"
+
+
+@pytest.fixture
+def init_reference_repo(repo_template_path, test_output_dir):
     reference_repo_path = test_output_dir / "repos" / "base"
 
     # if reference_repo_path.exists():
     #     print(f"Cleaning up existing repo path {reference_repo_path}")
     #     shutil.rmtree(reference_repo_path)
 
-    reference_repo_path.mkdir(parents=True)
-
-    shutil.copytree(
-        repo_template_path,
-        reference_repo_path,
-        dirs_exist_ok=True,
-        ignore=shutil.ignore_patterns("IS_TEMPLATE.txt"),
-    )
-    return reference_repo_path
+    return factory_template_to_repo(repo_template_path, reference_repo_path)
 
 
 @pytest.fixture
 def ensure_git_repo(init_reference_repo):
-    repo = git.Repo.init(init_reference_repo)
-    repo.index.add(repo.untracked_files)
-    repo.index.commit("init")
-    return repo
+    return factory_init_commit_repo(init_reference_repo)
 
 
 class DescribeExampleInitWhenRepoExists:

@@ -8,7 +8,7 @@ import git
 from tfr import game_store
 from tfr.game_store import Game, Repository
 from tfr import constants
-from tfr.git_utils import PathLike, is_git_repo
+from tfr.git_utils import PathLike, is_git_repo, try_git_repo
 from tfr.constants import REPOS_DIRNAME, TFR_FILENAME
 from tfr.io_utils import echo, echo_error, echo_info
 
@@ -44,12 +44,17 @@ def parse_phase_name(dirname: str) -> int | None:
 
 @dataclass
 class RepoLocal:
+    """Repo on disk"""
+
     phase_index: int
     directory: Path
+    git_repo: git.Repo | None = None
 
 
 @dataclass
 class RepoState:
+    """Repo game definition vs paired with repo on disk"""
+
     repo: Repository | None = None
     local: RepoLocal | None = None
 
@@ -82,11 +87,11 @@ class TreeManager:
             if phase_index is None:
                 continue
 
-            phases.append(
-                RepoLocal(
-                    phase_index=phase_index,
-                    directory=(phase_dir.relative_to(self.game_path)),
-                )
+            repo_local = RepoLocal(
+                phase_index=phase_index,
+                directory=(phase_dir.relative_to(self.game_path)),
+                git_repo=try_git_repo(phase_dir),
             )
+            phases.append(repo_local)
 
         self._phases = phases
